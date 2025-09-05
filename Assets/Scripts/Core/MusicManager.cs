@@ -28,6 +28,8 @@ namespace Core
         {
             if(audioSource.isPlaying)
                 audioSource.DOFade(0f, transitionDuration).OnComplete(() => PlayNewMusic(sceneName));
+            else 
+                PlayNewMusic(sceneName);
         }
 
         private void PlayNewMusic(string sceneName)
