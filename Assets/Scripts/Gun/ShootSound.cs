@@ -2,15 +2,10 @@ using UnityEngine;
 
 public class ShootSound : MonoBehaviour
 {
-    [System.Serializable]
-    private struct WeightedClip
-    {
-        public AudioClip clip;
-        public float weight;
-    }
-
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private WeightedClip[] clips;
+    [SerializeField] private AudioClip clip;
+    [SerializeField] private float pitchMin = 1f;
+    [SerializeField] private float pitchMax = 1f;
     [SerializeField] private float destroyAfterSeconds = 2f;
 
     private void Start()
@@ -20,10 +15,16 @@ public class ShootSound : MonoBehaviour
             audioSource = GetComponent<AudioSource>();
         }
 
-        var chosen = SelectClipByWeight(clips);
-        if (chosen && audioSource)
+        if (audioSource)
         {
-            audioSource.PlayOneShot(chosen);
+            float min = Mathf.Min(pitchMin, pitchMax);
+            float max = Mathf.Max(pitchMin, pitchMax);
+            audioSource.pitch = Random.Range(min, max);
+
+            if (clip)
+            {
+                audioSource.PlayOneShot(clip);
+            }
         }
 
         if (destroyAfterSeconds > 0f)
@@ -34,41 +35,5 @@ public class ShootSound : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    private static AudioClip SelectClipByWeight(WeightedClip[] weightedClips)
-    {
-        if (weightedClips == null || weightedClips.Length == 0) return null;
-
-        float totalWeight = 0f;
-        for (int i = 0; i < weightedClips.Length; i++)
-        {
-            if (weightedClips[i].clip == null || weightedClips[i].weight <= 0f) continue;
-            totalWeight += weightedClips[i].weight;
-        }
-
-        if (totalWeight <= 0f)
-        {
-            for (int i = 0; i < weightedClips.Length; i++)
-            {
-                if (weightedClips[i].clip != null) return weightedClips[i].clip;
-            }
-            return null;
-        }
-
-        float randomPoint = Random.value * totalWeight;
-        float cumulative = 0f;
-
-        for (int i = 0; i < weightedClips.Length; i++)
-        {
-            if (weightedClips[i].clip == null || weightedClips[i].weight <= 0f) continue;
-            cumulative += weightedClips[i].weight;
-            if (randomPoint <= cumulative)
-            {
-                return weightedClips[i].clip;
-            }
-        }
-
-        return null;
     }
 }

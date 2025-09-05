@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class ShootCallback : MonoBehaviour
 {
+    [SerializeField] private Transform spawnPoint;
     [SerializeField] private GameObject shootSoundPrefab;
     [SerializeField] private UnityEvent shootEvent;
 
@@ -37,7 +38,7 @@ public class ShootCallback : MonoBehaviour
         if (pressed)
         {
             shootEvent?.Invoke();
-            Instantiate(shootSoundPrefab, transform.position, Quaternion.identity);
+            Instantiate(shootSoundPrefab, spawnPoint);
         }
     }
 }
