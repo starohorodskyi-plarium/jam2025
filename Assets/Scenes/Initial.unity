@@ -815,6 +815,7 @@ GameObject:
   - component: {fileID: 8290623578196694211}
   - component: {fileID: 8290623578196694213}
   - component: {fileID: 8290623578196694212}
+  - component: {fileID: 8290623578196694214}
   m_Layer: 0
   m_Name: GameBootstrapper
   m_TagString: Bootstrapper
@@ -877,6 +878,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8290623578196694214}
+        m_TargetAssemblyTypeName: GameCursor.CursorTexture, Assembly-CSharp
+        m_MethodName: SetDefaultCursor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8290623578196694214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6222168559620617325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4be2b9acd91d4b82b9f4fa53a7bf6f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorTexture: {fileID: 0}
+  hotspot: {x: 0, y: 0}
+  cursorMode: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

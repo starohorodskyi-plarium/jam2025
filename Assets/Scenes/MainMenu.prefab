@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 5566811162837360485}
   - component: {fileID: 1106262523882129431}
   - component: {fileID: 4681914995090899891}
-  - component: {fileID: 985062399289103154}
+  - component: {fileID: 2021030853550901543}
   m_Layer: 5
   m_Name: Play
   m_TagString: Untagged
@@ -468,10 +468,10 @@ MonoBehaviour:
   clickSequence:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 985062399289103154}
-        m_TargetAssemblyTypeName: Core.LevelLoader, Assembly-CSharp
-        m_MethodName: LoadLevel
-        m_Mode: 5
+      - m_Target: {fileID: 2021030853550901543}
+        m_TargetAssemblyTypeName: Core.CloseApplication, Assembly-CSharp
+        m_MethodName: Close
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -507,7 +507,7 @@ MonoBehaviour:
   audioPrefab: {fileID: 8671327176818285429, guid: 82df7c5071d104923ad068f4528cac6f, type: 3}
   clipSound: {fileID: 0}
   volume: 1
---- !u!114 &985062399289103154
+--- !u!114 &2021030853550901543
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -516,7 +516,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2562379033830522222}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 742cf889acfe64ffb804d8adcb96ef3f, type: 3}
+  m_Script: {fileID: 11500000, guid: 8386e1de1f5574f15b1c3b86a73bf573, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2793649341770193060
@@ -726,7 +726,6 @@ GameObject:
   - component: {fileID: 4910287694938151085}
   - component: {fileID: 1005254986973697946}
   - component: {fileID: 3700138984062070835}
-  - component: {fileID: 136093196814481259}
   m_Layer: 5
   m_Name: Exit
   m_TagString: Untagged
@@ -894,10 +893,10 @@ MonoBehaviour:
   clickSequence:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 136093196814481259}
-        m_TargetAssemblyTypeName: Core.CloseApplication, Assembly-CSharp
-        m_MethodName: Close
-        m_Mode: 1
+      - m_Target: {fileID: 6327830773115866549}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -906,18 +905,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &136093196814481259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3425451690616609174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8386e1de1f5574f15b1c3b86a73bf573, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3491644098429721618
 GameObject:
   m_ObjectHideFlags: 0
