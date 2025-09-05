@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: ItWorks!
-  productName: GameJam7
+  productName: "Devil\u2019s in Detail"
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
@@ -293,7 +293,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 58debf8c1a36e412e99c9aa5a37c0204, type: 3}
+      m_Icon: {fileID: 2800000, guid: 5535701f3adc94c00a941b435fed84cb, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0

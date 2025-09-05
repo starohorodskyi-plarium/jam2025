@@ -463,14 +463,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a68a4bc1a1b0b44769ee34f21efc7927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSceneName: MainMenu
+  initialSceneName: Initial
   musicMap:
     m_keys:
     - MainMenu
     - Game
     m_values:
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 8300000, guid: c45292447731d4376943f5438ebaa7c9, type: 3}
+    - {fileID: 8300000, guid: c45292447731d4376943f5438ebaa7c9, type: 3}
   audioSource: {fileID: 1193614302}
   transitionDuration: 3
 --- !u!114 &1193614301

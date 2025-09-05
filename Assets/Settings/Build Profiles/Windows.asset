@@ -35,7 +35,7 @@ MonoBehaviour:
     - line: '|   useOnDemandResources: 0'
     - line: '|   accelerometerFrequency: 60'
     - line: '|   companyName: ItWorks!'
-    - line: '|   productName: GameJam7'
+    - line: '|   productName: "Devil\u2019s in Detail"'
     - line: '|   defaultCursor: {instanceID: 0}'
     - line: '|   cursorHotspot: {x: 0, y: 0}'
     - line: '|   m_SplashScreenBackgroundColor: {r: 0, g: 0, b: 0, a: 1}'
@@ -316,7 +316,7 @@ MonoBehaviour:
     - line: '|   - m_BuildTarget: '
     - line: '|     m_Icons:'
     - line: '|     - serializedVersion: 2'
-    - line: '|       m_Icon: {fileID: 2800000, guid: 58debf8c1a36e412e99c9aa5a37c0204,
+    - line: '|       m_Icon: {fileID: 2800000, guid: 5535701f3adc94c00a941b435fed84cb,
         type: 3}'
     - line: '|       m_Width: 128'
     - line: '|       m_Height: 128'
@@ -1027,7 +1027,7 @@ MonoBehaviour:
         m_ExplicitNullChecks: 0
         m_ExplicitDivideByZeroChecks: 0
         m_ExplicitArrayBoundsChecks: 0
-        m_CompressionType: -1
+        m_CompressionType: 0
         m_InstallInBuildFolder: 0
         m_WindowsBuildAndRunDeployTarget: 0
         m_Architecture: 0
