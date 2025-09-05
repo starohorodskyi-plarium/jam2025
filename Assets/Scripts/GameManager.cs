@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     public enum GameState
     {
+        Idle, 
         Playing, 
         GameOver
     }
@@ -13,8 +14,10 @@ public class GameManager : MonoBehaviour
 
     [Header("Timer Settings")]
     public float startTime = 60f;
+    private float timeBonus = 1f;
+    private float timePenalty = 5f;
     private float currentTime;
-
+    
     [Header("UI")]
     public TextMeshProUGUI timerText;
     
@@ -28,23 +31,28 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         else 
+        {
             Destroy(gameObject);
+            return;
+        }
+
+        CurrentState = GameState.Idle;   // default state before clicking start
+        if (timerText != null)
+            timerText.gameObject.SetActive(false);
     }
 
     void Update()
     {
-        UpdateTimer();
+        if (CurrentState == GameState.Playing)
+            UpdateTimer();
     }
 
     private void UpdateTimer()
     {
-        if (CurrentState != GameState.Playing)
-            return;
-        
         currentTime -= Time.deltaTime;
-
+        
         if (timerText != null)
-            timerText.text = Mathf.CeilToInt(currentTime).ToString();
+            timerText.text = $"Time: {Mathf.CeilToInt(currentTime)}";
         
         if (currentTime <= 0f)
             EndGame();
@@ -54,22 +62,29 @@ public class GameManager : MonoBehaviour
     {
         currentTime = startTime;
         CurrentState = GameState.Playing;
+
+        if (timerText != null)
+            timerText.gameObject.SetActive(true);
     }
 
     public void EndGame()
     {
         CurrentState = GameState.GameOver;
+
+        if (timerText != null)
+            timerText.gameObject.SetActive(false);
+
         Debug.Log("Game Over!");
     }
 
-    public void AddTime(float amount)
+    public void AddTime()
     {
-        currentTime += amount;
+        currentTime += timeBonus;
     }
 
-    public void SubtractTime(float amount)
+    public void SubtractTime()
     {
-        currentTime -= amount;
+        currentTime -= timePenalty;
         if (currentTime < 0) currentTime = 0;
     }
 }
