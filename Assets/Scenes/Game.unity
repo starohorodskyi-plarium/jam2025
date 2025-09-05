@@ -1087,6 +1087,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1360423020}
     m_Modifications:
+    - target: {fileID: 720392091964057722, guid: e0b9617fe737244d4b0878721b93b951, type: 3}
+      propertyPath: targetToShake
+      value: 
+      objectReference: {fileID: 1360423020}
     - target: {fileID: 7324096207249855408, guid: e0b9617fe737244d4b0878721b93b951, type: 3}
       propertyPath: viewCamera
       value: 
@@ -1110,18 +1114,6 @@ PrefabInstance:
     - target: {fileID: 9030381811698364051, guid: e0b9617fe737244d4b0878721b93b951, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9080829107651752848, guid: e0b9617fe737244d4b0878721b93b951, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -21.197
-      objectReference: {fileID: 0}
-    - target: {fileID: 9080829107651752848, guid: e0b9617fe737244d4b0878721b93b951, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -21.809
-      objectReference: {fileID: 0}
-    - target: {fileID: 9080829107651752848, guid: e0b9617fe737244d4b0878721b93b951, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 20.327
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

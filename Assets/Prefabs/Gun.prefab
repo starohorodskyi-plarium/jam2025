@@ -31,7 +31,7 @@ Transform:
   m_Children:
   - {fileID: 642083190597957985}
   m_Father: {fileID: 9030381811698364051}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -21.197, y: -21.809, z: 20.327}
 --- !u!1 &3786078673945552935
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,6 +161,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9030381811698364051}
   - component: {fileID: 7324096207249855408}
+  - component: {fileID: 4633363001606932645}
+  - component: {fileID: 720392091964057722}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -199,3 +201,51 @@ MonoBehaviour:
   objectToRotate: {fileID: 9080829107651752848}
   viewCamera: {fileID: 0}
   cursorDepthFromCamera: 10
+--- !u!114 &4633363001606932645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874365214300321571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8255ab80ee550418e8b621cadabd093b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootSoundPrefab: {fileID: 2834654951425760423, guid: f32b6909343914fb9ad175a9d610e6ca, type: 3}
+  shootEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 720392091964057722}
+        m_TargetAssemblyTypeName: Gun.CameraShake, Assembly-CSharp
+        m_MethodName: PlayShake
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &720392091964057722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874365214300321571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a16ea2449b6e54041a41fc526fa2c429, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetToShake: {fileID: 0}
+  durationSeconds: 0.12
+  strength: {x: 0.2, y: 0.2, z: 0}
+  vibrato: 50
+  randomness: 90
+  snapping: 0
+  fadeOut: 1
+  ease: 6
