@@ -66,8 +66,6 @@ public class NPCController : MonoBehaviour
         if (spriteRenderer == null)
             spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
-    
-    
 
     private void Move()
     {
