@@ -37,9 +37,7 @@ public class NPCShotAudioReaction : MonoBehaviour
     private void PlayClip(AudioClip clip)
     {
         if (clip == null || audioSource == null)
-        {
             return;
-        }
         audioSource.PlayOneShot(clip);
     }
 }
