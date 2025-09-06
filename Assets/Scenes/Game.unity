@@ -1506,54 +1506,6 @@ PrefabInstance:
       propertyPath: targetToShake
       value: 
       objectReference: {fileID: 1360423020}
-    - target: {fileID: 3526122508270192388, guid: e0b9617fe737244d4b0878721b93b951, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 3526122508270192388, guid: e0b9617fe737244d4b0878721b93b951, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 3526122508270192388, guid: e0b9617fe737244d4b0878721b93b951, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3526122508270192388, guid: e0b9617fe737244d4b0878721b93b951, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 4633363001606932645, guid: e0b9617fe737244d4b0878721b93b951, type: 3}
-      propertyPath: OnShootPressed.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4633363001606932645, guid: e0b9617fe737244d4b0878721b93b951, type: 3}
-      propertyPath: OnShootPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4633363001606932645, guid: e0b9617fe737244d4b0878721b93b951, type: 3}
-      propertyPath: OnShootPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2281781764476534684}
-    - target: {fileID: 4633363001606932645, guid: e0b9617fe737244d4b0878721b93b951, type: 3}
-      propertyPath: OnShootPressed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4633363001606932645, guid: e0b9617fe737244d4b0878721b93b951, type: 3}
-      propertyPath: OnShootPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TryFire
-      objectReference: {fileID: 0}
-    - target: {fileID: 4633363001606932645, guid: e0b9617fe737244d4b0878721b93b951, type: 3}
-      propertyPath: OnShootPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MonoControllers.WeaponController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4633363001606932645, guid: e0b9617fe737244d4b0878721b93b951, type: 3}
-      propertyPath: OnShootPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 4954513762768696571, guid: e0b9617fe737244d4b0878721b93b951, type: 3}
-      propertyPath: m_Name
-      value: Muzzle
-      objectReference: {fileID: 0}
     - target: {fileID: 7286017839127550316, guid: e0b9617fe737244d4b0878721b93b951, type: 3}
       propertyPath: OnReloadEnd.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -1639,6 +1591,10 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7324096207249855408, guid: e0b9617fe737244d4b0878721b93b951, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7324096207249855408, guid: e0b9617fe737244d4b0878721b93b951, type: 3}
       propertyPath: viewCamera
       value: 
       objectReference: {fileID: 1360423019}
@@ -1672,17 +1628,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9030381811698364051, guid: e0b9617fe737244d4b0878721b93b951, type: 3}
   m_PrefabInstance: {fileID: 2281781764476534679}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2281781764476534684 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7286017839127550316, guid: e0b9617fe737244d4b0878721b93b951, type: 3}
-  m_PrefabInstance: {fileID: 2281781764476534679}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 747272675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a14ac7e0b0e428ea6c27537bc7acce8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3373019861503695730 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7867474922437790813, guid: 3aac481332d3a4b1bb92612ce720533c, type: 3}
