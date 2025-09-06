@@ -665,6 +665,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5496816532189799616, guid: 9ae820de8d6ef4be9ba99b81731be42c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 5509595998250298362, guid: 9ae820de8d6ef4be9ba99b81731be42c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.14
+      objectReference: {fileID: 0}
     - target: {fileID: 5525473126961520892, guid: 9ae820de8d6ef4be9ba99b81731be42c, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -1116,6 +1124,7 @@ GameObject:
   - component: {fileID: 1360423019}
   - component: {fileID: 1360423018}
   - component: {fileID: 1360423021}
+  - component: {fileID: 1360423022}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1190,14 +1199,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360423017}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.013188496, y: -0.010502917, z: -0.00013811479, w: 0.9998579}
+  m_LocalRotation: {x: -0.013435161, y: -0.022598095, z: -0.000303714, w: 0.99965435}
   m_LocalPosition: {x: -4.8352623, y: -3.659385, z: 2.1162949}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2281781764476534680}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 17, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.54, y: -2.59, z: 0}
 --- !u!114 &1360423021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1242,6 +1251,23 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &1360423022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360423017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ba8b6b188f0bc24fbab373d0adcce48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxXAngle: 2
+  maxYAngle: 5
+  sensitivityX: 2
+  sensitivityY: 2
+  smoothTime: 0.1
 --- !u!4 &1441865414 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4460952579006086150, guid: 3186cc65c7353d64a94c8871f9759f4c, type: 3}
