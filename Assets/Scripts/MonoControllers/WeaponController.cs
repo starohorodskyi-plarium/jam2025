@@ -44,12 +44,27 @@ namespace MonoControllers
         {
             if (Reloading || FireDelay)
                 return;
-            
+    
             UpdateAfterShoot();
-            CalculateTrajectory(out var projectileData);
-            
+
+            CalculateTrajectory(out var projectileData, out var hitObject);
+
             OnShoot?.Invoke(projectileData);
+
+            if (hitObject != null)
+            {
+                HandleTargetHit(hitObject);
+            }
+
             DispatchAmmoChanged();
+        }
+        
+        private void HandleTargetHit(GameObject hitObject)
+        {
+            if (hitObject.CompareTag("Friend"))
+                GameManager.Instance.SubtractTime();
+            else if (hitObject.CompareTag("Enemy"))
+                GameManager.Instance.AddTime();
         }
 
         private void UpdateAfterReload()
@@ -91,20 +106,29 @@ namespace MonoControllers
                 : mouseRay.Value.origin + mouseRay.Value.direction * _maxDistance;
         }
 
-        private void CalculateTrajectory(out ProjectileData projectileData)
+        private void CalculateTrajectory(out ProjectileData projectileData, out GameObject hitObject)
         {
             var rayDirection = _mousePosition - _fireOriginPoint.position;
-            
             var startPosition = _fireOriginPoint.position;
-            var endPosition = Physics.Raycast(startPosition, rayDirection, out var hitInfo, _maxDistance, _hitMask)
-                ? hitInfo.point
-                : _fireOriginPoint.position + _fireOriginPoint.forward * _maxDistance;
 
-            projectileData = new ProjectileData
+            if (Physics.Raycast(startPosition, rayDirection, out var hitInfo, _maxDistance, _hitMask))
             {
-                StartPosition = startPosition,
-                EndPosition = endPosition,
-            };
+                projectileData = new ProjectileData
+                {
+                    StartPosition = startPosition,
+                    EndPosition = hitInfo.point,
+                };
+                hitObject = hitInfo.collider.gameObject; // THIS is the object the ray hit
+            }
+            else
+            {
+                projectileData = new ProjectileData
+                {
+                    StartPosition = startPosition,
+                    EndPosition = _fireOriginPoint.position + _fireOriginPoint.forward * _maxDistance,
+                };
+                hitObject = null;
+            }
         }
 
         private void DispatchAmmoChanged()

@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Bootstrapper
+  - Friend
+  - Enemy
   layers:
   - Default
   - TransparentFX

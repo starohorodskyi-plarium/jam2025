@@ -1,5 +1,7 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,10 +18,13 @@ public class GameManager : MonoBehaviour
     public float startTime = 60f;
     private float timeBonus = 1f;
     private float timePenalty = 5f;
+    private float showLabelDuration = 1f;
     private float currentTime;
     
     [Header("UI")]
     public TextMeshProUGUI timerText;
+    public GameObject timePenaltyLabel;
+    public GameObject timeBonusLabel;
     
     public GameState CurrentState { get; private set; }
 
@@ -80,11 +85,25 @@ public class GameManager : MonoBehaviour
     public void AddTime()
     {
         currentTime += timeBonus;
+        
+        StartCoroutine(ShowLabel(timeBonusLabel));
     }
 
     public void SubtractTime()
     {
         currentTime -= timePenalty;
         if (currentTime < 0) currentTime = 0;
+
+        StartCoroutine(ShowLabel(timePenaltyLabel));
+    }
+    
+    private IEnumerator ShowLabel(GameObject label)
+    {
+        if (label == null) 
+            yield break;
+        
+        label.SetActive(true);
+        yield return new WaitForSeconds(showLabelDuration);
+        label.SetActive(false);
     }
 }
