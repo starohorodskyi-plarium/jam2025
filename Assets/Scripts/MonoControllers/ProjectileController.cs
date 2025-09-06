@@ -18,6 +18,8 @@ namespace MonoControllers
         private DateTime _destroyTime;
         private ProjectileData _projectileData;
         
+        public float Speed => _speed;
+        
         public void Initialize(ProjectileData projectileData) => 
             _projectileData = projectileData;
         
