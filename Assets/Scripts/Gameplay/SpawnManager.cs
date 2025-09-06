@@ -1,4 +1,5 @@
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class TargetSpawner : MonoBehaviour
 {
@@ -12,28 +13,13 @@ public class TargetSpawner : MonoBehaviour
     public float badTargetChance = 0.5f;
     public Transform[] spawnPoints;
 
-    private float timer;
-
-    void Update()
+    public void SpawnWave()
     {
-        if (GameManager.Instance.CurrentState != GameManager.GameState.Playing)
-            return;
-
-        timer -= Time.deltaTime;
-        if (timer <= 0f)
-        {
-            SpawnWave();
-            timer = spawnInterval;
-        }
-    }
-
-    private void SpawnWave()
-    {
-        foreach (Transform point in spawnPoints)
+        foreach (var point in spawnPoints)
         {
             if (point.childCount > 0)
             {
-                for (int i = point.childCount - 1; i >= 0; i--)
+                for (var i = point.childCount - 1; i >= 0; i--)
                 {
                     Destroy(point.GetChild(i).gameObject);
                 }
@@ -43,6 +29,20 @@ public class TargetSpawner : MonoBehaviour
             var prefab = isBad ? badTargetPrefab : goodTargetPrefab;
             
             Instantiate(prefab, point.position, prefab.transform.rotation, point);
+        }
+    }
+
+    public void DestroyAll()
+    {
+        foreach (var point in spawnPoints)
+        {
+            if (point.childCount <= 0) 
+                continue;
+            
+            for (var i = point.childCount - 1; i >= 0; i--)
+            {
+                Destroy(point.GetChild(i).gameObject);
+            }
         }
     }
 }

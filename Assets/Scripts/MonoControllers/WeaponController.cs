@@ -62,9 +62,17 @@ namespace MonoControllers
         private void HandleTargetHit(GameObject hitObject)
         {
             if (hitObject.CompareTag("Friend"))
+            {
                 GameManager.Instance.SubtractTime();
+                
+                hitObject.GetComponent<NPCController>()?.Hit();
+            }
             else if (hitObject.CompareTag("Enemy"))
+            {
                 GameManager.Instance.AddTime();
+                
+                hitObject.GetComponent<NPCController>()?.Hit();
+            }
         }
 
         private void UpdateAfterReload()

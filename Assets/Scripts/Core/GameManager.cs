@@ -16,15 +16,18 @@ public class GameManager : MonoBehaviour
 
     [Header("Timer Settings")]
     public float startTime = 60f;
-    private float timeBonus = 1f;
-    private float timePenalty = 5f;
-    private float showLabelDuration = 1f;
+    public float timeBonus = 1f;
+    public float timePenalty = 5f;
+    public float showLabelDuration = 1f;
     private float currentTime;
     
     [Header("UI")]
     public TextMeshProUGUI timerText;
     public GameObject timePenaltyLabel;
     public GameObject timeBonusLabel;
+    
+    [Header("Elements")]
+    public GameObject targetSpawner;
     
     public GameState CurrentState { get; private set; }
 
@@ -68,6 +71,8 @@ public class GameManager : MonoBehaviour
         currentTime = startTime;
         CurrentState = GameState.Playing;
 
+        targetSpawner.GetComponent<TargetSpawner>()?.SpawnWave();
+        
         if (timerText != null)
             timerText.gameObject.SetActive(true);
     }
@@ -78,6 +83,8 @@ public class GameManager : MonoBehaviour
 
         if (timerText != null)
             timerText.gameObject.SetActive(false);
+        
+        targetSpawner.GetComponent<TargetSpawner>()?.DestroyAll();
 
         Debug.Log("Game Over!");
     }
