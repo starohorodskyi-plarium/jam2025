@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 2636263207678593057}
   m_Layer: 6
   m_Name: Friend
-  m_TagString: Untagged
+  m_TagString: Friend
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -153,7 +153,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8437782b3f2c49441a6b6ffab311edd5, type: 2}
+  - {fileID: 2100000, guid: 1daae40d1691e7b45ab53972969d0a39, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
