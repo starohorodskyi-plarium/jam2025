@@ -5,6 +5,8 @@ using DG.Tweening;
 
 public class DevilificationProgress : MonoBehaviour
 {
+    public static readonly float DevilificationLevelId = 3f;
+    
     [Header("Slider Reference")]
     [SerializeField] private Slider _slider;
 

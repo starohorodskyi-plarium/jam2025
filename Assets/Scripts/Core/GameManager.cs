@@ -137,6 +137,8 @@ public class GameManager : MonoBehaviour
 
         LoadedLevel = levelManager;
         
+        MusicManager.SceneLoaded?.Invoke(LoadedLevel.name);
+        
         OnLevelLoaded?.Invoke(LoadedLevel.LevelId);
     }
 
@@ -212,6 +214,8 @@ public class GameManager : MonoBehaviour
         LoadedLevel.SpawnManager.DestroyAll();
         
         levelPassedPanel.SetActive(true);
+        
+        DevilificationProgress.OnSetSmooth?.Invoke((LoadedLevel.LevelId + 1)/DevilificationProgress.DevilificationLevelId);
         
         OnLevelFinishedSuccess?.Invoke(LoadedLevel.LevelId);
         
