@@ -37,7 +37,9 @@ namespace MonoControllers
         private void Update()
         {
             UpdateAfterReload();
-            UpdateMousePosition();
+            
+            if (GameManager.Instance.InputEnabled)
+                UpdateMousePosition();
         }
 
         public void TryFire()

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -26,8 +27,26 @@ public class GameManager : MonoBehaviour
     public GameObject timePenaltyLabel;
     public GameObject timeBonusLabel;
     public GameObject gameOverPanel;
+
+    public event Action<int> OnLevelStarted;
+    public event Action<int> OnLevelFinished;
     
     public GameState CurrentState { get; private set; }
+    public bool InputEnabled { get; private set; } = true;
+
+    public void EnableInputs()
+    {
+        StartCoroutine(DelayedEnabling());
+
+        IEnumerator DelayedEnabling()
+        {
+            yield return null;
+            InputEnabled = true;
+        }
+    }
+
+    public void DisableInputs() => 
+        InputEnabled = false;
 
     void Awake()
     {
@@ -73,6 +92,8 @@ public class GameManager : MonoBehaviour
         
         if (timerText != null)
             timerText.gameObject.SetActive(true);
+        
+        OnLevelStarted?.Invoke(1);
     }
 
     public void EndGame()
@@ -86,6 +107,8 @@ public class GameManager : MonoBehaviour
         
         gameOverPanel.SetActive(true);
 
+        OnLevelFinished?.Invoke(1);
+        
         Debug.Log("Game Over!");
     }
 

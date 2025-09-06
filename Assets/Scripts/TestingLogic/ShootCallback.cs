@@ -8,7 +8,7 @@ public class ShootCallback : MonoBehaviour
 {
     public UnityEvent OnShootPressed;
     
-    private bool IgnoreInputs => GameManager.Instance.CurrentState != GameManager.GameState.Playing;
+    private bool IgnoreInputs => GameManager.Instance.CurrentState != GameManager.GameState.Playing || !GameManager.Instance.InputEnabled;
     
     private void Update()
     {

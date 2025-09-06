@@ -26,6 +26,9 @@ namespace Gun
 
         private void Update()
         {
+            if (!GameManager.Instance.InputEnabled)
+                return;
+            
             if (objectToRotate == null || viewCamera == null)
             {
                 return;
