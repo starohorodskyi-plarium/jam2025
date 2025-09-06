@@ -56,13 +56,13 @@ namespace MonoControllers
             if (hitObject)
             {
                 // 75f is an arbitrary projectile speed for calculating impact delay (COPY FROM ProjectileController)
-                HandleTargetHit(hitObject, 75f);
+                HandleTargetHit(hitObject, 75f, projectileData.EndPosition);
             }
 
             DispatchAmmoChanged();
         }
         
-        private void HandleTargetHit(GameObject hitObject, float projectileSpeed)
+        private void HandleTargetHit(GameObject hitObject, float projectileSpeed, Vector3 collisionPoint)
         {
             var distance = Vector3.Distance(_fireOriginPoint.position, hitObject.transform.position);
             var impactDelay = distance / projectileSpeed;
@@ -78,6 +78,10 @@ namespace MonoControllers
                 GameManager.Instance.AddTime();
                 
                 hitObject.GetComponent<NPCController>()?.Hit(impactDelay);
+            }
+            else if (hitObject.CompareTag("Obstacle"))
+            {
+                hitObject.GetComponent<ObstacleReaction>()?.Hit(impactDelay, collisionPoint);
             }
         }
 

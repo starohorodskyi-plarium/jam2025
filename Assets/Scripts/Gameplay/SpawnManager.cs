@@ -8,7 +8,6 @@ public class SpawnManager : MonoBehaviour
     public GameObject badTargetPrefab;
 
     [Header("Spawn Settings")]
-    public float spawnInterval = 3f;
     [Range(0f, 1f)]
     public float badTargetChance = 0.5f;
     public Transform[] spawnPoints;
@@ -17,18 +16,42 @@ public class SpawnManager : MonoBehaviour
     {
         foreach (var point in spawnPoints)
         {
-            if (point.childCount > 0)
+            // Clean up existing children (not p1/p2)
+            for (var i = point.childCount - 1; i >= 0; i--)
             {
-                for (var i = point.childCount - 1; i >= 0; i--)
+                var child = point.GetChild(i);
+                if (child.name != "p1" && child.name != "p2")
                 {
-                    Destroy(point.GetChild(i).gameObject);
+                    Destroy(child.gameObject);
                 }
             }
-            
+
+            // Decide prefab
             var isBad = Random.value < badTargetChance;
             var prefab = isBad ? badTargetPrefab : goodTargetPrefab;
             
-            Instantiate(prefab, point.position, prefab.transform.rotation, point);
+            // Get p1 and p2 transforms
+            var p1 = point.Find("p1");
+            var p2 = point.Find("p2");
+            
+            if (p1 == null || p2 == null)
+            {
+                Debug.LogWarning($"Spawn point {point.name} is missing p1 or p2!");
+                continue;
+            }
+
+            // Spawn prefab
+            var instance = Instantiate(prefab, p1.position, prefab.transform.rotation, point);
+            
+            if (p1 != null && p2 != null)
+            {
+                // Pass them into NpcController
+                var controller = instance.GetComponent<NPCController>();
+                if (controller != null)
+                {
+                    controller.SetWaypoints(p1, p2);
+                }
+            }
         }
     }
 
@@ -36,28 +59,34 @@ public class SpawnManager : MonoBehaviour
     {
         if (spawnPoints == null || spawnPoints.Length == 0)
             return;
-        
+
         foreach (var point in spawnPoints)
         {
-            if (point.childCount <= 0) 
-                continue;
-            
-            for (var i = point.childCount - 1; i >= 0; i--)
+            for (int i = point.childCount - 1; i >= 0; i--)
             {
-                Destroy(point.GetChild(i).gameObject);
+                var child = point.GetChild(i);
+                if (child.name != "p1" && child.name != "p2")
+                {
+                    Destroy(child.gameObject);
+                }
             }
         }
     }
-    
+
     public bool AllEnemiesDefeated()
     {
         if (spawnPoints == null || spawnPoints.Length == 0)
             return true;
-        
+
         foreach (var point in spawnPoints)
         {
-            if (point.childCount > 0 && point.GetChild(0).gameObject.CompareTag("Enemy"))
-                return false;
+            // Ignore p1/p2
+            for (int i = 0; i < point.childCount; i++)
+            {
+                var child = point.GetChild(i).gameObject;
+                if (child.CompareTag("Enemy"))
+                    return false;
+            }
         }
 
         return true;

@@ -10,6 +10,8 @@ namespace Gun
         [SerializeField] private Transform objectToRotate;
         [SerializeField] private Camera viewCamera;
         [SerializeField, Min(0.01f)] private float cursorDepthFromCamera = 10f;
+        [SerializeField, Range(0f, 1f)] private float aimWeight = 1f;
+        private Quaternion _initialRotation;
 
         private void Awake()
         {
@@ -22,6 +24,7 @@ namespace Gun
             {
                 viewCamera = Camera.main;
             }
+            _initialRotation = objectToRotate.rotation;
         }
 
         private void Update()
@@ -49,7 +52,12 @@ namespace Gun
 #endif
 
             Vector3 worldPoint = viewCamera.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, cursorDepthFromCamera));
-            objectToRotate.LookAt(worldPoint);
+            Vector3 forward = worldPoint - objectToRotate.position;
+            if (forward.sqrMagnitude > 1e-6f)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(forward, Vector3.up);
+                objectToRotate.rotation = Quaternion.Slerp(_initialRotation, targetRotation, aimWeight);
+            }
         }
     }
 }
