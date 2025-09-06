@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -15,11 +16,32 @@ public class NPCController : MonoBehaviour
         Female
     }
 
+    private Transform point1;
+    private Transform point2;
+    private Transform target;
+    
+    private float moveSpeed = 0.5f;
+    private float reachThreshold = 0.1f; // how close is "arrived"
+    
+    private SpriteRenderer spriteRenderer;
+    
+    [Header("Character Settings")]
     [SerializeField] private Faction faction = Faction.Enemy;
     [SerializeField] private Gender gender = Gender.Male;
     [SerializeField] private GameObject allyHitEffect;
     [SerializeField] private GameObject enemyHitEffect;
     [SerializeField] private GameObject soundPlayerPrefab;
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+    }
+    
+    private void Update()
+    {
+        Move();
+    }
+
     public void Hit(float impactDelay)
     {
         Debug.Log($"{gameObject.name} was hit!");
@@ -31,6 +53,48 @@ public class NPCController : MonoBehaviour
             yield return new WaitForSeconds(impactDelay);
             PlayDeathEffects();
             Destroy(gameObject);
+        }
+    }
+    
+    public void SetWaypoints(Transform p1, Transform p2)
+    {
+        point1 = p1;
+        point2 = p2;
+        target = point2; 
+        transform.position = point1.position;
+        
+        if (spriteRenderer == null)
+            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+    }
+    
+    
+
+    private void Move()
+    {
+        if (point1 == null || point2 == null || target == null)
+            return;
+
+        // Move
+        transform.position = Vector3.MoveTowards(
+            transform.position,
+            target.position,
+            moveSpeed * Time.deltaTime
+        );
+
+        // Flip sprite based on movement direction (x axis)
+        Vector3 dir = target.position - transform.position;
+        if (spriteRenderer != null)
+        {
+            if (dir.x > 0.01f)
+                spriteRenderer.flipX = false; // facing right
+            else if (dir.x < -0.01f)
+                spriteRenderer.flipX = true;  // facing left
+        }
+
+        // Switch target if reached
+        if (Vector3.Distance(transform.position, target.position) < reachThreshold)
+        {
+            target = target == point1 ? point2 : point1;
         }
     }
     
