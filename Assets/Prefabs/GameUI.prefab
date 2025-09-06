@@ -1153,7 +1153,7 @@ MonoBehaviour:
     hive."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4ee74d31f2e0144be80058e67d9f3f02, type: 2}
-  m_sharedMaterial: {fileID: 2815918495452040422, guid: 4ee74d31f2e0144be80058e67d9f3f02, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: a58dc788f0f384785835f00bb3f2c41d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

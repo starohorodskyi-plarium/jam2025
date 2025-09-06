@@ -319,7 +319,7 @@ MonoBehaviour:
   _fireRateSec: 0.1
   _maxDistance: 100
   _reloadDurationSec: 1
-  _maxAmmo: 10
+  _maxAmmo: 6
   _hitMask:
     serializedVersion: 2
     m_Bits: 64
