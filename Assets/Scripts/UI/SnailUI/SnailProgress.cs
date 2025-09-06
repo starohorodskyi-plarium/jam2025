@@ -20,37 +20,37 @@ public class SnailProgress : MonoBehaviour
     [SerializeField] private TextMeshProUGUI lText;
 
     [Header("State")]
-    [SerializeField] private int unlockedLettersCount = 0;
+    [SerializeField] private bool[] unlocked = new bool[5];
 
     private static readonly Color ActiveColor = Color.white;
     private static readonly Color InactiveColor = Color.gray;
 
-    private int MaxLetters => 5; // S, N, A, I, L
+    private int MaxLetters => unlocked != null ? unlocked.Length : 5; // S, N, A, I, L
 
     void Start()
     {
         UpdateLettersVisual();
     }
 
-    public int GetUnlockedLettersCount()
+    void OnValidate()
     {
-        return unlockedLettersCount;
+        if (unlocked == null || unlocked.Length != 5)
+        {
+            var newArr = new bool[5];
+            if (unlocked != null)
+            {
+                int copy = Mathf.Min(unlocked.Length, 5);
+                for (int i = 0; i < copy; i++) newArr[i] = unlocked[i];
+            }
+            unlocked = newArr;
+        }
+        UpdateLettersVisual();
     }
 
     public void ResetProgress()
     {
-        SetUnlockedLettersCount(0);
-    }
-
-    public void AddOne()
-    {
-        Add(1);
-    }
-
-    public void Add(int amount)
-    {
-        if (amount == 0) return;
-        SetUnlockedLettersCount(unlockedLettersCount + amount);
+        for (int i = 0; i < MaxLetters; i++) unlocked[i] = false;
+        UpdateLettersVisual();
     }
 
     public void UpdateLettersVisual()
@@ -60,19 +60,51 @@ public class SnailProgress : MonoBehaviour
         {
             var text = letters[i];
             if (text == null) continue;
-            text.color = i < unlockedLettersCount ? ActiveColor : InactiveColor;
+            bool isUnlocked = i >= 0 && i < MaxLetters && unlocked[i];
+            text.color = isUnlocked ? ActiveColor : InactiveColor;
         }
     }
 
-    private void SetUnlockedLettersCount(int value)
+    public int GetUnlockedLettersCount()
     {
-        int clamped = Mathf.Clamp(value, 0, MaxLetters);
-        if (clamped == unlockedLettersCount) return;
-        unlockedLettersCount = clamped;
+        int count = 0;
+        for (int i = 0; i < MaxLetters; i++) if (unlocked[i]) count++;
+        return count;
+    }
+
+    public void SetLetter(SnailLetter letter, bool isUnlocked)
+    {
+        int index = (int)letter;
+        if (index < 0 || index >= MaxLetters) return;
+        if (unlocked[index] == isUnlocked) return;
+        unlocked[index] = isUnlocked;
         UpdateLettersVisual();
     }
 
-    private TMP_Text[] GetLettersArray()
+    public void Unlock(SnailLetter letter)
+    {
+        SetLetter(letter, true);
+    }
+
+    public void Lock(SnailLetter letter)
+    {
+        SetLetter(letter, false);
+    }
+
+    public bool IsUnlocked(SnailLetter letter)
+    {
+        int index = (int)letter;
+        if (index < 0 || index >= MaxLetters) return false;
+        return unlocked[index];
+    }
+
+    private int FindNextLockedIndex()
+    {
+        for (int i = 0; i < MaxLetters; i++) if (!unlocked[i]) return i;
+        return -1;
+    }
+
+    private TextMeshProUGUI[] GetLettersArray()
     {
         return new[] { sText, nText, aText, iText, lText };
     }
