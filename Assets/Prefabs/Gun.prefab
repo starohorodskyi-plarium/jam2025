@@ -214,6 +214,9 @@ GameObject:
   - component: {fileID: 7324096207249855408}
   - component: {fileID: 4633363001606932645}
   - component: {fileID: 720392091964057722}
+  - component: {fileID: 7286017839127550316}
+  - component: {fileID: 3826365732025599842}
+  - component: {fileID: 3645896875652574434}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -264,35 +267,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8255ab80ee550418e8b621cadabd093b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 3526122508270192388}
-  shootSoundPrefab: {fileID: 2834654951425760423, guid: f32b6909343914fb9ad175a9d610e6ca, type: 3}
-  shootEvent:
+  OnShootPressed:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 720392091964057722}
-        m_TargetAssemblyTypeName: Gun.CameraShake, Assembly-CSharp
-        m_MethodName: PlayShake
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1798773696632597910}
-        m_TargetAssemblyTypeName: Recoil, Assembly-CSharp
-        m_MethodName: PlayRecoil
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &720392091964057722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,3 +290,85 @@ MonoBehaviour:
   snapping: 0
   fadeOut: 1
   ease: 6
+--- !u!114 &7286017839127550316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874365214300321571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a14ac7e0b0e428ea6c27537bc7acce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _projectileTemplate: {fileID: 7232757271214412219, guid: 3a082993cb4a14b2497c2da2ee240bc0, type: 3}
+  _fireOriginPoint: {fileID: 3526122508270192388}
+  _fireRateSec: 0.1
+  _maxDistance: 100
+  _reloadDurationSec: 1
+  _maxAmmo: 10
+  _hitMask:
+    serializedVersion: 2
+    m_Bits: 64
+  OnShoot:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 720392091964057722}
+        m_TargetAssemblyTypeName: Gun.CameraShake, Assembly-CSharp
+        m_MethodName: PlayShake
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3826365732025599842}
+        m_TargetAssemblyTypeName: MonoControllers.ShootSoundController, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnReloadStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnReloadEnd:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &3826365732025599842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874365214300321571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da49bae5324e4e8196863ac3893cf367, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shootSoundPrefab: {fileID: 2834654951425760423, guid: f32b6909343914fb9ad175a9d610e6ca, type: 3}
+  _spawnPoint: {fileID: 3526122508270192388}
+--- !u!114 &3645896875652574434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874365214300321571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4c5c9b63170483db02646603dad3ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _projectilePrefab: {fileID: 7232757271214412219, guid: 3a082993cb4a14b2497c2da2ee240bc0, type: 3}
+  _spawnPoint: {fileID: 3526122508270192388}

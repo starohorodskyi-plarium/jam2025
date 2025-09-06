@@ -6,9 +6,7 @@ using UnityEngine.InputSystem;
 
 public class ShootCallback : MonoBehaviour
 {
-    [SerializeField] private Transform spawnPoint;
-    [SerializeField] private GameObject shootSoundPrefab;
-    public UnityEvent shootEvent;
+    public UnityEvent OnShootPressed;
     
     private bool IgnoreInputs => GameManager.Instance.CurrentState != GameManager.GameState.Playing;
     
@@ -16,15 +14,10 @@ public class ShootCallback : MonoBehaviour
     {
         if (IgnoreInputs)
             return;
-        
-        if (!shootSoundPrefab)
-        {
-            return;
-        }
 
 #if ENABLE_INPUT_SYSTEM
-        bool pressed = (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
-                       || (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasPressedThisFrame);
+        var pressed = (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+                      || (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasPressedThisFrame);
 #else
         bool pressed = Input.GetMouseButtonDown(0);
         if (!pressed && Input.touchCount > 0)
@@ -40,10 +33,7 @@ public class ShootCallback : MonoBehaviour
         }
 #endif
 
-        if (pressed)
-        {
-            shootEvent?.Invoke();
-            Instantiate(shootSoundPrefab, spawnPoint);
-        }
+        if (pressed) 
+            OnShootPressed?.Invoke();
     }
 }
