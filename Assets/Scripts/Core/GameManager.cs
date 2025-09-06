@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     [Header("Levels")] 
     [SerializeField] private List<LevelManager> levels;
 
+    public event Action<int> OnLevelLoaded;
     public event Action<int> OnLevelStarted;
     public event Action<int> OnLevelFinishedSuccess;
     public event Action<int> OnLevelFinishedFailed;
@@ -135,6 +136,8 @@ public class GameManager : MonoBehaviour
         levelManager.gameObject.SetActive(true);
 
         LoadedLevel = levelManager;
+        
+        OnLevelLoaded?.Invoke(LoadedLevel.LevelId);
     }
 
     public void UnloadLevel(int level)
