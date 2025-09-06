@@ -6,6 +6,7 @@ namespace Core
     public class GameStateListener : MonoBehaviour
     {
         [SerializeField] private int _level;
+        [SerializeField] private bool _ignoreLevel;
         
         public UnityEvent OnLevelStarted;
         public UnityEvent OnLevelFinished;
@@ -28,13 +29,13 @@ namespace Core
 
         private void LevelFinished(int level)
         {
-            if (level == _level)
+            if (_ignoreLevel || level == _level)
                 OnLevelFinished?.Invoke();
         }
 
         private void LevelStarted(int level)
         {
-            if (level == _level)
+            if (_ignoreLevel || level == _level)
                 OnLevelStarted?.Invoke();
         }
     }
