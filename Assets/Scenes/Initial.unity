@@ -468,10 +468,23 @@ MonoBehaviour:
     m_keys:
     - MainMenu
     - Game
+    - Level1
+    - Level2
+    - Level3
+    - Level4
+    - Level5
+    - DemonicLevel
     m_values:
-    - {fileID: 8300000, guid: c45292447731d4376943f5438ebaa7c9, type: 3}
-    - {fileID: 8300000, guid: c45292447731d4376943f5438ebaa7c9, type: 3}
+    - {fileID: 8300000, guid: 7166c61b9c5d24fa7a65ab89240e69f7, type: 3}
+    - {fileID: 8300000, guid: 7166c61b9c5d24fa7a65ab89240e69f7, type: 3}
+    - {fileID: 8300000, guid: 125d35bbbe27d436981aaec81786c0a1, type: 3}
+    - {fileID: 8300000, guid: 30ba4f27fa8ed4ae6ae29964d09da396, type: 3}
+    - {fileID: 8300000, guid: 262012b176b444529b11f5517b3616b3, type: 3}
+    - {fileID: 8300000, guid: 60f2696234b2143759a371d4d41dffe9, type: 3}
+    - {fileID: 8300000, guid: b84271352d6fe47a9adfd77808531b52, type: 3}
+    - {fileID: 8300000, guid: ffe3cbaadc6be487d83dff26a4709128, type: 3}
   audioSource: {fileID: 1193614302}
+  maxVolume: 0.1
   transitionDuration: 3
 --- !u!114 &1193614301
 MonoBehaviour:
@@ -498,7 +511,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0

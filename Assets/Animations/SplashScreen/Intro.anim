@@ -1208,7 +1208,7 @@ AnimationClip:
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 1
+    m_LoopTime: 0
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
@@ -2789,13 +2789,6 @@ AnimationClip:
     messageOptions: 0
   - time: 1.9833333
     functionName: StopIntenseElectroSound
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 4.4333334
-    functionName: LoadGameScene
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

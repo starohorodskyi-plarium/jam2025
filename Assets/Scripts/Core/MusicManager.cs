@@ -10,6 +10,7 @@ namespace Core
         [SerializeField] private StringAudioClipDictionary musicMap;
         
         [SerializeField] private AudioSource audioSource;
+        [SerializeField] [Range	(0f,1f)] private float maxVolume = 0.1f;
         
         [SerializeField] [Range(0f, 5f)]private float transitionDuration = 3f;
 
@@ -42,7 +43,7 @@ namespace Core
             
             audioSource.clip = value;
             audioSource.Play();
-            audioSource.DOFade(1f, transitionDuration);
+            audioSource.DOFade(maxVolume, transitionDuration);
         }
     }
     
