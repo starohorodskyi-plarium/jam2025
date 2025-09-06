@@ -14,7 +14,7 @@ namespace Core
         private void OnEnable()
         {
             FindFirstObjectByType<GameManager>().OnLevelStarted += LevelStarted;
-            FindFirstObjectByType<GameManager>().OnLevelFinished += LevelFinished;
+            FindFirstObjectByType<GameManager>().OnLevelFinishedSuccess += LevelFinishedSuccess;
         }
 
         private void OnDisable()
@@ -24,10 +24,10 @@ namespace Core
                 return;
             
             gameManager.OnLevelStarted -= LevelStarted;
-            gameManager.OnLevelFinished -= LevelFinished;
+            gameManager.OnLevelFinishedSuccess -= LevelFinishedSuccess;
         }
 
-        private void LevelFinished(int level)
+        private void LevelFinishedSuccess(int level)
         {
             if (_ignoreLevel || level == _level)
                 OnLevelFinished?.Invoke();

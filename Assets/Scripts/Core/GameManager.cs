@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -30,10 +32,16 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverPanel;
     public GameObject levelPassedPanel;
 
+    [Header("Levels")] 
+    [SerializeField] private List<GameObject> levels;
+
     public event Action<int> OnLevelStarted;
-    public event Action<int> OnLevelFinished;
+    public event Action<int> OnLevelFinishedSuccess;
+    public event Action<int> OnLevelFinishedFailed;
     
     public GameState CurrentState { get; private set; }
+    
+    public int? LoadedLevel { get; private set; }
     public bool InputEnabled { get; private set; } = true;
 
     public void EnableInputs()
@@ -50,7 +58,7 @@ public class GameManager : MonoBehaviour
     public void DisableInputs() => 
         InputEnabled = false;
 
-    void Awake()
+    private void Awake()
     {
         if (Instance == null)
         {
@@ -66,9 +74,11 @@ public class GameManager : MonoBehaviour
         
         if (timerText != null)
             timerText.gameObject.SetActive(false);
+        
+        LoadLevel(level: 0);
     }
 
-    void Update()
+    private void Update()
     {
         if (CurrentState == GameState.Playing)
         {
@@ -92,6 +102,40 @@ public class GameManager : MonoBehaviour
     {
         if (SpawnManager.Instance.AllEnemiesDefeated())
             CompleteLevel();
+    }
+
+    public void LoadLevel(int level)
+    {
+        if (LoadedLevel == level)
+        {
+            Debug.LogError("Trying to load level again");
+            return;
+        }
+
+        if (LoadedLevel != null && LoadedLevel != level) 
+            UnloadLevel(LoadedLevel.Value);
+        
+        var levelGO = levels.ElementAtOrDefault(level);
+        if (levelGO == null)
+            return;
+        
+        levelGO.SetActive(true);
+        LoadedLevel = level;
+    }
+
+    public void UnloadLevel(int level)
+    {
+        if (LoadedLevel != level)
+        {
+            Debug.LogError("Trying to unload level that wasn't loaded");
+            return;
+        }
+        
+        var levelGO = levels.ElementAtOrDefault(level);
+        if (levelGO == null)
+            return;
+        
+        levelGO.SetActive(false);
     }
     
     public void StartGame()
@@ -118,7 +162,7 @@ public class GameManager : MonoBehaviour
         
         gameOverPanel.SetActive(true);
         
-        OnLevelFinished?.Invoke(1);
+        OnLevelFinishedSuccess?.Invoke(1);
         
         Debug.Log("Game Over!");
     }
@@ -134,7 +178,7 @@ public class GameManager : MonoBehaviour
         
         levelPassedPanel.SetActive(true);
         
-        OnLevelFinished?.Invoke(1);
+        OnLevelFinishedSuccess?.Invoke(1);
         
         Debug.Log("Level Passed!");
     }
