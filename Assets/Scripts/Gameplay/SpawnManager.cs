@@ -62,7 +62,7 @@ public class SpawnManager : MonoBehaviour
                 : goodNpcPrefabs[Random.Range(0, goodNpcPrefabs.Length)];
 
             // Spawn at p1
-            var instance = Instantiate(prefab, p1.position, prefab.transform.rotation, point);
+            var instance = Instantiate(prefab, prefab.transform.position, prefab.transform.rotation, point);
 
             // Assign waypoints
             var controller = instance.GetComponent<NPCController>();
