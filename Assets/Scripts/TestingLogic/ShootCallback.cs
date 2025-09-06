@@ -8,10 +8,15 @@ public class ShootCallback : MonoBehaviour
 {
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private GameObject shootSoundPrefab;
-    [SerializeField] private UnityEvent shootEvent;
-
+    public UnityEvent shootEvent;
+    
+    private bool IgnoreInputs => GameManager.Instance.CurrentState != GameManager.GameState.Playing;
+    
     private void Update()
     {
+        if (IgnoreInputs)
+            return;
+        
         if (!shootSoundPrefab)
         {
             return;
