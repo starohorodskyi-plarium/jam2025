@@ -36,22 +36,8 @@ namespace Gun
             {
                 return;
             }
-
-            Vector2 screenPos;
-#if ENABLE_INPUT_SYSTEM
-            if (Mouse.current != null)
-            {
-                screenPos = Mouse.current.position.ReadValue();
-            }
-            else
-            {
-                return;
-            }
-#else
-        screenPos = Input.mousePosition;
-#endif
-
-            Vector3 worldPoint = viewCamera.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, cursorDepthFromCamera));
+            
+            Vector3 worldPoint = viewCamera.ScreenToWorldPoint(new Vector3(GamePointer.Pointer.x, GamePointer.Pointer.y, cursorDepthFromCamera));
             Vector3 forward = worldPoint - objectToRotate.position;
             if (forward.sqrMagnitude > 1e-6f)
             {

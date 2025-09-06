@@ -12,7 +12,7 @@ public class CameraMovementController : MonoBehaviour
         float normalizedMouseX = 0.5f;
         if (Screen.width > 0)
         {
-            normalizedMouseX = Mathf.Clamp01(Input.mousePosition.x / Screen.width);
+            normalizedMouseX = Mathf.Clamp01(GamePointer.Pointer.x / Screen.width);
         }
 
         float targetX = Mathf.Lerp(minX, maxX, normalizedMouseX);

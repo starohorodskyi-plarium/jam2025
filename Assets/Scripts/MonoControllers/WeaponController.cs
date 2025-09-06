@@ -115,7 +115,7 @@ namespace MonoControllers
 
         private void UpdateMousePosition()
         {
-            var mouseRay = Camera.main?.ScreenPointToRay(Input.mousePosition);
+            var mouseRay = Camera.main?.ScreenPointToRay(GamePointer.Pointer);
             if (mouseRay == null)
                 return;
 

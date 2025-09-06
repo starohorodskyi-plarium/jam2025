@@ -18,8 +18,8 @@ public class CameraController : MonoBehaviour
             return;
         
         // Normalized mouse position (-1..1)
-        float mouseX = (Input.mousePosition.x / Screen.width - 0.5f) * 2f;
-        float mouseY = (Input.mousePosition.y / Screen.height - 0.5f) * 2f;
+        float mouseX = (GamePointer.Pointer.x / Screen.width - 0.5f) * 2f;
+        float mouseY = (GamePointer.Pointer.y / Screen.height - 0.5f) * 2f;
 
         // Target rotation scaled by sensitivity and clamped by max angles
         float targetX = -mouseY * maxXAngle * sensitivityY;
