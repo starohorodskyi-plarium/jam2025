@@ -23,6 +23,18 @@ public class NPCSpriteDirection : MonoBehaviour
     {
         ApplyFlip();
     }
+    
+    public void GoLeft()
+    {
+        SetDirection(Direction.Left);
+    }
+
+    
+    public void GoRight()
+    {
+        SetDirection(Direction.Right);
+    }
+
 
     public void SetDirection(Direction newDirection)
     {
