@@ -882,9 +882,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0397b198d54f28544b31c8ae3480dfce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goodTargetPrefab: {fileID: 7891725689576905076, guid: 7f65480ba9889e1499948c748b423c17, type: 3}
-  badTargetPrefab: {fileID: 7136130725805732604, guid: e2768bcf58da54bed9d7611c9d85ea58, type: 3}
-  badTargetChance: 0.5
+  goodNpcPrefabs:
+  - {fileID: 2641508248361112915, guid: b8e93aaf2b93e3a42b693f84e6c78dc5, type: 3}
+  - {fileID: 2641508248361112915, guid: cc642c353ca995440b7aeddaa7a3e16a, type: 3}
+  - {fileID: 2641508248361112915, guid: cdd3e732906aa5b45991e86390dc826c, type: 3}
+  badNpcPrefabs:
+  - {fileID: 1112137590729717154, guid: 9b5e8553e169194418554e3fa9005fe7, type: 3}
+  - {fileID: 1112137590729717154, guid: 7f50abe71c07310438ad0d03e595cced, type: 3}
+  - {fileID: 1112137590729717154, guid: aad5458699c6a1b4caae5c0ba0e6c6c7, type: 3}
   spawnPoints:
   - {fileID: 1222753388008686373}
   - {fileID: 5426416145950567776}
@@ -893,6 +898,7 @@ MonoBehaviour:
   - {fileID: 5305777050812659739}
   - {fileID: 3800300314140421161}
   - {fileID: 2857229873775590077}
+  baddiesPerLevel: 1
 --- !u!1 &4338843625278642753
 GameObject:
   m_ObjectHideFlags: 0
