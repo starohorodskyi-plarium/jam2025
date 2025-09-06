@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using TMPro;
 
@@ -26,10 +27,22 @@ public class SnailProgress : MonoBehaviour
     private static readonly Color InactiveColor = Color.gray;
 
     private int MaxLetters => unlocked != null ? unlocked.Length : 5; // S, N, A, I, L
+    
+    public static Action<SnailLetter> LetterOpen;
 
     void Start()
     {
         UpdateLettersVisual();
+    }
+
+    private void OnEnable()
+    {
+        LetterOpen += Unlock;
+    }
+
+    private void OnDisable()
+    {
+        LetterOpen -= Unlock;
     }
 
     void OnValidate()
