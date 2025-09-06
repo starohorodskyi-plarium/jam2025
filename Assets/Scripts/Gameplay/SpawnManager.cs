@@ -61,4 +61,15 @@ public class SpawnManager : MonoBehaviour
             }
         }
     }
+    
+    public bool AllEnemiesDefeated()
+    {
+        foreach (var point in spawnPoints)
+        {
+            if (point.childCount > 0 && point.GetChild(0).gameObject.CompareTag("Enemy"))
+                return false;
+        }
+
+        return true;
+    }
 }

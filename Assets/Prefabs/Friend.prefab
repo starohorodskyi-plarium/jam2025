@@ -211,5 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: 0
+  gender: 0
   allyHitEffect: {fileID: 141433446842962269, guid: b489eab5a6a474277bc7bb66882a1593, type: 3}
   enemyHitEffect: {fileID: 8194992990867289339, guid: 36e0b4c0ed76749e6b73389e973e67f6, type: 3}
+  soundPlayerPrefab: {fileID: 4319109307433908072, guid: 916c3f99ee74f44a0905b22ffdef4c97, type: 3}
