@@ -3,6 +3,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     public GameObject timePenaltyLabel;
     public GameObject timeBonusLabel;
     public GameObject gameOverPanel;
+    public GameObject levelPassedPanel;
 
     public event Action<int> OnLevelStarted;
     public event Action<int> OnLevelFinished;
@@ -69,7 +71,10 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (CurrentState == GameState.Playing)
+        {
             UpdateTimer();
+            CheckWinCondition();
+        }
     }
 
     private void UpdateTimer()
@@ -80,7 +85,13 @@ public class GameManager : MonoBehaviour
             timerText.text = $"Time: {Mathf.CeilToInt(currentTime)}";
         
         if (currentTime <= 0f)
-            EndGame();
+            FailLevel();
+    }
+    
+    private void CheckWinCondition()
+    {
+        if (SpawnManager.Instance.AllEnemiesDefeated())
+            CompleteLevel();
     }
     
     public void StartGame()
@@ -96,7 +107,7 @@ public class GameManager : MonoBehaviour
         OnLevelStarted?.Invoke(1);
     }
 
-    public void EndGame()
+    public void FailLevel()
     {
         CurrentState = GameState.GameOver;
 
@@ -106,15 +117,39 @@ public class GameManager : MonoBehaviour
         SpawnManager.Instance.DestroyAll();
         
         gameOverPanel.SetActive(true);
-
+        
         OnLevelFinished?.Invoke(1);
         
         Debug.Log("Game Over!");
     }
 
+    public void CompleteLevel()
+    {
+        CurrentState = GameState.Idle;
+        
+        if (timerText != null)
+            timerText.gameObject.SetActive(false);
+        
+        SpawnManager.Instance.DestroyAll();
+        
+        levelPassedPanel.SetActive(true);
+        
+        OnLevelFinished?.Invoke(1);
+        
+        Debug.Log("Level Passed!");
+    }
+
     public void RestartGame()
     {
         gameOverPanel.SetActive(false);
+        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    
+    public void OpenNextLevel()
+    {
+        levelPassedPanel.SetActive(false);
+        
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -122,7 +157,7 @@ public class GameManager : MonoBehaviour
     {
         currentTime += timeBonus;
         
-        StartCoroutine(ShowLabel(timeBonusLabel));
+        StartCoroutine(ShowTimeLabel(timeBonusLabel));
     }
 
     public void SubtractTime()
@@ -130,10 +165,10 @@ public class GameManager : MonoBehaviour
         currentTime -= timePenalty;
         if (currentTime < 0) currentTime = 0;
 
-        StartCoroutine(ShowLabel(timePenaltyLabel));
+        StartCoroutine(ShowTimeLabel(timePenaltyLabel));
     }
     
-    private IEnumerator ShowLabel(GameObject label)
+    private IEnumerator ShowTimeLabel(GameObject label)
     {
         if (label == null) 
             yield break;
