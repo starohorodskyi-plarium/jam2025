@@ -35,5 +35,9 @@ namespace Animations
                         () =>  clickSequence?.Invoke());
                 });
         } 
+        
+        // Alarm 🩼🩼🩼
+        public void ClickSequenceInvokeReference() =>
+            clickSequence?.Invoke();
     }
 }
