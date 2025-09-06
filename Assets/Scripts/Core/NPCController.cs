@@ -10,7 +10,7 @@ public class NPCController : MonoBehaviour
 
         IEnumerator HitRoutine()
         {
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.35f);
             Destroy(gameObject);
         }
     }

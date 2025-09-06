@@ -1,7 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -25,9 +25,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI timerText;
     public GameObject timePenaltyLabel;
     public GameObject timeBonusLabel;
-    
-    [Header("Elements")]
-    public GameObject targetSpawner;
+    public GameObject gameOverPanel;
     
     public GameState CurrentState { get; private set; }
 
@@ -36,7 +34,6 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else 
         {
@@ -44,7 +41,8 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        CurrentState = GameState.Idle;   // default state before clicking start
+        CurrentState = GameState.Idle;
+        
         if (timerText != null)
             timerText.gameObject.SetActive(false);
     }
@@ -71,7 +69,7 @@ public class GameManager : MonoBehaviour
         currentTime = startTime;
         CurrentState = GameState.Playing;
 
-        targetSpawner.GetComponent<TargetSpawner>()?.SpawnWave();
+        SpawnManager.Instance.SpawnWave();
         
         if (timerText != null)
             timerText.gameObject.SetActive(true);
@@ -84,9 +82,17 @@ public class GameManager : MonoBehaviour
         if (timerText != null)
             timerText.gameObject.SetActive(false);
         
-        targetSpawner.GetComponent<TargetSpawner>()?.DestroyAll();
+        SpawnManager.Instance.DestroyAll();
+        
+        gameOverPanel.SetActive(true);
 
         Debug.Log("Game Over!");
+    }
+
+    public void RestartGame()
+    {
+        gameOverPanel.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void AddTime()

@@ -1,7 +1,7 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class TargetSpawner : MonoBehaviour
+public class SpawnManager : MonoBehaviour
 {
     [Header("Prefabs")]
     public GameObject goodTargetPrefab;
@@ -12,6 +12,22 @@ public class TargetSpawner : MonoBehaviour
     [Range(0f, 1f)]
     public float badTargetChance = 0.5f;
     public Transform[] spawnPoints;
+
+    public static SpawnManager Instance;
+    
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            //DontDestroyOnLoad(gameObject);
+        }
+        else 
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
 
     public void SpawnWave()
     {
