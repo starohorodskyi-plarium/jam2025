@@ -1136,8 +1136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ba8b6b188f0bc24fbab373d0adcce48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxXAngle: 2
-  maxYAngle: 2
+  maxXAngle: 0.5
+  maxYAngle: 0.5
   sensitivityX: 2
   sensitivityY: 2
   smoothTime: 0.1
@@ -1156,7 +1156,7 @@ MonoBehaviour:
   minX: -1
   maxX: 1
   smooth: 1
-  smoothSpeed: 10
+  smoothSpeed: 1
 --- !u!1 &1427653553 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5104735378435704008, guid: 87af8ed249b683d429d53a9d5c5bb641, type: 3}
