@@ -13,22 +13,6 @@ public class SpawnManager : MonoBehaviour
     public float badTargetChance = 0.5f;
     public Transform[] spawnPoints;
 
-    public static SpawnManager Instance;
-    
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            //DontDestroyOnLoad(gameObject);
-        }
-        else 
-        {
-            Destroy(gameObject);
-            return;
-        }
-    }
-
     public void SpawnWave()
     {
         foreach (var point in spawnPoints)
@@ -50,6 +34,9 @@ public class SpawnManager : MonoBehaviour
 
     public void DestroyAll()
     {
+        if (spawnPoints == null || spawnPoints.Length == 0)
+            return;
+        
         foreach (var point in spawnPoints)
         {
             if (point.childCount <= 0) 
@@ -64,6 +51,9 @@ public class SpawnManager : MonoBehaviour
     
     public bool AllEnemiesDefeated()
     {
+        if (spawnPoints == null || spawnPoints.Length == 0)
+            return true;
+        
         foreach (var point in spawnPoints)
         {
             if (point.childCount > 0 && point.GetChild(0).gameObject.CompareTag("Enemy"))

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Core;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -33,15 +34,16 @@ public class GameManager : MonoBehaviour
     public GameObject levelPassedPanel;
 
     [Header("Levels")] 
-    [SerializeField] private List<GameObject> levels;
+    [SerializeField] private List<LevelManager> levels;
 
     public event Action<int> OnLevelStarted;
     public event Action<int> OnLevelFinishedSuccess;
     public event Action<int> OnLevelFinishedFailed;
     
     public GameState CurrentState { get; private set; }
-    
-    public int? LoadedLevel { get; private set; }
+
+    public int? LoadedLevelId => LoadedLevel?.LevelId;
+    public LevelManager LoadedLevel { get; private set; }
     public bool InputEnabled { get; private set; } = true;
 
     public void EnableInputs()
@@ -100,85 +102,115 @@ public class GameManager : MonoBehaviour
     
     private void CheckWinCondition()
     {
-        if (SpawnManager.Instance.AllEnemiesDefeated())
+        if (LoadedLevel != null && LoadedLevel.SpawnManager.AllEnemiesDefeated())
             CompleteLevel();
+    }
+
+    public void LoadNextLeve()
+    {
+        if (LoadedLevel == null)
+        {
+            LoadLevel(level: 0);
+            return;
+        }
+        
+        LoadLevel(LoadedLevel.LevelId + 1);
     }
 
     public void LoadLevel(int level)
     {
-        if (LoadedLevel == level)
+        if (LoadedLevelId == level)
         {
             Debug.LogError("Trying to load level again");
             return;
         }
 
-        if (LoadedLevel != null && LoadedLevel != level) 
-            UnloadLevel(LoadedLevel.Value);
+        if (LoadedLevelId != null && LoadedLevelId != level) 
+            UnloadLevel(LoadedLevelId.Value);
         
-        var levelGO = levels.ElementAtOrDefault(level);
-        if (levelGO == null)
+        var levelManager = levels.FirstOrDefault(x => x.LevelId == level);
+        if (levelManager == null)
             return;
         
-        levelGO.SetActive(true);
-        LoadedLevel = level;
+        levelManager.gameObject.SetActive(true);
+
+        LoadedLevel = levelManager;
     }
 
     public void UnloadLevel(int level)
     {
-        if (LoadedLevel != level)
+        if (LoadedLevelId != level)
         {
             Debug.LogError("Trying to unload level that wasn't loaded");
             return;
         }
         
-        var levelGO = levels.ElementAtOrDefault(level);
-        if (levelGO == null)
+        var levelManager = levels.FirstOrDefault(x => x.LevelId == level);
+        if (levelManager == null)
             return;
         
-        levelGO.SetActive(false);
+        levelManager.gameObject.SetActive(false);
     }
     
     public void StartGame()
     {
+        if (LoadedLevel == null)
+        {
+            Debug.LogError("Trying to start the game while level isn't loaded");
+            return;
+        }
+        
         currentTime = startTime;
         CurrentState = GameState.Playing;
 
-        SpawnManager.Instance.SpawnWave();
+        LoadedLevel.SpawnManager.SpawnWave();
         
         if (timerText != null)
             timerText.gameObject.SetActive(true);
         
-        OnLevelStarted?.Invoke(1);
+        OnLevelStarted?.Invoke(LoadedLevel.LevelId);
     }
 
     public void FailLevel()
     {
+        if (LoadedLevel == null)
+        {
+            Debug.LogError($"Trying to fail the level while {nameof(LoadedLevel)} is null");
+            return;
+        }
+        
         CurrentState = GameState.GameOver;
 
         if (timerText != null)
             timerText.gameObject.SetActive(false);
         
-        SpawnManager.Instance.DestroyAll();
+        LoadedLevel.SpawnManager.DestroyAll();
         
         gameOverPanel.SetActive(true);
         
-        OnLevelFinishedSuccess?.Invoke(1);
+        OnLevelFinishedFailed?.Invoke(LoadedLevel.LevelId);
         
         Debug.Log("Game Over!");
     }
 
     public void CompleteLevel()
     {
+        if (LoadedLevel == null)
+        {
+            Debug.LogError($"Trying to complete the level while {nameof(LoadedLevel)} is null");
+            return;
+        }
+        
         CurrentState = GameState.Idle;
         
         if (timerText != null)
             timerText.gameObject.SetActive(false);
         
-        SpawnManager.Instance.DestroyAll();
+        LoadedLevel.SpawnManager.DestroyAll();
         
         levelPassedPanel.SetActive(true);
         
-        OnLevelFinishedSuccess?.Invoke(1);
+        OnLevelFinishedSuccess?.Invoke(LoadedLevel.LevelId);
         
         Debug.Log("Level Passed!");
     }
