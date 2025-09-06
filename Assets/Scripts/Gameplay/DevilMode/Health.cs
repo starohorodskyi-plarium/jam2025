@@ -1,16 +1,62 @@
+using System;
 using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField, Min(1)] private int maxHealth = 100;
+    [SerializeField] private int currentHealth;
+    [SerializeField] private bool isPlayer = true;
+
+    public static event Action PlayerDied;
+
+    private bool _isDead;
+
+    public int MaxHealth => maxHealth;
+    public int CurrentHealth => currentHealth;
+    public bool IsDead => _isDead;
+
+    private void Awake()
     {
-        
+        currentHealth = Mathf.Clamp(currentHealth <= 0 ? maxHealth : currentHealth, 0, maxHealth);
+        _isDead = currentHealth <= 0;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnValidate()
     {
-        
+        if (maxHealth < 1) maxHealth = 1;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+    }
+
+    public void Add(int amount)
+    {
+        if (amount <= 0 || _isDead) return;
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+    }
+
+    public void Remove(int amount)
+    {
+        if (amount <= 0 || _isDead) return;
+        currentHealth = Mathf.Clamp(currentHealth - amount, 0, maxHealth);
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Kill()
+    {
+        if (_isDead) return;
+        currentHealth = 0;
+        Die();
+    }
+
+    private void Die()
+    {
+        if (_isDead) return;
+        _isDead = true;
+        if (isPlayer)
+        {
+            PlayerDied?.Invoke();
+        }
     }
 }
