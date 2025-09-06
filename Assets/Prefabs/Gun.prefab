@@ -302,7 +302,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a14ac7e0b0e428ea6c27537bc7acce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectileTemplate: {fileID: 7232757271214412219, guid: 3a082993cb4a14b2497c2da2ee240bc0, type: 3}
   _fireOriginPoint: {fileID: 3526122508270192388}
   _fireRateSec: 0.1
   _maxDistance: 100
@@ -338,12 +337,40 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1798773696632597910}
+        m_TargetAssemblyTypeName: Recoil, Assembly-CSharp
+        m_MethodName: PlayRecoil
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3645896875652574434}
+        m_TargetAssemblyTypeName: MonoControllers.ProjectileSpawnController, Assembly-CSharp
+        m_MethodName: SpawnProjectile
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnAmmoChanged:
+    m_PersistentCalls:
+      m_Calls: []
   OnReloadStart:
     m_PersistentCalls:
       m_Calls: []
   OnReloadEnd:
     m_PersistentCalls:
       m_Calls: []
+  _currentAmmo: 0
 --- !u!114 &3826365732025599842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,4 +398,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectilePrefab: {fileID: 7232757271214412219, guid: 3a082993cb4a14b2497c2da2ee240bc0, type: 3}
-  _spawnPoint: {fileID: 3526122508270192388}
