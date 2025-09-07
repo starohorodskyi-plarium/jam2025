@@ -8,6 +8,7 @@ namespace Wizard
     {
         [SerializeField] private GameObject _inspectorContainer;
         [SerializeField] private GameObject _crowdContainer;
+        [SerializeField] private GameObject _newspapperContainer;
         [SerializeField] private Transform _liveInspector;
         [SerializeField] private Transform _deadInspector;
         [SerializeField] private TMP_Text _text;
@@ -22,6 +23,13 @@ namespace Wizard
         
         public void Show(WizardSlide slide)
         {
+            _newspapperContainer.SetActive(slide.WizardId == WizardId.Introduction);
+            _crowdContainer.SetActive(slide.ActorId == WizardActorId.Crowd);
+            _inspectorContainer.SetActive(slide.ActorId == WizardActorId.Live_Inspector || slide.ActorId == WizardActorId.Dead_Inspector);
+            
+            if (slide.WizardId == WizardId.Introduction)
+                return;
+            
             var text = slide.ActorId == WizardActorId.Crowd
                 ? _crowdText
                 : _text;
@@ -30,12 +38,10 @@ namespace Wizard
             
             if (slide.ActorId == WizardActorId.Crowd)
             {
-                _crowdContainer.SetActive(true);
                 _crowdTextContainer.text = slide.Text;
             }
             else
             {
-                _inspectorContainer.SetActive(true);
                 _textContainer.text = slide.Text;
             }
 

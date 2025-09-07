@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28bbb10981f443eea590086f69f2a08a, type: 3}
   m_Name: Level_1_Outro
   m_EditorClassIdentifier: 
-  WizardId: 2
+  WizardId: 3
+  ActorId: 1
   Text: "Buddy Bob: Well \\nspotted! Now let\u2019s \\ndrive to another \\nlocation."
   AudioClip: {fileID: 0}
   DisableInputs: 1

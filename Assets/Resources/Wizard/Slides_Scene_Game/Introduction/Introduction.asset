@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28bbb10981f443eea590086f69f2a08a, type: 3}
-  m_Name: Final_Intro_4
+  m_Name: Introduction
   m_EditorClassIdentifier: 
-  WizardId: 12
-  ActorId: 3
-  Text: "Angry people: Now\u2019s your turn, you scum!"
+  WizardId: 0
+  ActorId: 0
+  Text: 
   AudioClip: {fileID: 0}
-  DisableInputs: 1
+  DisableInputs: 0

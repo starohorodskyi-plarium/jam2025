@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28bbb10981f443eea590086f69f2a08a, type: 3}
   m_Name: Level_2_Intro
   m_EditorClassIdentifier: 
-  WizardId: 3
+  WizardId: 4
+  ActorId: 1
   Text: 'Buddy Bob: Be \ncautious! I can sense a \ndemon out there.'
   AudioClip: {fileID: 0}
   DisableInputs: 1

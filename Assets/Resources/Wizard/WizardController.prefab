@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dab901f2b6f424e97a94fa29bef9a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wizardId: 9
+  _wizardId: 10
   _showForSeconds: 0
   _duration: 0
 --- !u!114 &3349041817246036147
@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ce65ef18164287b873df8f7077b361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _listenedWizardId: 9
+  _listenedWizardId: 10
   OnWizardStarted:
     m_PersistentCalls:
       m_Calls:
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dab901f2b6f424e97a94fa29bef9a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wizardId: 2
+  _wizardId: 3
   _showForSeconds: 0
   _duration: 0
 --- !u!1 &480750649295407761
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ce65ef18164287b873df8f7077b361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _listenedWizardId: 1
+  _listenedWizardId: 2
   OnWizardStarted:
     m_PersistentCalls:
       m_Calls: []
@@ -309,7 +309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ce65ef18164287b873df8f7077b361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _listenedWizardId: 3
+  _listenedWizardId: 4
   OnWizardStarted:
     m_PersistentCalls:
       m_Calls:
@@ -397,7 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dab901f2b6f424e97a94fa29bef9a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wizardId: 11
+  _wizardId: 12
   _showForSeconds: 0
   _duration: 0
 --- !u!114 &8615589933255277132
@@ -412,7 +412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ce65ef18164287b873df8f7077b361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _listenedWizardId: 11
+  _listenedWizardId: 12
   OnWizardStarted:
     m_PersistentCalls:
       m_Calls:
@@ -442,6 +442,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &1800230393467595303
 GameObject:
@@ -488,7 +500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dab901f2b6f424e97a94fa29bef9a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wizardId: 0
+  _wizardId: 1
   _showForSeconds: 0
   _duration: 0
 --- !u!1 &1826753019806414807
@@ -574,7 +586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ce65ef18164287b873df8f7077b361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _listenedWizardId: 2
+  _listenedWizardId: 3
   OnWizardStarted:
     m_PersistentCalls:
       m_Calls:
@@ -635,6 +647,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 385297511846535462}
   - {fileID: 2196761897741358548}
   - {fileID: 6285642117918579730}
   - {fileID: 4995637260053129577}
@@ -663,6 +676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _view: {fileID: 0}
   _slides:
+  - {fileID: 11400000, guid: d2e6299164b5f4ad08249af043ab47f6, type: 2}
   - {fileID: 11400000, guid: 240442dcf4e16422db16060d13d1a164, type: 2}
   - {fileID: 11400000, guid: ad1a4c9dd8590407796b755722937b90, type: 2}
   - {fileID: 11400000, guid: cb6f70adbcf9a4e70a635cc185f864d3, type: 2}
@@ -720,7 +734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dab901f2b6f424e97a94fa29bef9a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wizardId: 3
+  _wizardId: 4
   _showForSeconds: 0
   _duration: 0
 --- !u!1 &3191830874656965733
@@ -768,7 +782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dab901f2b6f424e97a94fa29bef9a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wizardId: 7
+  _wizardId: 8
   _showForSeconds: 0
   _duration: 0
 --- !u!114 &4124039488948058761
@@ -783,7 +797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ce65ef18164287b873df8f7077b361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _listenedWizardId: 7
+  _listenedWizardId: 8
   OnWizardStarted:
     m_PersistentCalls:
       m_Calls: []
@@ -846,7 +860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ce65ef18164287b873df8f7077b361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _listenedWizardId: 0
+  _listenedWizardId: 1
   OnWizardStarted:
     m_PersistentCalls:
       m_Calls:
@@ -922,9 +936,112 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dab901f2b6f424e97a94fa29bef9a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wizardId: 4
+  _wizardId: 5
   _showForSeconds: 0
   _duration: 0
+--- !u!1 &5501014697439791416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 385297511846535462}
+  - component: {fileID: 6840502840678205499}
+  - component: {fileID: 929935356052633260}
+  m_Layer: 0
+  m_Name: Introduction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &385297511846535462
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5501014697439791416}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1624714975338192196}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6840502840678205499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5501014697439791416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dab901f2b6f424e97a94fa29bef9a3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wizardId: 0
+  _showForSeconds: 0
+  _duration: 0
+--- !u!114 &929935356052633260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5501014697439791416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ce65ef18164287b873df8f7077b361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _listenedWizardId: 0
+  OnWizardStarted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Wizard.NewspapperAppearTween, Assembly-CSharp
+        m_MethodName: Show
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnWizardFinished:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Wizard.NewspapperAppearTween, Assembly-CSharp
+        m_MethodName: Hide
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6873162868436178607}
+        m_TargetAssemblyTypeName: Wizard.TriggerNextWizardSlide, Assembly-CSharp
+        m_MethodName: TriggerCertain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6931683907472311577
 GameObject:
   m_ObjectHideFlags: 0
@@ -1008,7 +1125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ce65ef18164287b873df8f7077b361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _listenedWizardId: 4
+  _listenedWizardId: 5
   OnWizardStarted:
     m_PersistentCalls:
       m_Calls:
@@ -1085,7 +1202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dab901f2b6f424e97a94fa29bef9a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wizardId: 8
+  _wizardId: 9
   _showForSeconds: 0
   _duration: 0
 --- !u!114 &8488113373238208565
@@ -1123,6 +1240,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnLevelFinishedSuccess:
     m_PersistentCalls:
       m_Calls:
@@ -1130,6 +1259,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Wizard.TriggerNextWizardSlide, Assembly-CSharp
         m_MethodName: TriggerCertain
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1150,7 +1291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ce65ef18164287b873df8f7077b361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _listenedWizardId: 8
+  _listenedWizardId: 9
   OnWizardStarted:
     m_PersistentCalls:
       m_Calls:
@@ -1239,7 +1380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dab901f2b6f424e97a94fa29bef9a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wizardId: 6
+  _wizardId: 7
   _showForSeconds: 0
   _duration: 0
 --- !u!114 &6509121542059483374
@@ -1292,7 +1433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ce65ef18164287b873df8f7077b361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _listenedWizardId: 6
+  _listenedWizardId: 7
   OnWizardStarted:
     m_PersistentCalls:
       m_Calls:
@@ -1368,7 +1509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dab901f2b6f424e97a94fa29bef9a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wizardId: 1
+  _wizardId: 2
   _showForSeconds: 0
   _duration: 0
 --- !u!1 &7916227723892218069
@@ -1416,7 +1557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dab901f2b6f424e97a94fa29bef9a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wizardId: 10
+  _wizardId: 11
   _showForSeconds: 0
   _duration: 0
 --- !u!114 &5802101674989046726
@@ -1431,7 +1572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ce65ef18164287b873df8f7077b361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _listenedWizardId: 10
+  _listenedWizardId: 11
   OnWizardStarted:
     m_PersistentCalls:
       m_Calls:
@@ -1520,7 +1661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dab901f2b6f424e97a94fa29bef9a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wizardId: 5
+  _wizardId: 6
   _showForSeconds: 0
   _duration: 0
 --- !u!114 &1780798009983838683
@@ -1573,7 +1714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ce65ef18164287b873df8f7077b361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _listenedWizardId: 5
+  _listenedWizardId: 6
   OnWizardStarted:
     m_PersistentCalls:
       m_Calls:

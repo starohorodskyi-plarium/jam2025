@@ -2,6 +2,8 @@ namespace Wizard
 {
     public enum WizardId
     {
+        Introduction,
+        
         Level_1_Intro_1,
         Level_1_Intro_2,
         Level_1_Outro,

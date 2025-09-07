@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28bbb10981f443eea590086f69f2a08a, type: 3}
   m_Name: Level_3_Outro_1
   m_EditorClassIdentifier: 
-  WizardId: 6
-  ActorId: 0
+  WizardId: 7
+  ActorId: 1
   Text: 'Buddy Bob: Congrats! The whole city is clear. No more demons here! '
   AudioClip: {fileID: 0}
   DisableInputs: 1

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28bbb10981f443eea590086f69f2a08a, type: 3}
   m_Name: Level_3_Outro_2
   m_EditorClassIdentifier: 
-  WizardId: 7
-  ActorId: 0
+  WizardId: 8
+  ActorId: 1
   Text: "Buddy Bob: Eh, partner? Jonathan?! What\u2019s happening? What are you?"
   AudioClip: {fileID: 0}
   DisableInputs: 1

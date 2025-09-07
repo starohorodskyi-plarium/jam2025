@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28bbb10981f443eea590086f69f2a08a, type: 3}
   m_Name: Level_3_Intro
   m_EditorClassIdentifier: 
-  WizardId: 5
-  ActorId: 0
+  WizardId: 6
+  ActorId: 1
   Text: 'Buddy Bob: A bit \ncrowded, innit? Wish \nyou good hunting, \npartner. You
     can do it!'
   AudioClip: {fileID: 0}
