@@ -1012,6 +1012,11 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &1307918886 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6327830773115866549, guid: 0f6a5be008df74b78a6d7d06b9a14625, type: 3}
+  m_PrefabInstance: {fileID: 341254263}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1360423017
 GameObject:
   m_ObjectHideFlags: 0
@@ -1659,13 +1664,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 400323129}
     m_Modifications:
+    - target: {fileID: 824976906572789600, guid: 41cd560efe0dd45a2ae02b21c670f22b, type: 3}
+      propertyPath: OnLevelLoaded.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1307918886}
     - target: {fileID: 3651073638540296187, guid: 41cd560efe0dd45a2ae02b21c670f22b, type: 3}
       propertyPath: m_Name
       value: Level2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3651073638540296187, guid: 41cd560efe0dd45a2ae02b21c670f22b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5029690194501078496, guid: 41cd560efe0dd45a2ae02b21c670f22b, type: 3}
       propertyPath: m_LocalPosition.x
