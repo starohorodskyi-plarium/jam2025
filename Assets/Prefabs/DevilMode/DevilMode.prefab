@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8694325358973811689}
   - component: {fileID: 1268261398015617560}
+  - component: {fileID: 3263039327989410283}
+  - component: {fileID: 3516882870994598294}
   m_Layer: 0
   m_Name: DevilMode
   m_TagString: Untagged
@@ -44,5 +46,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e60e921db22a94a9ebe6a583c6dfca54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: ab09877e2e707104187f6f83e2f62510, type: 2}
-  useRuntimeClone: 0
+  _horns: {fileID: 0}
+  volume: {fileID: 0}
+  createVolumeIfMissing: 1
+--- !u!114 &3263039327989410283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8638530840134335947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 600d1165de32d4fa881b521247d15253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _postProcessing: {fileID: 1268261398015617560}
+--- !u!114 &3516882870994598294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8638530840134335947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18d24487b75e0473a8346335af99f0ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 100
+  isPlayer: 1
