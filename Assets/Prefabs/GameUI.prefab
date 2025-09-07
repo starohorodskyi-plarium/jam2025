@@ -5635,7 +5635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 8864668544061664238}
-  duration: 1
+  duration: 0.6
 --- !u!224 &8549015680049308054 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2426496121265384634, guid: 9779258f5d6c74ffaadb3085e0d78a03, type: 3}
