@@ -516,7 +516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5188679, g: 0, b: 0, a: 0.15686275}
+  m_Color: {r: 0.5176471, g: 0, b: 0.49411765, a: 0.15686275}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -954,7 +954,7 @@ MonoBehaviour:
   _colorTweenEase: 6
   _colorIgnoreTimeScale: 0
   _rectTransform: {fileID: 3297391983605218867}
-  _moveTweenDuration: 0.4
+  _moveTweenDuration: 1
   _moveTweenEase: 30
   _moveIgnoreTimeScale: 0
   _movePositionA: {x: 0, y: 0}
@@ -2922,7 +2922,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goalMessageText: {fileID: 8461963724476114165}
-  letterInterval: 0.03
+  letterInterval: 0.02
 --- !u!1 &5622688499450647878
 GameObject:
   m_ObjectHideFlags: 0
@@ -2981,7 +2981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.735849, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.7372549, g: 0, b: 0.69803923, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

@@ -25,18 +25,21 @@ public class Health : MonoBehaviour
     {
         if (maxHealth < 1) maxHealth = 1;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        UpdateProgressHealth();
     }
 
     public void Add(int amount)
     {
         if (amount <= 0 || _isDead) return;
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        UpdateProgressHealth();
     }
 
     public void Remove(int amount)
     {
         if (amount <= 0 || _isDead) return;
         currentHealth = Mathf.Clamp(currentHealth - amount, 0, maxHealth);
+        UpdateProgressHealth();
         if (currentHealth <= 0)
         {
             Die();
@@ -47,8 +50,12 @@ public class Health : MonoBehaviour
     {
         if (_isDead) return;
         currentHealth = 0;
+        UpdateProgressHealth();
         Die();
     }
+
+    private void UpdateProgressHealth() =>
+        DevilificationProgress.OnSetSmooth?.Invoke(currentHealth/(float)maxHealth);
 
     private void Die()
     {
