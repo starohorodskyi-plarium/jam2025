@@ -106,10 +106,11 @@ namespace Wizard
             _sequence = seq;
         }
 
-
         public void Hide()
         {
+            _crowdContainer.SetActive(false);
             _inspectorContainer.SetActive(false);
+            _newspapperContainer.SetActive(false);
         }
     }
 }

@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28bbb10981f443eea590086f69f2a08a, type: 3}
-  m_Name: Level_2_Intro
+  m_Name: Level_2_Outro_2
   m_EditorClassIdentifier: 
-  WizardId: 4
+  WizardId: 13
   ActorId: 1
-  Text: 'Buddy Bob: Be cautious! I can sense several demons out there.'
+  Text: "Buddy Bob: You probably haven\u2019t slept well. Let\u2019s clear the last
+    location, and then we'll rest."
   AudioClip: {fileID: 0}
   DisableInputs: 1

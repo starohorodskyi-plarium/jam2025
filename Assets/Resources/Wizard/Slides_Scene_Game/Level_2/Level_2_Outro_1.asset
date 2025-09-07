@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28bbb10981f443eea590086f69f2a08a, type: 3}
-  m_Name: Level_2_Outro
+  m_Name: Level_2_Outro_1
   m_EditorClassIdentifier: 
   WizardId: 5
   ActorId: 1
-  Text: 'Buddy Bob: Great shot! \nSharp eye.'
+  Text: 'Buddy Bob: A true-born demon-hunter. Oh man, your eyes are turning bloody.
+    Do you feel alright?'
   AudioClip: {fileID: 0}
   DisableInputs: 1

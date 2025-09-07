@@ -103,6 +103,69 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &337350980235701402
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6277768551089690343}
+  - component: {fileID: 6218771163264319916}
+  m_Layer: 0
+  m_Name: Listeners
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6277768551089690343
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 337350980235701402}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3915483841498326335}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6218771163264319916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 337350980235701402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ce65ef18164287b873df8f7077b361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _listenedWizardId: 13
+  OnWizardStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  OnWizardFinished:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Wizard.ActorAppearTween, Assembly-CSharp
+        m_MethodName: Hide
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &408658507008782804
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,9 +507,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: StartGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -653,6 +716,7 @@ Transform:
   - {fileID: 4995637260053129577}
   - {fileID: 6210634167552535461}
   - {fileID: 2156354357287514415}
+  - {fileID: 3915483841498326335}
   - {fileID: 98082791067167012}
   - {fileID: 647126399485292817}
   - {fileID: 715808343978733867}
@@ -689,6 +753,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 58632a0875efc453bb95a86aea5fc907, type: 2}
   - {fileID: 11400000, guid: 24253397f382d46b09964b8f1f804e30, type: 2}
   - {fileID: 11400000, guid: dde1c64a28c1441688632293cb89d075, type: 2}
+  - {fileID: 11400000, guid: fdac3b1f8b6ff4548a22872325621c79, type: 2}
 --- !u!1 &2826274826489361173
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,6 +881,54 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &3286820035831122416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3915483841498326335}
+  - component: {fileID: 5519393610992485653}
+  m_Layer: 0
+  m_Name: Level_2_Outro_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3915483841498326335
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3286820035831122416}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6277768551089690343}
+  m_Father: {fileID: 1624714975338192196}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5519393610992485653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3286820035831122416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dab901f2b6f424e97a94fa29bef9a3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wizardId: 13
+  _showForSeconds: 0
+  _duration: 0
 --- !u!1 &4475851880284520875
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,9 +1257,9 @@ MonoBehaviour:
   OnWizardFinished:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Wizard.ActorAppearTween, Assembly-CSharp
-        m_MethodName: Hide
+      - m_Target: {fileID: 5519393610992485653}
+        m_TargetAssemblyTypeName: Wizard.TriggerNextWizardSlide, Assembly-CSharp
+        m_MethodName: TriggerCertain
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1221,64 +1334,28 @@ MonoBehaviour:
   _ignoreLevel: 0
   OnLevelLoaded:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7508161748700135351}
+        m_TargetAssemblyTypeName: Wizard.TriggerNextWizardSlide, Assembly-CSharp
+        m_MethodName: TriggerCertain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnLevelStarted:
     m_PersistentCalls:
       m_Calls: []
   OnLevelFinishedFailed:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7508161748700135351}
-        m_TargetAssemblyTypeName: Wizard.TriggerNextWizardSlide, Assembly-CSharp
-        m_MethodName: TriggerCertain
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   OnLevelFinishedSuccess:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7508161748700135351}
-        m_TargetAssemblyTypeName: Wizard.TriggerNextWizardSlide, Assembly-CSharp
-        m_MethodName: TriggerCertain
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &6002650512790107054
 MonoBehaviour:
   m_ObjectHideFlags: 0
