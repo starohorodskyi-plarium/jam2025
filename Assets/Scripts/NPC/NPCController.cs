@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class NPCController : MonoBehaviour
 {
@@ -60,9 +61,21 @@ public class NPCController : MonoBehaviour
     {
         point1 = p1;
         point2 = p2;
-        target = point2; 
-        transform.position = point1.position;
-        
+
+        // pick 0 or 1
+        int random = Random.Range(0, 2);
+
+        if (random == 0)
+        {
+            transform.position = point1.position;
+            target = point2;
+        }
+        else
+        {
+            transform.position = point2.position;
+            target = point1;
+        }
+
         if (spriteRenderer == null)
             spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
