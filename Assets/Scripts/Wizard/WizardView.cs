@@ -6,42 +6,58 @@ namespace Wizard
 {
     public class WizardView : MonoBehaviour
     {
-        [SerializeField] private GameObject _container;
+        [SerializeField] private GameObject _inspectorContainer;
+        [SerializeField] private GameObject _crowdContainer;
         [SerializeField] private Transform _liveInspector;
         [SerializeField] private Transform _deadInspector;
-        [SerializeField] private Transform _crowd;
         [SerializeField] private TMP_Text _text;
         [SerializeField] private TMP_Text _textContainer;
+
+        [SerializeField] private TMP_Text _crowdText;
+        [SerializeField] private TMP_Text _crowdTextContainer;
+        
         [SerializeField] private float letterInterval = 0.03f;
         
         private Sequence _sequence;
         
         public void Show(WizardSlide slide)
         {
-            UpdateGoalMessageText(slide.Text);
-            _textContainer.text = slide.Text;
-            _container.SetActive(true);
+            var text = slide.ActorId == WizardActorId.Crowd
+                ? _crowdText
+                : _text;
+            
+            UpdateGoalMessageText(slide.Text, text);
+            
+            if (slide.ActorId == WizardActorId.Crowd)
+            {
+                _crowdContainer.SetActive(true);
+                _crowdTextContainer.text = slide.Text;
+            }
+            else
+            {
+                _inspectorContainer.SetActive(true);
+                _textContainer.text = slide.Text;
+            }
 
             _liveInspector.gameObject.SetActive(slide.ActorId == WizardActorId.Live_Inspector);
             _deadInspector.gameObject.SetActive(slide.ActorId == WizardActorId.Dead_Inspector);
-            _crowd.gameObject.SetActive(slide.ActorId == WizardActorId.Crowd);
         }
 
-        private void UpdateGoalMessageText(string message)
+        private void UpdateGoalMessageText(string message, TMP_Text text)
         {
-            if (!_text)
+            if (!text)
             {
                 return;
             }
 
             _sequence?.Kill();
 
-            string oldText = _text.text ?? string.Empty;
+            string oldText = text.text ?? string.Empty;
             string newText = message ?? string.Empty;
 
             if (Mathf.Approximately(letterInterval, 0f))
             {
-                _text.text = newText;
+                text.text = newText;
                 return;
             }
 
@@ -67,7 +83,7 @@ namespace Wizard
                     int index = targetIndex; // capture
                     seq.AppendCallback(() =>
                     {
-                        _text.text = newText.Substring(0, index);
+                        text.text = newText.Substring(0, index);
                     });
                     if (index < newText.Length)
                     {
@@ -79,7 +95,7 @@ namespace Wizard
             }
 
             // Ensure final state is the full new text
-            seq.OnComplete(() => _text.text = newText);
+            seq.OnComplete(() => text.text = newText);
 
             _sequence = seq;
         }
@@ -87,8 +103,7 @@ namespace Wizard
 
         public void Hide()
         {
-            _container.SetActive(false);
-            _text.text = string.Empty;
+            _inspectorContainer.SetActive(false);
         }
     }
 }
