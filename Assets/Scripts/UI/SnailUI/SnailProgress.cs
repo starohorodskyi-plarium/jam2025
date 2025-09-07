@@ -23,7 +23,7 @@ public class SnailProgress : MonoBehaviour
     [Header("State")]
     [SerializeField] private bool[] unlocked = new bool[5];
 
-    private static readonly Color ActiveColor = Color.white;
+    private static readonly Color ActiveColor = new Color(226, 84, 44);
     private static readonly Color InactiveColor = Color.gray;
 
     private int MaxLetters => unlocked != null ? unlocked.Length : 5; // S, N, A, I, L

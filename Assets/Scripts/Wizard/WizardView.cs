@@ -40,31 +40,34 @@ namespace Wizard
 
             var seq = DOTween.Sequence();
 
-            // Remove old text letter by letter
-            for (int i = oldText.Length; i >= 0; i--)
-            {
-                int index = i; // capture
-                seq.AppendCallback(() =>
-                {
-                    _text.text = oldText.Substring(0, index);
-                });
-                if (i > 0)
-                {
-                    seq.AppendInterval(letterInterval);
-                }
-            }
-
             // Add new text letter by letter
-            for (int i = 1; i <= newText.Length; i++)
+            // If the next two chars are "\n" (backslash + n), add both at once
             {
-                int index = i; // capture
-                seq.AppendCallback(() =>
+                int i = 1;
+                while (i <= newText.Length)
                 {
-                    _text.text = newText.Substring(0, index);
-                });
-                if (i < newText.Length)
-                {
-                    seq.AppendInterval(letterInterval);
+                    int targetIndex = i;
+                    if (i <= newText.Length - 1)
+                    {
+                        int currentCharIndex = i - 1;
+                        int nextCharIndex = i;
+                        if (newText[currentCharIndex] == '\\' && newText[nextCharIndex] == 'n')
+                        {
+                            targetIndex = i + 1;
+                        }
+                    }
+
+                    int index = targetIndex; // capture
+                    seq.AppendCallback(() =>
+                    {
+                        _text.text = newText.Substring(0, index);
+                    });
+                    if (index < newText.Length)
+                    {
+                        seq.AppendInterval(letterInterval);
+                    }
+
+                    i = index + 1;
                 }
             }
 

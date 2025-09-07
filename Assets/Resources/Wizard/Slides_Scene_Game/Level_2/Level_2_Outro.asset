@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Level_2_Outro
   m_EditorClassIdentifier: 
   WizardId: 4
-  Text: 'Buddy Bob: Great shot! Sharp eye.'
+  Text: 'Buddy Bob: Great shot! \nSharp eye.'
   AudioClip: {fileID: 0}
   DisableInputs: 1

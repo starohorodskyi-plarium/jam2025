@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 
@@ -20,6 +21,8 @@ namespace Gun
         [SerializeField] private Ease ease = Ease.OutQuad;
 
         private Tween activeShakeTween;
+        
+        public static Action TriggerShake;
 
         private void Awake()
         {
@@ -27,6 +30,16 @@ namespace Gun
             {
                 targetToShake = transform;
             }
+        }
+
+        private void OnEnable()
+        {
+            TriggerShake += PlayShake;
+        }
+
+        private void OnDisable()
+        {
+            TriggerShake -= PlayShake;
         }
 
         public void PlayShake()

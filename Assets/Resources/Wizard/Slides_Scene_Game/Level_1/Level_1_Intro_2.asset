@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level_1_Intro_2
   m_EditorClassIdentifier: 
   WizardId: 1
-  Text: "Buddy Bob: Look closely and figure out who\u2019s the demon. And then\u2026
-    well, you got a gun. Use it on them!"
+  Text: "Buddy Bob: Look \\nclosely and figure out \\nwho\u2019s the demon. And \\nthen\u2026
+    well, you got a \\ngun. Use it on them!"
   AudioClip: {fileID: 0}
   DisableInputs: 1
