@@ -391,7 +391,7 @@ MonoBehaviour:
   checkPaddingRequired: 0
   m_isRichText: 0
   m_EmojiFallbackSupport: 0
-  m_parseCtrlCharacters: 0
+  m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
   m_horizontalMapping: 0
@@ -898,7 +898,7 @@ MonoBehaviour:
   _container: {fileID: 6380660642145481804}
   _text: {fileID: 4518335760655707171}
   _textContainer: {fileID: 6237767316507755088}
-  letterInterval: 0.015
+  letterInterval: 0.025
 --- !u!114 &3192268763841878045
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level_5_Intro
   m_EditorClassIdentifier: 
   WizardId: 10
-  Text: 'Buddy Bob: A bit crowded, innit? Wish you good hunting, partner. You can
-    do it!'
+  Text: 'Buddy Bob: A bit \ncrowded, innit? Wish \nyou good hunting, \npartner. You
+    can do it!'
   AudioClip: {fileID: 0}
   DisableInputs: 1

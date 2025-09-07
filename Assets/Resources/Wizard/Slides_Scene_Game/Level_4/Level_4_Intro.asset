@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level_4_Intro
   m_EditorClassIdentifier: 
   WizardId: 7
-  Text: 'Buddy Bob: Uh oh, the lights went off! I barely see a thing. Use a flashlight
-    on your gun.'
+  Text: 'Buddy Bob: Uh oh, the \nlights went off! I \nbarely see a thing. Use \na
+    flashlight on your \ngun.'
   AudioClip: {fileID: 0}
   DisableInputs: 1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level_3_Intro
   m_EditorClassIdentifier: 
   WizardId: 5
-  Text: "Buddy Bob: Now, people say that several \u201Chumans\u201D here act inhumanely.
-    Detective, solve the case!"
+  Text: "Buddy Bob: Now, people \\nsay that several \\n\u201Chumans\u201D here act
+    \\ninhumanely. Detective, \\nsolve the case!"
   AudioClip: {fileID: 0}
   DisableInputs: 1

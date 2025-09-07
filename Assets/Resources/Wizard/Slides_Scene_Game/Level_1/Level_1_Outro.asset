@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Level_1_Outro
   m_EditorClassIdentifier: 
   WizardId: 2
-  Text: "Buddy Bob: Well spotted! Now let\u2019s drive to another location."
+  Text: "Buddy Bob: Well \\nspotted! Now let\u2019s \\ndrive to another \\nlocation."
   AudioClip: {fileID: 0}
   DisableInputs: 1

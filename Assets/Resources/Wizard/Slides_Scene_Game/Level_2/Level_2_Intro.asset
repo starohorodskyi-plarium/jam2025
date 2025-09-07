@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Level_2_Intro
   m_EditorClassIdentifier: 
   WizardId: 3
-  Text: 'Buddy Bob: Be cautious! I can sense a demon out there.'
+  Text: 'Buddy Bob: Be \ncautious! I can sense a \ndemon out there.'
   AudioClip: {fileID: 0}
   DisableInputs: 1

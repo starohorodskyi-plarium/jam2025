@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level_4_Outro_1
   m_EditorClassIdentifier: 
   WizardId: 8
-  Text: 'Buddy Bob: A true-born demon-hunter. Oh man, your eyes are turning bloody.
-    Do you feel alright?'
+  Text: 'Buddy Bob: A true-born \ndemon-hunter. Oh man, \nyour eyes are turning \nbloody.
+    Do you feel \nalright?'
   AudioClip: {fileID: 0}
   DisableInputs: 1

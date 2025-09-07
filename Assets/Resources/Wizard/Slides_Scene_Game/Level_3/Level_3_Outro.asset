@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Level_3_Outro
   m_EditorClassIdentifier: 
   WizardId: 6
-  Text: 'Buddy Bob: How did you know it? Never mind, we gotta go on.'
+  Text: 'Buddy Bob: How did \nyou know it? Never \nmind, we gotta go on.'
   AudioClip: {fileID: 0}
   DisableInputs: 1
