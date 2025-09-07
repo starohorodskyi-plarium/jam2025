@@ -14,6 +14,25 @@ public class SpawnManager : MonoBehaviour
     [Tooltip("How many baddies should spawn on this level.")]
     public int baddiesPerLevel = 2;
 
+    public int EnemiesDefeatCount
+    {
+        get
+        {
+            var count = baddiesPerLevel;
+            foreach (var point in spawnPoints)
+            {
+                for (var i = 0; i < point.childCount; i++)
+                {
+                    var child = point.GetChild(i).gameObject;
+                    if (child.CompareTag("Enemy"))
+                        count--;
+                }
+            }
+
+            return count;
+        }
+    }
+    
     public void SpawnWave()
     {
         if (spawnPoints == null || spawnPoints.Length == 0)
