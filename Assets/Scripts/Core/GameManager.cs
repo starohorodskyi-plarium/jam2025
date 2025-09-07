@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public GameObject timePenaltyLabel;
     public GameObject timeBonusLabel;
     public GameObject gameOverPanel;
+    public GameObject gameOverDevilPanel;
     public GameObject levelPassedPanel;
 
     [Header("Levels")] 
@@ -47,6 +48,16 @@ public class GameManager : MonoBehaviour
     public int? LoadedLevelId => LoadedLevel?.LevelId;
     public LevelManager LoadedLevel { get; private set; }
     public bool InputEnabled { get; private set; } = true;
+
+    private void OnEnable()
+    {
+        Health.PlayerDied += FailLevel;
+    }
+
+    private void OnDisable()
+    {
+        Health.PlayerDied -= FailLevel;
+    }
 
     public void EnableInputs()
     {
@@ -203,7 +214,9 @@ public class GameManager : MonoBehaviour
         
         LoadedLevel.SpawnManager.DestroyAll();
         
-        gameOverPanel.SetActive(true);
+        var overPanel = DevilModeScenario.IsInDevilMode ? gameOverDevilPanel : gameOverPanel;
+        
+        overPanel.SetActive(true);
         
         OnLevelFinishedFailed?.Invoke(LoadedLevel.LevelId);
         MusicManager.StopActiveMusic?.Invoke(() => JingleManager.PlayLoseJingle?.Invoke());
@@ -239,7 +252,9 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        gameOverPanel.SetActive(false);
+        var overPanel = DevilModeScenario.IsInDevilMode ? gameOverDevilPanel : gameOverPanel;
+        
+        overPanel.SetActive(false);
         
         var sceneName = SceneManager.GetActiveScene().name;
         MusicManager.SceneLoaded?.Invoke(sceneName);

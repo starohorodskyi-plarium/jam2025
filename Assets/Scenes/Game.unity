@@ -751,6 +751,7 @@ MonoBehaviour:
   timePenaltyLabel: {fileID: 813168398}
   timeBonusLabel: {fileID: 277626409}
   gameOverPanel: {fileID: 1543196377}
+  gameOverDevilPanel: {fileID: 1543196377}
   levelPassedPanel: {fileID: 1427653553}
   levels:
   - {fileID: 240697702}
