@@ -535,9 +535,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 4000795471197098946}
-        m_TargetAssemblyTypeName: EditorPlayModeClose, Assembly-CSharp
-        m_MethodName: StopPlayModeIfActive
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Wizard.TriggerNextWizardSlide, Assembly-CSharp
+        m_MethodName: TriggerCertain
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -977,6 +977,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: MusicCallback, Assembly-CSharp
         m_MethodName: PlayMusic
         m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Level1
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4000795471197098946}
+        m_TargetAssemblyTypeName: EditorPlayModeClose, Assembly-CSharp
+        m_MethodName: StopPlayModeIfActive
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
