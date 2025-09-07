@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28bbb10981f443eea590086f69f2a08a, type: 3}
   m_Name: Final_Intro_4
   m_EditorClassIdentifier: 
-  WizardId: 16
+  WizardId: 11
+  ActorId: 2
   Text: "Angry people: Now\u2019s your turn, you scum!"
   AudioClip: {fileID: 0}
   DisableInputs: 1

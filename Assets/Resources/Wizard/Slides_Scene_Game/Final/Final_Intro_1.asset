@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28bbb10981f443eea590086f69f2a08a, type: 3}
   m_Name: Final_Intro_1
   m_EditorClassIdentifier: 
-  WizardId: 13
+  WizardId: 8
+  ActorId: 0
   Text: "Buddy Bob: Oh no, you\u2019ve got corrupted! Now you\u2019re one of them
     demons!"
   AudioClip: {fileID: 0}

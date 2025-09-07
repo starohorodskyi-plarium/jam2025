@@ -6,6 +6,7 @@ namespace Wizard
     public class WizardSlide : ScriptableObject
     {
         public WizardId WizardId;
+        public WizardActorId ActorId;
         public string Text;
         public AudioClip AudioClip;
 

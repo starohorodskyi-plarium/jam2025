@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28bbb10981f443eea590086f69f2a08a, type: 3}
   m_Name: Final_Intro_2
   m_EditorClassIdentifier: 
-  WizardId: 14
+  WizardId: 9
+  ActorId: 2
   Text: 'Angry people: Purge the hellish filth! Kill! Kill! Kill! '
   AudioClip: {fileID: 0}
   DisableInputs: 1

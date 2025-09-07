@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Level_3_Intro
   m_EditorClassIdentifier: 
   WizardId: 5
-  Text: "Buddy Bob: Now, people \\nsay that several \\n\u201Chumans\u201D here act
-    \\ninhumanely. Detective, \\nsolve the case!"
+  ActorId: 0
+  Text: 'Buddy Bob: A bit \ncrowded, innit? Wish \nyou good hunting, \npartner. You
+    can do it!'
   AudioClip: {fileID: 0}
   DisableInputs: 1

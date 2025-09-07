@@ -10,15 +10,8 @@ namespace Wizard
         Level_2_Outro,
         
         Level_3_Intro,
-        Level_3_Outro,
-        
-        Level_4_Intro,
-        Level_4_Outro_1,
-        Level_4_Outro_2,
-        
-        Level_5_Intro,
-        Level_5_Outro_1,
-        Level_5_Outro_2,
+        Level_3_Outro_1,
+        Level_3_Outro_2,
         
         Final_Intro_1,
         Final_Intro_2,

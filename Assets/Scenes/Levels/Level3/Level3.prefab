@@ -3560,6 +3560,7 @@ GameObject:
   - component: {fileID: 4364863688524545667}
   - component: {fileID: 7867474922437790813}
   - component: {fileID: 8397654902088834579}
+  - component: {fileID: 5665493795562353600}
   m_Layer: 0
   m_Name: Level3
   m_TagString: Untagged
@@ -3657,6 +3658,24 @@ MonoBehaviour:
   - {fileID: 5564513086845201101}
   - {fileID: 9071772507329488365}
   baddiesPerLevel: 5
+--- !u!114 &5665493795562353600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4906541574696826039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f583bf0b07449785de340e6b6de152, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraController: {fileID: 0}
+  _zoomController: {fileID: 0}
+  _zoomSensitivityX: 13
+  _zoomSensitivityY: 13
+  _maxAngleX: 1.8
+  _maxAngleY: 1.8
 --- !u!1 &4922950076432231650
 GameObject:
   m_ObjectHideFlags: 0

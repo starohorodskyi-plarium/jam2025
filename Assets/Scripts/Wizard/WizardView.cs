@@ -7,6 +7,9 @@ namespace Wizard
     public class WizardView : MonoBehaviour
     {
         [SerializeField] private GameObject _container;
+        [SerializeField] private Transform _liveInspector;
+        [SerializeField] private Transform _deadInspector;
+        [SerializeField] private Transform _crowd;
         [SerializeField] private TMP_Text _text;
         [SerializeField] private TMP_Text _textContainer;
         [SerializeField] private float letterInterval = 0.03f;
@@ -18,6 +21,10 @@ namespace Wizard
             UpdateGoalMessageText(slide.Text);
             _textContainer.text = slide.Text;
             _container.SetActive(true);
+
+            _liveInspector.gameObject.SetActive(slide.ActorId == WizardActorId.Live_Inspector);
+            _deadInspector.gameObject.SetActive(slide.ActorId == WizardActorId.Dead_Inspector);
+            _crowd.gameObject.SetActive(slide.ActorId == WizardActorId.Crowd);
         }
 
         private void UpdateGoalMessageText(string message)
