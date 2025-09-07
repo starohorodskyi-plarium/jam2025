@@ -616,6 +616,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1268261398015617560, guid: cdd0a6434fd3a41f39e2b8c6fcd2f129, type: 3}
+      propertyPath: volume
+      value: 
+      objectReference: {fileID: 1360423024}
     - target: {fileID: 8638530840134335947, guid: cdd0a6434fd3a41f39e2b8c6fcd2f129, type: 3}
       propertyPath: m_Name
       value: DevilMode
