@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance; 
 
     [Header("Timer Settings")]
-    public float startTime = 60f;
+    public float startTime = 666f;
     public float timeBonus = 1f;
     public float timePenalty = 5f;
     public float showLabelDuration = 1f;
@@ -38,6 +38,14 @@ public class GameManager : MonoBehaviour
     [Header("Levels")] 
     [SerializeField] private List<LevelManager> levels;
 
+    public Dictionary<int, int> timersByLevel = new Dictionary<int, int>()
+    {
+        {0, 30},
+        {1, 60},
+        {2, 90},
+        {3, 90},
+    };
+    
     public event Action<int> OnLevelLoaded;
     public event Action<int> OnLevelStarted;
     public event Action<int> OnLevelFinishedSuccess;
@@ -183,7 +191,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         
-        currentTime = startTime;
+        currentTime = timersByLevel.TryGetValue(LoadedLevelId.Value, out var time) ? time : startTime;
         CurrentState = GameState.Playing;
 
         LoadedLevel.SpawnManager.SpawnWave();
