@@ -109,6 +109,8 @@ public class GameManager : MonoBehaviour
 
     public void LoadNextLeve()
     {
+        levelPassedPanel.SetActive(false);
+        
         if (LoadedLevel == null)
         {
             LoadLevel(level: 0);
@@ -225,13 +227,6 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         gameOverPanel.SetActive(false);
-        
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-    
-    public void OpenNextLevel()
-    {
-        levelPassedPanel.SetActive(false);
         
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
