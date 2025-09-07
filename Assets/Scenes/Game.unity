@@ -1261,6 +1261,8 @@ GameObject:
   - component: {fileID: 1360423022}
   - component: {fileID: 1360423023}
   - component: {fileID: 1360423024}
+  - component: {fileID: 1360423025}
+  - component: {fileID: 1360423026}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1437,6 +1439,39 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: ab09877e2e707104187f6f83e2f62510, type: 2}
+--- !u!114 &1360423025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360423017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 846dec08009d44c5b066a2cf492ade4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomFOV: 35
+  normalFOV: 60
+  duration: 0.5
+--- !u!114 &1360423026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360423017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f583bf0b07449785de340e6b6de152, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraController: {fileID: 1360423022}
+  _zoomController: {fileID: 1360423025}
+  _zoomSensitivityX: 10
+  _zoomSensitivityY: 10
+  _maxAngleX: 1.5
+  _maxAngleY: 1.5
 --- !u!1001 &1409337577
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1922,6 +1957,10 @@ PrefabInstance:
     - target: {fileID: 3651073638540296187, guid: 41cd560efe0dd45a2ae02b21c670f22b, type: 3}
       propertyPath: m_Name
       value: Level2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651073638540296187, guid: 41cd560efe0dd45a2ae02b21c670f22b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5029690194501078496, guid: 41cd560efe0dd45a2ae02b21c670f22b, type: 3}
       propertyPath: m_LocalPosition.x
