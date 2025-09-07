@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2643038230280586603}
   - component: {fileID: 5079605503482189507}
   - component: {fileID: 2981409443679313357}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -354,7 +354,7 @@ GameObject:
   - component: {fileID: 6383425516521775793}
   - component: {fileID: 7565432793821491127}
   - component: {fileID: 932944282231465124}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -461,7 +461,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6850816158449764703}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Flipper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -635,7 +635,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2248037259355868984}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Flipper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -700,7 +700,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4277748921762452619}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Flipper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1033,7 +1033,7 @@ GameObject:
   - component: {fileID: 7275694202839197050}
   - component: {fileID: 8736547285356622554}
   - component: {fileID: 7268859525336082026}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1139,7 +1139,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1567596172210288489}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Building_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1212,7 +1212,7 @@ GameObject:
   - component: {fileID: 3726942677671492455}
   - component: {fileID: 1442249015584470999}
   - component: {fileID: 7982694150910260660}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1551,7 +1551,7 @@ GameObject:
   - component: {fileID: 3843048183574818531}
   - component: {fileID: 2415984200936792520}
   - component: {fileID: 1440330855891745058}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1657,7 +1657,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2587072074440061547}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Flipper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1926,7 +1926,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1643780917777921584}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Flipper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2071,7 +2071,7 @@ GameObject:
   - component: {fileID: 5713958048713111706}
   - component: {fileID: 4777983818426907892}
   - component: {fileID: 6985578921395926056}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2211,7 +2211,7 @@ GameObject:
   - component: {fileID: 7506510262031990819}
   - component: {fileID: 1189770602398407153}
   - component: {fileID: 2545987037457078569}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2350,7 +2350,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1189977802629596292}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Lantern_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2414,7 +2414,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8103479900215420008}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Lantern_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2480,7 +2480,7 @@ GameObject:
   - component: {fileID: 3649511099080194300}
   - component: {fileID: 3617604994127601914}
   - component: {fileID: 6612954238447677323}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2586,7 +2586,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2081210562146253341}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Car_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2618,7 +2618,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 807861410602816815}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Building_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2686,7 +2686,7 @@ GameObject:
   - component: {fileID: 7765845579770969022}
   - component: {fileID: 3032069209666263451}
   - component: {fileID: 8472751328778683318}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2827,7 +2827,7 @@ GameObject:
   - component: {fileID: 7355304215240077911}
   - component: {fileID: 4360621352516971636}
   - component: {fileID: 4647524741660492466}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2934,7 +2934,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7526031013236789830}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Building_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2969,7 +2969,7 @@ GameObject:
   - component: {fileID: 3538621168041515283}
   - component: {fileID: 7990508792583233871}
   - component: {fileID: 2328800808867907751}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3075,7 +3075,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7613677371460911876}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Flipper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3107,7 +3107,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2466970308142594877}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Flipper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3170,7 +3170,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3138865808995340755}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Skybox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3205,7 +3205,7 @@ GameObject:
   - component: {fileID: 3576458737880778655}
   - component: {fileID: 2604109143032527243}
   - component: {fileID: 5394290484063923558}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3314,7 +3314,7 @@ GameObject:
   - component: {fileID: 8502896653023919919}
   - component: {fileID: 5840917888025848851}
   - component: {fileID: 1346084104631919969}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3424,7 +3424,7 @@ GameObject:
   - component: {fileID: 5591347626035841602}
   - component: {fileID: 8784405215799240168}
   - component: {fileID: 933195782153547352}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3565,7 +3565,7 @@ GameObject:
   - component: {fileID: 2585047940793744646}
   - component: {fileID: 4812071112708066108}
   - component: {fileID: 2781667457862753160}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3813,7 +3813,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4563382775611227922}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Flipper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3954,7 +3954,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7852780780554109505}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Car_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4012,6 +4012,10 @@ PrefabInstance:
     - target: {fileID: 3644856177061836816, guid: 9aa3b6fff441442e0be8325fec283fdd, type: 3}
       propertyPath: m_Name
       value: ObstacleWithReaction (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644856177061836816, guid: 9aa3b6fff441442e0be8325fec283fdd, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8426261089602739276, guid: 9aa3b6fff441442e0be8325fec283fdd, type: 3}
       propertyPath: m_LocalScale.x
@@ -4102,6 +4106,10 @@ PrefabInstance:
     - target: {fileID: 3644856177061836816, guid: 9aa3b6fff441442e0be8325fec283fdd, type: 3}
       propertyPath: m_Name
       value: ObstacleWithReaction
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644856177061836816, guid: 9aa3b6fff441442e0be8325fec283fdd, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8426261089602739276, guid: 9aa3b6fff441442e0be8325fec283fdd, type: 3}
       propertyPath: m_LocalPosition.x
