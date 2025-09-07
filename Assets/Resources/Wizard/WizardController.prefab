@@ -548,7 +548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 424376a4191f43248068682159b7a49b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _level: 1
+  _level: 0
   _ignoreLevel: 0
   OnLevelLoaded:
     m_PersistentCalls:
