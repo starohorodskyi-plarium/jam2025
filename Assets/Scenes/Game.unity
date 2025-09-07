@@ -1534,6 +1534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 846dec08009d44c5b066a2cf492ade4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursor: {fileID: 1459254498}
   zoomFOV: 35
   normalFOV: 60
   duration: 0.5
@@ -1629,6 +1630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: 17fc640f26bf84217b733220382c2d5f, type: 3}
+  cursorZoomTexture: {fileID: 0}
   hotspot: {x: 16, y: 16}
   cursorMode: 0
 --- !u!4 &1459254499
