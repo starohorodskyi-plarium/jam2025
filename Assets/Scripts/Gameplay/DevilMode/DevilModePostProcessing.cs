@@ -4,12 +4,22 @@ using UnityEngine.Rendering.Universal;
 
 public class DevilModePostProcessing : MonoBehaviour
 {
+    [SerializeField] private GameObject _horns;
+    [Space] 
     [SerializeField] private Volume volume;
     [SerializeField] private bool createVolumeIfMissing = true;
 
     private LensDistortion lensDistortion;
     private ChromaticAberration chromaticAberration;
     private ColorAdjustments colorAdjustments;
+    private Vignette vignette;
+
+    // Vignette baseline backup for revert
+    private bool vignetteBaselineSaved;
+    private bool vignetteExistedBefore;
+    private bool vignetteActiveBefore;
+    private float vignetteIntensityBefore;
+    private float vignetteSmoothnessBefore;
 
     public void EnableDevilLensDistortion()
     {
@@ -36,6 +46,9 @@ public class DevilModePostProcessing : MonoBehaviour
     {
         EnableDevilLensDistortion();
         EnableDevilColorAdjustments();
+        EnableDevilVignette();
+        
+        _horns.SetActive(true);
     }
 
     public void EnableDevilColorAdjustments()
@@ -61,6 +74,89 @@ public class DevilModePostProcessing : MonoBehaviour
 
         colorAdjustments.saturation.overrideState = true;
         colorAdjustments.saturation.value = 26f;
+    }
+
+    public void EnableDevilVignette()
+    {
+        EnsureVolumeAndProfile();
+        if (volume == null || volume.profile == null)
+        {
+            Debug.LogWarning("DevilModePostProcessing: Volume or Profile is missing and could not be created.");
+            return;
+        }
+
+        bool existed = volume.profile.TryGet(out vignette);
+        if (!existed)
+        {
+            vignette = volume.profile.Add<Vignette>(true);
+        }
+
+        if (!vignetteBaselineSaved)
+        {
+            vignetteBaselineSaved = true;
+            vignetteExistedBefore = existed;
+            if (existed)
+            {
+                vignetteActiveBefore = vignette.active;
+                vignetteIntensityBefore = vignette.intensity.value;
+                vignetteSmoothnessBefore = vignette.smoothness.value;
+            }
+            else
+            {
+                vignetteActiveBefore = false;
+                vignetteIntensityBefore = vignette.intensity.value;
+                vignetteSmoothnessBefore = vignette.smoothness.value;
+            }
+        }
+
+        vignette.active = true;
+        vignette.intensity.overrideState = true;
+        vignette.intensity.value = 0.55f;
+        vignette.smoothness.overrideState = true;
+        vignette.smoothness.value = 0.5f;
+    }
+
+    public void RevertDevilPostProcessing()
+    {
+        _horns.SetActive(false);
+        
+        EnsureVolumeAndProfile();
+        if (volume == null || volume.profile == null)
+        {
+            Debug.LogWarning("DevilModePostProcessing: Volume or Profile is missing and could not be created.");
+            return;
+        }
+
+        if (volume.profile.TryGet(out lensDistortion))
+        {
+            lensDistortion.active = false;
+        }
+
+        if (volume.profile.TryGet(out colorAdjustments))
+        {
+            colorAdjustments.active = false;
+        }
+
+        if (vignetteBaselineSaved)
+        {
+            if (volume.profile.TryGet(out vignette))
+            {
+                if (vignetteExistedBefore)
+                {
+                    vignette.active = vignetteActiveBefore;
+                    vignette.intensity.value = vignetteIntensityBefore;
+                    vignette.smoothness.value = vignetteSmoothnessBefore;
+                }
+                else
+                {
+                    // If vignette was created by us, disable it (and remove if supported)
+                    vignette.active = false;
+                    #if UNITY_2022_1_OR_NEWER
+                    volume.profile.Remove<Vignette>();
+                    #endif
+                }
+            }
+        }
     }
 
     private void EnsureVolumeAndProfile()
