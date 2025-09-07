@@ -7,6 +7,8 @@ public class SpawnManager : MonoBehaviour
     [Header("Prefab Collections")]
     public GameObject[] goodNpcPrefabs;
     public GameObject[] badNpcPrefabs;
+    
+    public SnailController[] snails;
 
     [Header("Spawn Settings")]
     public Transform[] spawnPoints;
@@ -35,6 +37,9 @@ public class SpawnManager : MonoBehaviour
     
     public void SpawnWave()
     {
+        foreach (var snailController in snails)
+            snailController.Activate();
+        
         if (spawnPoints == null || spawnPoints.Length == 0)
         {
             Debug.LogWarning("No spawn points assigned!");
@@ -92,6 +97,9 @@ public class SpawnManager : MonoBehaviour
 
     public void DestroyAll()
     {
+        foreach (var snailController in snails)
+            snailController.Deactivate();
+        
         foreach (var point in spawnPoints)
         {
             for (int i = point.childCount - 1; i >= 0; i--)

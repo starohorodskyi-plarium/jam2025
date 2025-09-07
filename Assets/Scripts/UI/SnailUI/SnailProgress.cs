@@ -74,7 +74,7 @@ public class SnailProgress : MonoBehaviour
             var text = letters[i];
             if (text == null) continue;
             bool isUnlocked = i >= 0 && i < MaxLetters && unlocked[i];
-            text.color = isUnlocked ? ActiveColor : InactiveColor;
+            text.color = isUnlocked ? new Color(226, 84, 44, 255) : InactiveColor;
         }
     }
 
