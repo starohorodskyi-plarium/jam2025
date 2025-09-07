@@ -227,8 +227,6 @@ GameObject:
   - component: {fileID: 90268191874738256}
   - component: {fileID: 1616382271463922583}
   - component: {fileID: 3368248606356238635}
-  - component: {fileID: 8828357313024376989}
-  - component: {fileID: 5316542130819641361}
   m_Layer: 5
   m_Name: Container
   m_TagString: Untagged
@@ -305,44 +303,6 @@ MonoBehaviour:
   disableOnPC: 0
   disableOnMobile: 1
   disableOnWeb: 1
---- !u!114 &8828357313024376989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2073828145159310675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f43d4305b9f143418557ee9d4abc2d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 2562379033830522222}
-  enableOnPC: 1
-  enableOnMobile: 0
-  enableOnWeb: 0
-  disableOnPC: 0
-  disableOnMobile: 1
-  disableOnWeb: 1
---- !u!114 &5316542130819641361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2073828145159310675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f43d4305b9f143418557ee9d4abc2d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 6434979834331758166}
-  enableOnPC: 0
-  enableOnMobile: 1
-  enableOnWeb: 1
-  disableOnPC: 1
-  disableOnMobile: 0
-  disableOnWeb: 0
 --- !u!1 &2562379033830522222
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,8 +317,7 @@ GameObject:
   - component: {fileID: 5566811162837360485}
   - component: {fileID: 1106262523882129431}
   - component: {fileID: 4681914995090899891}
-  - component: {fileID: 2021030853550901543}
-  - component: {fileID: 4000795471197098946}
+  - component: {fileID: 467969861911641465}
   m_Layer: 5
   m_Name: Play
   m_TagString: Untagged
@@ -511,7 +470,7 @@ MonoBehaviour:
   clickSequence:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2021030853550901543}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Core.CloseApplication, Assembly-CSharp
         m_MethodName: Close
         m_Mode: 1
@@ -562,7 +521,7 @@ MonoBehaviour:
   audioPrefab: {fileID: 8671327176818285429, guid: 82df7c5071d104923ad068f4528cac6f, type: 3}
   clipSound: {fileID: 0}
   volume: 1
---- !u!114 &2021030853550901543
+--- !u!114 &467969861911641465
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -571,19 +530,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2562379033830522222}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8386e1de1f5574f15b1c3b86a73bf573, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4000795471197098946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2562379033830522222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ec0e84ad53241749511997fdcd96f4f, type: 3}
+  m_Script: {fileID: 11500000, guid: 358625c66846743e4921a81df3673c0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2793649341770193060
@@ -793,7 +740,8 @@ GameObject:
   - component: {fileID: 4910287694938151085}
   - component: {fileID: 1005254986973697946}
   - component: {fileID: 3700138984062070835}
-  - component: {fileID: 2452222222507667049}
+  - component: {fileID: 4935246128028584523}
+  - component: {fileID: 5254390696920146387}
   m_Layer: 5
   m_Name: Exit
   m_TagString: Untagged
@@ -961,33 +909,9 @@ MonoBehaviour:
   clickSequence:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6327830773115866549}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2452222222507667049}
-        m_TargetAssemblyTypeName: MusicCallback, Assembly-CSharp
-        m_MethodName: PlayMusic
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Level1
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 4000795471197098946}
-        m_TargetAssemblyTypeName: EditorPlayModeClose, Assembly-CSharp
-        m_MethodName: StopPlayModeIfActive
+      - m_Target: {fileID: 4935246128028584523}
+        m_TargetAssemblyTypeName: Core.CloseApplication, Assembly-CSharp
+        m_MethodName: Close
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -997,7 +921,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2452222222507667049
+      - m_Target: {fileID: 5254390696920146387}
+        m_TargetAssemblyTypeName: EditorPlayModeClose, Assembly-CSharp
+        m_MethodName: StopPlayModeIfActive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Level1
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4935246128028584523
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1006,7 +942,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 3425451690616609174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 358625c66846743e4921a81df3673c0e, type: 3}
+  m_Script: {fileID: 11500000, guid: 8386e1de1f5574f15b1c3b86a73bf573, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5254390696920146387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3425451690616609174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ec0e84ad53241749511997fdcd96f4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3491644098429721618
