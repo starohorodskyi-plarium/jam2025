@@ -19,5 +19,7 @@ namespace Wizard
         Final_Intro_2,
         Final_Intro_3,
         Final_Intro_4,
+        
+        Level_2_Outro_2,
     }
 }
