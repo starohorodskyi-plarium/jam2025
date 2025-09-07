@@ -16,4 +16,4 @@ MonoBehaviour:
   Text: 'Buddy Bob: A bit crowded, innit? Wish you good hunting, partner. You can
     do it!'
   AudioClip: {fileID: 0}
-  DisableInputs: 0
+  DisableInputs: 1

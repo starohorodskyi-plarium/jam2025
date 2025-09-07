@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28bbb10981f443eea590086f69f2a08a, type: 3}
   m_Name: Final_Intro_3
   m_EditorClassIdentifier: 
-  WizardId: 0
-  Text: 
+  WizardId: 15
+  Text: 'Buddy Bob: *gets killed*.'
   AudioClip: {fileID: 0}
-  DisableInputs: 0
+  DisableInputs: 1

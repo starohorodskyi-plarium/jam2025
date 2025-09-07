@@ -16,4 +16,4 @@ MonoBehaviour:
   Text: 'Buddy Bob: A true-born demon-hunter. Oh man, your eyes are turning bloody.
     Do you feel alright?'
   AudioClip: {fileID: 0}
-  DisableInputs: 0
+  DisableInputs: 1

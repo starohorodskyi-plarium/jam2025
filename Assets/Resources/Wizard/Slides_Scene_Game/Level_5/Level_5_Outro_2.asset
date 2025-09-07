@@ -15,4 +15,4 @@ MonoBehaviour:
   WizardId: 12
   Text: "Buddy Bob: Eh, partner? Jonathan?! What\u2019s happening? What are you?"
   AudioClip: {fileID: 0}
-  DisableInputs: 0
+  DisableInputs: 1

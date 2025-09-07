@@ -15,4 +15,4 @@ MonoBehaviour:
   WizardId: 11
   Text: 'Buddy Bob: Congrats! The whole city is clear. No more demons here! '
   AudioClip: {fileID: 0}
-  DisableInputs: 0
+  DisableInputs: 1
