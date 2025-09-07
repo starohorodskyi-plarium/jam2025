@@ -143,7 +143,8 @@ public class GameManager : MonoBehaviour
 
         LoadedLevel = levelManager;
         
-        MusicManager.SceneLoaded?.Invoke(LoadedLevel.name);
+        if(LoadedLevel.LevelId	!= 0) 
+            MusicManager.SceneLoaded?.Invoke(LoadedLevel.name);
         
         OnLevelLoaded?.Invoke(LoadedLevel.LevelId);
     }
@@ -205,6 +206,7 @@ public class GameManager : MonoBehaviour
         gameOverPanel.SetActive(true);
         
         OnLevelFinishedFailed?.Invoke(LoadedLevel.LevelId);
+        MusicManager.StopActiveMusic?.Invoke(() => JingleManager.PlayLoseJingle?.Invoke());
         
         Debug.Log("Game Over!");
     }
@@ -226,6 +228,8 @@ public class GameManager : MonoBehaviour
         
         levelPassedPanel.SetActive(true);
         
+        MusicManager.StopActiveMusic?.Invoke(() => JingleManager.PlayWinJingle?.Invoke());
+        
         DevilificationProgress.OnSetSmooth?.Invoke((LoadedLevel.LevelId + 1)/DevilificationProgress.DevilificationLevelId);
         
         OnLevelFinishedSuccess?.Invoke(LoadedLevel.LevelId);
@@ -237,7 +241,9 @@ public class GameManager : MonoBehaviour
     {
         gameOverPanel.SetActive(false);
         
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        var sceneName = SceneManager.GetActiveScene().name;
+        MusicManager.SceneLoaded?.Invoke(sceneName);
+        SceneManager.LoadScene(sceneName);
     }
 
     public void AddTime()
