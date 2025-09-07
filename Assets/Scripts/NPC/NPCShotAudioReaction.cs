@@ -39,5 +39,6 @@ public class NPCShotAudioReaction : MonoBehaviour
         if (clip == null || audioSource == null)
             return;
         audioSource.PlayOneShot(clip);
+        Destroy(gameObject, 4f);
     }
 }

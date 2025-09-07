@@ -22,8 +22,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Timer Settings")]
     public float startTime = 666f;
-    public float timeBonus = 1f;
-    public float timePenalty = 5f;
+    public int timeBonus = 1;
+    public int timePenalty = 10;
     public float showLabelDuration = 1f;
     private float currentTime;
     
@@ -269,25 +269,31 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    public void AddTime()
+    public void AddTime(int bonus)
     {
-        currentTime += timeBonus;
+        currentTime += bonus;
         
-        StartCoroutine(ShowTimeLabel(timeBonusLabel));
+        StartCoroutine(ShowTimeLabel(timeBonusLabel, bonus));
     }
 
     public void SubtractTime()
     {
         currentTime -= timePenalty;
-        if (currentTime < 0) currentTime = 0;
+        if (currentTime < 0) 
+            currentTime = 0;
 
-        StartCoroutine(ShowTimeLabel(timePenaltyLabel));
+        StartCoroutine(ShowTimeLabel(timePenaltyLabel, -timePenalty));
     }
     
-    private IEnumerator ShowTimeLabel(GameObject label)
+    private IEnumerator ShowTimeLabel(GameObject label, int amount)
     {
-        if (label == null) 
+        if (label == null)
             yield break;
+        
+        if (amount < 0)
+            label.GetComponentInChildren<TextMeshProUGUI>().text = $"{amount}";
+        else if (amount > 0)
+            label.GetComponentInChildren<TextMeshProUGUI>().text = $"+{amount}";
         
         label.SetActive(true);
         yield return new WaitForSeconds(showLabelDuration);

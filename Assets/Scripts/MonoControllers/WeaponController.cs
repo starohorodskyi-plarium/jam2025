@@ -75,7 +75,7 @@ namespace MonoControllers
             }
             else if (hitObject.CompareTag("Enemy"))
             {
-                GameManager.Instance.AddTime();
+                GameManager.Instance.AddTime(5);
                 
                 hitObject.GetComponent<NPCController>()?.Hit(impactDelay);
             }
@@ -85,8 +85,7 @@ namespace MonoControllers
             }
             else if (hitObject.CompareTag("Snail"))
             {
-                GameManager.Instance.AddTime();
-                GameManager.Instance.AddTime();
+                GameManager.Instance.AddTime(10);
                 hitObject.GetComponent<SnailController>()?.Hit(impactDelay, collisionPoint);
             }
         }

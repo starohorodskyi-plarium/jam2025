@@ -240,6 +240,10 @@ PrefabInstance:
       propertyPath: clickSequence.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: TriggerCertain
       objectReference: {fileID: 0}
+    - target: {fileID: 3700138984062070835, guid: 0f6a5be008df74b78a6d7d06b9a14625, type: 3}
+      propertyPath: clickSequence.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5017662007626917812, guid: 0f6a5be008df74b78a6d7d06b9a14625, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -319,6 +323,10 @@ PrefabInstance:
     - target: {fileID: 5017662007626917812, guid: 0f6a5be008df74b78a6d7d06b9a14625, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254390696920146387, guid: 0f6a5be008df74b78a6d7d06b9a14625, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5984511422544517645, guid: 0f6a5be008df74b78a6d7d06b9a14625, type: 3}
       propertyPath: m_AnchorMax.y
@@ -725,7 +733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startTime: 30
-  timeBonus: 1
+  timeBonus: 5
   timePenalty: 10
   showLabelDuration: 1
   timerText: {fileID: 612607712}
@@ -1123,58 +1131,20 @@ MonoBehaviour:
       m_Calls: []
   OnLevelFinishedFailed:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1034822029}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1427653553}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: [{m_Target: {fileID: 1034822029}, m_TargetAssemblyTypeName: 'UnityEngine.GameObject,
+            UnityEngine', m_MethodName: SetActive, m_Mode: 6, m_Arguments: {m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: 'UnityEngine.Object,
+              UnityEngine', m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: '', m_BoolArgument: 1}, m_CallState: 2},
+        {m_Target: {fileID: 1427653553}, m_TargetAssemblyTypeName: 'UnityEngine.GameObject,
+            UnityEngine', m_MethodName: SetActive, m_Mode: 6, m_Arguments: {m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: 'UnityEngine.Object,
+              UnityEngine', m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: '', m_BoolArgument: 0}, m_CallState: 2}]
   OnLevelFinishedSuccess:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1034822029}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1427653553}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: [{m_Target: {fileID: 1034822029}, m_TargetAssemblyTypeName: 'UnityEngine.GameObject,
+            UnityEngine', m_MethodName: SetActive, m_Mode: 6, m_Arguments: {m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: 'UnityEngine.Object,
+              UnityEngine', m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: '', m_BoolArgument: 1}, m_CallState: 2},
+        {m_Target: {fileID: 1427653553}, m_TargetAssemblyTypeName: 'UnityEngine.GameObject,
+            UnityEngine', m_MethodName: SetActive, m_Mode: 6, m_Arguments: {m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: 'UnityEngine.Object,
+              UnityEngine', m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: '', m_BoolArgument: 0}, m_CallState: 2}]
 --- !u!1 &813168398 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5459152729665877658, guid: 87af8ed249b683d429d53a9d5c5bb641, type: 3}
@@ -1774,6 +1744,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1607376007285484253, guid: 87af8ed249b683d429d53a9d5c5bb641, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2028999561697307554, guid: 87af8ed249b683d429d53a9d5c5bb641, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3649878884595831512, guid: 87af8ed249b683d429d53a9d5c5bb641, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -1865,6 +1843,10 @@ PrefabInstance:
     - target: {fileID: 7428968366358632142, guid: 87af8ed249b683d429d53a9d5c5bb641, type: 3}
       propertyPath: m_Name
       value: GameUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 7521867766924813029, guid: 87af8ed249b683d429d53a9d5c5bb641, type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7631174810121129496, guid: 87af8ed249b683d429d53a9d5c5bb641, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target

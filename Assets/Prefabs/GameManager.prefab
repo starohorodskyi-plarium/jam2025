@@ -45,4 +45,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startTime: 60
+  timeBonus: 1
+  timePenalty: 10
+  showLabelDuration: 5
   timerText: {fileID: 0}
+  timePenaltyLabel: {fileID: 0}
+  timeBonusLabel: {fileID: 0}
+  gameOverPanel: {fileID: 0}
+  gameOverDevilPanel: {fileID: 0}
+  levelPassedPanel: {fileID: 0}
+  levels: []

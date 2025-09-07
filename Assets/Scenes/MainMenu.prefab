@@ -519,7 +519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioPrefab: {fileID: 8671327176818285429, guid: 82df7c5071d104923ad068f4528cac6f, type: 3}
-  clipSound: {fileID: 0}
+  clipSound: {fileID: 8300000, guid: de983d0bcc95542bba9534ca32e71399, type: 3}
   volume: 1
 --- !u!114 &467969861911641465
 MonoBehaviour:
@@ -705,7 +705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioPrefab: {fileID: 8671327176818285429, guid: 82df7c5071d104923ad068f4528cac6f, type: 3}
-  clipSound: {fileID: 0}
+  clipSound: {fileID: 8300000, guid: de983d0bcc95542bba9534ca32e71399, type: 3}
   volume: 1
 --- !u!114 &1108241926988825165
 MonoBehaviour:
@@ -888,7 +888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioPrefab: {fileID: 8671327176818285429, guid: 82df7c5071d104923ad068f4528cac6f, type: 3}
-  clipSound: {fileID: 0}
+  clipSound: {fileID: 8300000, guid: de983d0bcc95542bba9534ca32e71399, type: 3}
   volume: 1
 --- !u!114 &3700138984062070835
 MonoBehaviour:
@@ -1318,7 +1318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioPrefab: {fileID: 8671327176818285429, guid: 82df7c5071d104923ad068f4528cac6f, type: 3}
-  clipSound: {fileID: 0}
+  clipSound: {fileID: 8300000, guid: de983d0bcc95542bba9534ca32e71399, type: 3}
   volume: 1
 --- !u!114 &2868260694642930988
 MonoBehaviour:
