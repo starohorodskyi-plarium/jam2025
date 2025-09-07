@@ -16,4 +16,4 @@ MonoBehaviour:
   Text: "Buddy Bob: You probably haven\u2019t slept well. Let\u2019s clear the last
     location, and then we\u2019ll rest. "
   AudioClip: {fileID: 0}
-  DisableInputs: 0
+  DisableInputs: 1

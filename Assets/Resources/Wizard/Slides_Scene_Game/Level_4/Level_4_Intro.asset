@@ -16,4 +16,4 @@ MonoBehaviour:
   Text: 'Buddy Bob: Uh oh, the lights went off! I barely see a thing. Use a flashlight
     on your gun.'
   AudioClip: {fileID: 0}
-  DisableInputs: 0
+  DisableInputs: 1

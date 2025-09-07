@@ -15,4 +15,4 @@ MonoBehaviour:
   WizardId: 4
   Text: 'Buddy Bob: Great shot! Sharp eye.'
   AudioClip: {fileID: 0}
-  DisableInputs: 0
+  DisableInputs: 1
