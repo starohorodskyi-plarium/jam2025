@@ -1,11 +1,14 @@
 using System;
 using DG.Tweening;
+using GameCursor;
 using UnityEngine;
 
 namespace MonoControllers
 {
     public class ZoomController : MonoBehaviour
     {
+        [SerializeField] private CursorTexture cursor;
+        
         public float zoomFOV = 40f;
         public float normalFOV = 60f;
         public float duration = 0.5f;
@@ -44,6 +47,23 @@ namespace MonoControllers
             isZoomed = !isZoomed;
             
             OnZoomChanged?.Invoke(isZoomed);
+        }
+
+        private void OnEnable() => 
+            OnZoomChanged += ChangeCursor;
+
+        private void OnDisable() =>
+            OnZoomChanged -= ChangeCursor;
+        
+        private void ChangeCursor(bool zoomed)
+        {
+            if (!cursor)
+                return;
+
+            if (zoomed)
+                cursor.SetCustomZoomCursor();
+            else
+                cursor.SetCustomCursor();
         }
     }
 }

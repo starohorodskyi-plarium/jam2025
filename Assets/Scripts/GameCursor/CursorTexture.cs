@@ -5,6 +5,7 @@ namespace GameCursor
     public class CursorTexture : MonoBehaviour
     {
         [SerializeField] private Texture2D cursorTexture;
+        [SerializeField] private Texture2D cursorZoomTexture;
         [SerializeField] private Vector2 hotspot = Vector2.zero;
         [SerializeField] private CursorMode cursorMode = CursorMode.Auto;
 
@@ -22,6 +23,17 @@ namespace GameCursor
             }
 
             Cursor.SetCursor(cursorTexture, hotspot, cursorMode);
+        }
+        
+        public void SetCustomZoomCursor()
+        {
+            if (!cursorZoomTexture)
+            {
+                Debug.LogWarning("CursorTexture: No cursor texture assigned in the Inspector.");
+                return;
+            }
+
+            Cursor.SetCursor(cursorZoomTexture, hotspot, cursorMode);
         }
     }
 }
