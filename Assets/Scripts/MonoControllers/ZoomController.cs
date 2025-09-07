@@ -19,7 +19,10 @@ namespace MonoControllers
         public void ResetZoom()
         {
             isZoomed = false;
+            
             _camera.DOFieldOfView(normalFOV, duration).SetEase(Ease.OutQuad);
+            
+            OnZoomChanged?.Invoke(false);
         }
 
         private void Awake() => 

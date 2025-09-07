@@ -1507,6 +1507,7 @@ GameObject:
   - component: {fileID: 4662516021645931895}
   - component: {fileID: 4562927649411722085}
   - component: {fileID: 824976906572789600}
+  - component: {fileID: 4455886285721745037}
   m_Layer: 0
   m_Name: Level2
   m_TagString: Untagged
@@ -1623,6 +1624,24 @@ MonoBehaviour:
   OnLevelFinishedSuccess:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4455886285721745037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3651073638540296187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f583bf0b07449785de340e6b6de152, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraController: {fileID: 0}
+  _zoomController: {fileID: 0}
+  _zoomSensitivityX: 13
+  _zoomSensitivityY: 13
+  _maxAngleX: 1.8
+  _maxAngleY: 1.8
 --- !u!1 &3769369801307170626
 GameObject:
   m_ObjectHideFlags: 0
