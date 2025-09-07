@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - FxTemporaire
   - Obstacle
+  - Snail
   layers:
   - Default
   - TransparentFX

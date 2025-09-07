@@ -83,6 +83,12 @@ namespace MonoControllers
             {
                 hitObject.GetComponent<ObstacleReaction>()?.Hit(impactDelay, collisionPoint);
             }
+            else if (hitObject.CompareTag("Snail"))
+            {
+                GameManager.Instance.AddTime();
+                GameManager.Instance.AddTime();
+                hitObject.GetComponent<SnailController>()?.Hit(impactDelay, collisionPoint);
+            }
         }
 
         private void UpdateAfterReload()
