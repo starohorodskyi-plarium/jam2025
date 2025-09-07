@@ -1,4 +1,5 @@
 using System;
+using Gun;
 using UnityEngine;
 
 public class Health : MonoBehaviour
@@ -8,6 +9,8 @@ public class Health : MonoBehaviour
     [SerializeField] private bool isPlayer = true;
 
     public static event Action PlayerDied;
+    
+    public static Action<int> GetDamage;
 
     private bool _isDead;
 
@@ -19,6 +22,16 @@ public class Health : MonoBehaviour
     {
         currentHealth = Mathf.Clamp(currentHealth <= 0 ? maxHealth : currentHealth, 0, maxHealth);
         _isDead = currentHealth <= 0;
+    }
+
+    private void OnEnable()
+    {
+        GetDamage += Remove;
+    }
+
+    private void OnDisable()
+    {
+        GetDamage -= Remove;
     }
 
     private void OnValidate()
@@ -39,6 +52,8 @@ public class Health : MonoBehaviour
     {
         if (amount <= 0 || _isDead) return;
         currentHealth = Mathf.Clamp(currentHealth - amount, 0, maxHealth);
+        CameraShake.TriggerShake?.Invoke();
+        
         UpdateProgressHealth();
         if (currentHealth <= 0)
         {

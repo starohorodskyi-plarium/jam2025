@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Core;
+using Gameplay.DevilMode;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -92,6 +93,9 @@ public class GameManager : MonoBehaviour
 
     private void UpdateTimer()
     {
+        if (DevilModeScenario.IsInDevilMode)
+            return;
+        
         currentTime -= Time.deltaTime;
         
         if (timerText != null)
@@ -176,6 +180,11 @@ public class GameManager : MonoBehaviour
             timerText.gameObject.SetActive(true);
         
         OnLevelStarted?.Invoke(LoadedLevel.LevelId);
+
+        if (LoadedLevel.name == "Level4")
+        {
+            ActivateDevilLevelRules();
+        }
     }
 
     public void FailLevel()
@@ -254,5 +263,11 @@ public class GameManager : MonoBehaviour
         label.SetActive(true);
         yield return new WaitForSeconds(showLabelDuration);
         label.SetActive(false);
+    }
+
+    private void ActivateDevilLevelRules()
+    {
+        DevilModeScenario.ForceDevilMode?.Invoke();
+        timerText.gameObject.SetActive(false);
     }
 }
