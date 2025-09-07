@@ -113,10 +113,10 @@ GameObject:
   - component: {fileID: 4601779410030506297}
   - component: {fileID: 4073062392868198199}
   - component: {fileID: 5405396742176581906}
-  - component: {fileID: 2636263207678593057}
   - component: {fileID: 128267422830341254}
   - component: {fileID: 7294437732942236134}
   - component: {fileID: 3408144615105148001}
+  - component: {fileID: 4757606690051468617}
   m_Layer: 6
   m_Name: Friend
   m_TagString: Friend
@@ -193,28 +193,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2636263207678593057
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7891725689576905076}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &128267422830341254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,3 +247,24 @@ MonoBehaviour:
   animator: {fileID: 7294437732942236134}
   minDelay: 0.1
   maxDelay: 2
+--- !u!65 &4757606690051468617
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7891725689576905076}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 8.235989, y: 2.2539303, z: 1.9376045}
+  m_Center: {x: 0.17819941, y: 0.105331615, z: -0.15318155}
