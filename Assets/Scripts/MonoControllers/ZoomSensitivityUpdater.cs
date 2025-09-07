@@ -21,6 +21,8 @@ namespace MonoControllers
         {
             _defaultSensitivityX = _cameraController.sensitivityX;
             _defaultSensitivityY = _cameraController.sensitivityY;
+            _defaultAngleX = _cameraController.maxXAngle;
+            _defaultAngleY = _cameraController.maxYAngle;
         }
 
         private void OnEnable() => 

@@ -16,6 +16,12 @@ namespace MonoControllers
 
         private Camera _camera;
         
+        public void ResetZoom()
+        {
+            isZoomed = false;
+            _camera.DOFieldOfView(normalFOV, duration).SetEase(Ease.OutQuad);
+        }
+
         private void Awake() => 
             _camera = Camera.main;
 
@@ -24,7 +30,7 @@ namespace MonoControllers
             if (GameManager.Instance.InputEnabled && Input.GetKeyDown(KeyCode.Mouse1))
                 ToggleFOV();
         }
-        
+
         private void ToggleFOV()
         {
             if (isZoomed)
