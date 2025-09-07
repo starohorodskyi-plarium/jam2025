@@ -15,15 +15,23 @@ namespace Core
         [SerializeField] [Range(0f, 5f)]private float transitionDuration = 3f;
 
         public static Action<string> SceneLoaded;
+        public static Action<Action> StopActiveMusic;
 
         private void Start() =>
             PlayNewMusic(initialSceneName);
-        
-        private void OnEnable() =>
-            SceneLoaded += OnSceneLoaded;
 
-        private void OnDisable() => 
+        private void OnEnable()
+        {
+            StopActiveMusic += StopMusic; 
+            SceneLoaded += OnSceneLoaded;  
+        }
+
+        private void OnDisable()
+        {
+            StopActiveMusic -= StopMusic; 
             SceneLoaded -= OnSceneLoaded;
+        }
+            
 
         private void OnSceneLoaded(string sceneName)
         {
@@ -31,6 +39,15 @@ namespace Core
                 audioSource.DOFade(0f, transitionDuration).OnComplete(() => PlayNewMusic(sceneName));
             else 
                 PlayNewMusic(sceneName);
+        }
+
+        private void StopMusic(Action actionAfterStop)
+        {
+            if (!audioSource.isPlaying) 
+                return;
+            
+            audioSource.DOKill();
+            audioSource.DOFade(0f, 0.4f).OnComplete	(() => actionAfterStop?.Invoke());
         }
 
         private void PlayNewMusic(string sceneName)

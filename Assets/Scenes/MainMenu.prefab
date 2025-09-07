@@ -793,6 +793,7 @@ GameObject:
   - component: {fileID: 4910287694938151085}
   - component: {fileID: 1005254986973697946}
   - component: {fileID: 3700138984062070835}
+  - component: {fileID: 2452222222507667049}
   m_Layer: 5
   m_Name: Exit
   m_TagString: Untagged
@@ -972,10 +973,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Wizard.TriggerNextWizardSlide, Assembly-CSharp
-        m_MethodName: TriggerCertain
-        m_Mode: 1
+      - m_Target: {fileID: 2452222222507667049}
+        m_TargetAssemblyTypeName: MusicCallback, Assembly-CSharp
+        m_MethodName: PlayMusic
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -984,6 +985,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2452222222507667049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3425451690616609174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 358625c66846743e4921a81df3673c0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3491644098429721618
 GameObject:
   m_ObjectHideFlags: 0
