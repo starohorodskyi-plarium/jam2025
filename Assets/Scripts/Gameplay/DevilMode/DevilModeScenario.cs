@@ -35,8 +35,10 @@ namespace Gameplay.DevilMode
             DevilModeActivated?.Invoke();
         }
 
-        private void ExitDevilMode()
+        public void ExitDevilMode()
         {
+            if (!IsInDevilMode) return;
+            
             IsInDevilMode = false;
             _postProcessing.RevertDevilPostProcessing();
             DevilModeDeactivated?.Invoke();

@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
         {0, 30},
         {1, 60},
         {2, 90},
-        {3, 90},
+        {3, 666},
     };
     
     public event Action<int> OnLevelLoaded;
@@ -261,7 +261,6 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         var overPanel = DevilModeScenario.IsInDevilMode ? gameOverDevilPanel : gameOverPanel;
-        
         overPanel.SetActive(false);
         
         var sceneName = SceneManager.GetActiveScene().name;
