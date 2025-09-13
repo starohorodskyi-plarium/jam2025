@@ -8,6 +8,12 @@ public class CameraController : MonoBehaviour
     public float sensitivityX = 2f;    // horizontal sensitivity
     public float sensitivityY = 2f;    // vertical sensitivity
     public float smoothTime = 0.1f;    // smoothing time
+    
+    [Header("Limits")]
+    public float minPitch = -10f; // looking down
+    public float maxPitch = 10f;  // looking up
+    public float minYaw = -10f;   // left
+    public float maxYaw = 10f;  
 
     private Vector2 currentRotation;
     private Vector2 rotationVelocity;
@@ -29,6 +35,10 @@ public class CameraController : MonoBehaviour
 
         // Smooth towards target
         currentRotation = Vector2.SmoothDamp(currentRotation, targetRotation, ref rotationVelocity, smoothTime);
+
+        // Clamp rotation to limits
+        currentRotation.x = Mathf.Clamp(currentRotation.x, minPitch, maxPitch);
+        currentRotation.y = Mathf.Clamp(currentRotation.y, minYaw, maxYaw);
 
         // Apply rotation
         transform.localRotation = Quaternion.Euler(currentRotation.x, currentRotation.y, 0f);
