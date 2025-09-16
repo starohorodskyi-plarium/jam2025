@@ -18,7 +18,9 @@ public class GameManager : MonoBehaviour
         GameOver
     }
     
-    public static GameManager Instance; 
+    public static GameManager Instance;
+
+    public static int Attempt;
 
     [Header("Timer Settings")]
     public float startTime = 666f;
@@ -209,15 +211,16 @@ public class GameManager : MonoBehaviour
 
     public void FailLevel()
     {
-        if (LoadedLevel == null)
+        if (!LoadedLevel)
         {
             Debug.LogError($"Trying to fail the level while {nameof(LoadedLevel)} is null");
             return;
         }
         
+        Attempt++;
         CurrentState = GameState.GameOver;
 
-        if (timerText != null)
+        if (timerText)
             timerText.gameObject.SetActive(false);
         
         LoadedLevel.SpawnManager.DestroyAll();

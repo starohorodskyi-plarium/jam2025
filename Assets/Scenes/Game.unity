@@ -447,6 +447,14 @@ PrefabInstance:
       propertyPath: clickSequence.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1495396675577673687, guid: 0f6a5be008df74b78a6d7d06b9a14625, type: 3}
+      propertyPath: scaleUpFactor
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 1495396675577673687, guid: 0f6a5be008df74b78a6d7d06b9a14625, type: 3}
+      propertyPath: initialFadeUICenter
+      value: 
+      objectReference: {fileID: 541521502}
     - target: {fileID: 3700138984062070835, guid: 0f6a5be008df74b78a6d7d06b9a14625, type: 3}
       propertyPath: clickSequence.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -827,6 +835,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7f03d167ba94dd8a470bc8cc4ce68d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &541521502 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5278874621527841990, guid: 0f6a5be008df74b78a6d7d06b9a14625, type: 3}
+  m_PrefabInstance: {fileID: 341254263}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &612607712 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4680843856610042138, guid: 87af8ed249b683d429d53a9d5c5bb641, type: 3}
