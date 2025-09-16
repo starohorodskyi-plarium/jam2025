@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WizardId: 5
   ActorId: 1
-  Text: 'Buddy Bob: A true-born demon-hunter. Oh man, your eyes are turning bloody.
-    Do you feel alright?'
-  AudioClip: {fileID: 0}
+  Text: '[<color=#a86125>Buddy Bob:</color>] A true-\nborn demon-hunter. Oh \nman,
+    your eyes are \nturning bloody. Do you \nfeel alright?'
+  AudioClip: {fileID: 8300000, guid: 40abc658be7804c20936f7fba6a4254d, type: 3}
+  Delay: 1.5
   DisableInputs: 1

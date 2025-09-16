@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WizardId: 2
   ActorId: 1
-  Text: "Buddy Bob: Look \\nclosely and figure out \\nwho\u2019s the demon. And \\nthen\u2026
-    well, you got a \\ngun. Use it on them!"
-  AudioClip: {fileID: 0}
+  Text: "[<color=#a86125>Buddy Bob:</color>] Look \\nclosely and figure out \\nwho\u2019s
+    the demon. And \\nthen\u2026 well, you got a \\ngun. Use it on them!"
+  AudioClip: {fileID: 8300000, guid: ea1825b40d6964d3e9989a8cebd2f383, type: 3}
+  Delay: 0
   DisableInputs: 1

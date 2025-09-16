@@ -227,7 +227,11 @@ public class GameManager : MonoBehaviour
         overPanel.SetActive(true);
         
         OnLevelFinishedFailed?.Invoke(LoadedLevel.LevelId);
-        MusicManager.StopActiveMusic?.Invoke(() => JingleManager.PlayLoseJingle?.Invoke());
+        MusicManager.StopActiveMusic?.Invoke(() =>
+        {
+            JingleManager.PlayLoseJingle?.Invoke();
+            MusicManager.SceneLoaded?.Invoke(MusicManager.MenuBetweenLevelsSceneName);
+        });
         
         Debug.Log("Game Over!");
     }
@@ -249,7 +253,11 @@ public class GameManager : MonoBehaviour
         
         levelPassedPanel.SetActive(true);
         
-        MusicManager.StopActiveMusic?.Invoke(() => JingleManager.PlayWinJingle?.Invoke());
+        MusicManager.StopActiveMusic?.Invoke(() =>
+        {
+            JingleManager.PlayWinJingle?.Invoke();
+            MusicManager.SceneLoaded?.Invoke(MusicManager.MenuBetweenLevelsSceneName);
+        });
         
         DevilificationProgress.OnSetSmooth?.Invoke((LoadedLevel.LevelId + 1)/DevilificationProgress.DevilificationLevelId);
         

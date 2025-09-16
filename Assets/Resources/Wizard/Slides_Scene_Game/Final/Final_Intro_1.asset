@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WizardId: 9
   ActorId: 1
-  Text: "Buddy Bob: Oh no, you\u2019ve got corrupted! Now you\u2019re one of them
-    demons!"
-  AudioClip: {fileID: 0}
+  Text: "[<color=#a86125>Buddy Bob:</color>] Oh no, \\nyou\u2019ve got corrupted!
+    \\nNow you\u2019re one of \\nthem demons!"
+  AudioClip: {fileID: 8300000, guid: 6d6a7315703214327a69ef4e2e968611, type: 3}
+  Delay: 0
   DisableInputs: 1

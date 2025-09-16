@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WizardId: 7
   ActorId: 1
-  Text: 'Buddy Bob: Congrats! The whole city is clear. No more demons here! '
-  AudioClip: {fileID: 0}
+  Text: '[<color=#a86125>Buddy Bob:</color>] Congrats! \nThe whole city is clear.
+    \nNo more demons here! '
+  AudioClip: {fileID: 8300000, guid: 4a46c4b0c1690430c9dab34a0d75893c, type: 3}
+  Delay: 1.5
   DisableInputs: 1

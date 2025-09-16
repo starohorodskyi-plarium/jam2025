@@ -11,6 +11,8 @@ namespace Wizard
     {
         [SerializeField] private WizardView _view;
         [SerializeField] private List<WizardSlide> _slides;
+        
+        [SerializeField] private GameObject _nextLevelButton;
 
         private WizardId _current;
         private WizardId _next;
@@ -37,16 +39,22 @@ namespace Wizard
             
             if (slide.DisableInputs)
                 GameManager.Instance.DisableInputs();
-            
-            _view.Show(slide);
+
+            StartCoroutine(ShowWithViewDelay(slide, wizardId, forSeconds));
+        }
+
+        private IEnumerator ShowWithViewDelay(WizardSlide slide, WizardId wizardId, float? forSeconds)
+        {
+            yield return _view.ShowAsync(slide);
+
             _current = wizardId;
             _currentSlide = slide;
 
             _autoClose = forSeconds.HasValue;
-            
+
             if (forSeconds.HasValue)
                 StartCoroutine(ShowRoutine(forSeconds.Value));
-            
+
             OnWizardStarted?.Invoke(wizardId);
         }
 
@@ -64,6 +72,9 @@ namespace Wizard
             _currentSlide = default;
             _autoClose = default;
             _view.Hide();
+            
+            if (index is WizardId.Level_1_Outro or WizardId.Level_2_Outro or WizardId.Level_3_Outro_2)
+                _nextLevelButton.SetActive(true);
             
             OnWizardFinished?.Invoke(index);
         }

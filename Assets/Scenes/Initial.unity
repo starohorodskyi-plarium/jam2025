@@ -620,6 +620,7 @@ MonoBehaviour:
     - Level4
     - Level5
     - DemonicLevel
+    - MenuBetweenLevels
     m_values:
     - {fileID: 8300000, guid: 7166c61b9c5d24fa7a65ab89240e69f7, type: 3}
     - {fileID: 8300000, guid: 7166c61b9c5d24fa7a65ab89240e69f7, type: 3}
@@ -629,9 +630,10 @@ MonoBehaviour:
     - {fileID: 8300000, guid: ffe3cbaadc6be487d83dff26a4709128, type: 3}
     - {fileID: 8300000, guid: ffe3cbaadc6be487d83dff26a4709128, type: 3}
     - {fileID: 8300000, guid: ffe3cbaadc6be487d83dff26a4709128, type: 3}
+    - {fileID: 8300000, guid: 36085d6b6a77c47fdaf881d6ddd8ecdf, type: 3}
   audioSource: {fileID: 1193614302}
   maxVolume: 0.1
-  transitionDuration: 3
+  transitionDuration: 2
 --- !u!114 &1193614301
 MonoBehaviour:
   m_ObjectHideFlags: 0

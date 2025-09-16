@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WizardId: 12
   ActorId: 3
-  Text: "Angry people: Now\u2019s your turn, you scum!"
-  AudioClip: {fileID: 0}
+  Text: "[<color=#a82525>Angry people:</color>] Now\u2019s \\nyour turn, you scum!"
+  AudioClip: {fileID: 8300000, guid: da9ea905377ec4ea38f64eaa8d375b09, type: 3}
+  Delay: 0
   DisableInputs: 1

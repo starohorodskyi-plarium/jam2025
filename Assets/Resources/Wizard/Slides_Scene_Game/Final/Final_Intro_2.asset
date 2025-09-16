@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WizardId: 10
   ActorId: 3
-  Text: 'Angry people: Purge the hellish filth! Kill! Kill! Kill! '
-  AudioClip: {fileID: 0}
+  Text: '[<color=#a82525>Angry people:</color>] Purge \nthe hellish filth! Kill!
+    \nKill! Kill! '
+  AudioClip: {fileID: 8300000, guid: 3b03572f7328040b8829a489a9316bec, type: 3}
+  Delay: 0
   DisableInputs: 1

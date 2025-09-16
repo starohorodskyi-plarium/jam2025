@@ -9,6 +9,7 @@ namespace Wizard
         public WizardActorId ActorId;
         public string Text;
         public AudioClip AudioClip;
+        public float Delay = 0f;
 
         public bool DisableInputs;
     }

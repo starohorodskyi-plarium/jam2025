@@ -6,6 +6,8 @@ namespace Core
 {
     public class MusicManager : MonoBehaviour
     {
+        public static string MenuBetweenLevelsSceneName = "MenuBetweenLevels";
+        
         [SerializeField] private string initialSceneName = "MainMenu";
         [SerializeField] private StringAudioClipDictionary musicMap;
         

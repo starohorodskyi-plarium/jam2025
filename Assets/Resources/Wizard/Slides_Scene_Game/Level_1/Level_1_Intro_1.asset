@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WizardId: 1
   ActorId: 1
-  Text: "Buddy Bob: Hey, \\nJonathan, we\u2019ve \\narrived at the location \\nof
-    a reported demon \\nsighting."
-  AudioClip: {fileID: 0}
+  Text: "[<color=#a86125>Buddy Bob:</color>] Hey, \\nJonathan, we\u2019ve \\narrived
+    at the location \\nof a reported demon \\nsighting."
+  AudioClip: {fileID: 8300000, guid: 390db0ed4b7c0416da1be8fa8ae26787, type: 3}
+  Delay: 0
   DisableInputs: 1

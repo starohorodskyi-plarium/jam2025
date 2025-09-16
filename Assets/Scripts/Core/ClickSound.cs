@@ -18,6 +18,7 @@ namespace Core
             click.GetComponent<AudioSource>().volume = volume;
             click.GetComponent<AudioSource>().PlayOneShot(clipSound);
             
+            DontDestroyOnLoad(this);
             Destroy(click, 3f);
         }
     }

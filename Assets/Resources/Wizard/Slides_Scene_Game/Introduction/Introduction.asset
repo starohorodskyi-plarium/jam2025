@@ -15,5 +15,5 @@ MonoBehaviour:
   WizardId: 0
   ActorId: 0
   Text: 
-  AudioClip: {fileID: 0}
+  AudioClip: {fileID: 8300000, guid: c80d7f0f8f0d245e3b14acccd39f497f, type: 3}
   DisableInputs: 0

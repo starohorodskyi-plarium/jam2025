@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WizardId: 8
   ActorId: 1
-  Text: "Buddy Bob: Eh, partner? Jonathan?! What\u2019s happening? What are you?"
-  AudioClip: {fileID: 0}
+  Text: "[<color=#a86125>Buddy Bob:</color>] Eh, \\npartner? Jonathan?! \\nWhat\u2019s
+    happening? \\nWhat are you?"
+  AudioClip: {fileID: 8300000, guid: 7b219628615164fabb260cd129c0c704, type: 3}
+  Delay: 0
   DisableInputs: 1

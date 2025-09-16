@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WizardId: 13
   ActorId: 1
-  Text: "Buddy Bob: You probably haven\u2019t slept well. Let\u2019s clear the last
-    location, and then we'll rest."
-  AudioClip: {fileID: 0}
+  Text: "[<color=#a86125>Buddy Bob:</color>] You \\nprobably haven\u2019t slept \\nwell.
+    Let\u2019s clear the \\nlast location, and then \\nwe'll rest."
+  AudioClip: {fileID: 8300000, guid: ac0430cf7a4504a9083d63e7d10f46fd, type: 3}
+  Delay: 0
   DisableInputs: 1
