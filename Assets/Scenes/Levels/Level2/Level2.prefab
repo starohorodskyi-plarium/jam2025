@@ -1508,6 +1508,7 @@ GameObject:
   - component: {fileID: 4562927649411722085}
   - component: {fileID: 824976906572789600}
   - component: {fileID: 4455886285721745037}
+  - component: {fileID: 8940637083493845969}
   m_Layer: 0
   m_Name: Level2
   m_TagString: Untagged
@@ -1665,6 +1666,85 @@ MonoBehaviour:
   _zoomSensitivityY: 13
   _maxAngleX: 1.8
   _maxAngleY: 1.8
+  _zoomMinPitch: -15
+  _zoomMaxPitch: 15
+  _zoomMinYaw: -22
+  _zoomMaxYaw: 17
+  _transitionDuration: 0.5
+  _transitionEase: 6
+--- !u!114 &8940637083493845969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3651073638540296187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1631635600856439bb1ff74df42f9eee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraMovementController: {fileID: 0}
+  _screenAspectRatioCompensator:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 6
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 6
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.333
+      value: 4.25
+      inSlope: -5.255256
+      outSlope: -7.3033686
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.6
+      value: 2.3
+      inSlope: -7.3033686
+      outSlope: -8.666668
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.75
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &3769369801307170626
 GameObject:
   m_ObjectHideFlags: 0
@@ -4799,7 +4879,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4601779410030506297, guid: e18f87c9324454625966cefc65bf4c0d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.59
+      value: -13.93
       objectReference: {fileID: 0}
     - target: {fileID: 4601779410030506297, guid: e18f87c9324454625966cefc65bf4c0d, type: 3}
       propertyPath: m_LocalPosition.y

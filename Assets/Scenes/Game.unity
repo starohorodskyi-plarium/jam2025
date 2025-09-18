@@ -349,22 +349,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4908704745830989418, guid: d45b6ef230b40424b9672b64effd8389, type: 3}
-      propertyPath: _zoomMaxYaw
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4908704745830989418, guid: d45b6ef230b40424b9672b64effd8389, type: 3}
-      propertyPath: _zoomMinYaw
-      value: -6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4908704745830989418, guid: d45b6ef230b40424b9672b64effd8389, type: 3}
-      propertyPath: _zoomMaxPitch
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4908704745830989418, guid: d45b6ef230b40424b9672b64effd8389, type: 3}
-      propertyPath: _zoomMinPitch
-      value: -6
-      objectReference: {fileID: 0}
+    - target: {fileID: 4364965125057585192, guid: d45b6ef230b40424b9672b64effd8389, type: 3}
+      propertyPath: _cameraMovementController
+      value: 
+      objectReference: {fileID: 1360423023}
     - target: {fileID: 4908704745830989418, guid: d45b6ef230b40424b9672b64effd8389, type: 3}
       propertyPath: _zoomController
       value: 
@@ -2014,6 +2002,66 @@ MonoBehaviour:
   maxX: 1
   smooth: 1
   smoothSpeed: 3
+  _screenAspectRatioCompensator:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 5.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 5.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.333
+      value: 3.6
+      inSlope: -5.705707
+      outSlope: -5.9925075
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.6
+      value: 2
+      inSlope: -5.9925075
+      outSlope: -6.666668
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.75
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &1360423024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2888,6 +2936,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8940637083493845969, guid: 41cd560efe0dd45a2ae02b21c670f22b, type: 3}
+      propertyPath: _cameraMovementController
+      value: 
+      objectReference: {fileID: 1360423023}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2906,6 +2958,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 400323129}
     m_Modifications:
+    - target: {fileID: 2488296348859033140, guid: 3aac481332d3a4b1bb92612ce720533c, type: 3}
+      propertyPath: _cameraMovementController
+      value: 
+      objectReference: {fileID: 1360423023}
     - target: {fileID: 4364863688524545667, guid: 3aac481332d3a4b1bb92612ce720533c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3036,6 +3092,10 @@ PrefabInstance:
       propertyPath: LevelId
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3963562647555724831, guid: ab69b78abd1a74071987cf231753e636, type: 3}
+      propertyPath: _cameraMovementController
+      value: 
+      objectReference: {fileID: 1360423023}
     - target: {fileID: 8065215721083780904, guid: ab69b78abd1a74071987cf231753e636, type: 3}
       propertyPath: m_Name
       value: Level4

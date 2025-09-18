@@ -831,6 +831,7 @@ GameObject:
   - component: {fileID: 1313317196048650029}
   - component: {fileID: 1917007112484932715}
   - component: {fileID: 4908704745830989418}
+  - component: {fileID: 4364965125057585192}
   m_Layer: 0
   m_Name: Level1
   m_TagString: Untagged
@@ -940,6 +941,85 @@ MonoBehaviour:
   _zoomSensitivityY: 10
   _maxAngleX: 1.5
   _maxAngleY: 1.5
+  _zoomMinPitch: -15
+  _zoomMaxPitch: 15
+  _zoomMinYaw: -17
+  _zoomMaxYaw: 20
+  _transitionDuration: 0.5
+  _transitionEase: 6
+--- !u!114 &4364965125057585192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4306879584099273581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1631635600856439bb1ff74df42f9eee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraMovementController: {fileID: 0}
+  _screenAspectRatioCompensator:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 5.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 5.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.333
+      value: 3.6
+      inSlope: -5.705707
+      outSlope: -5.9925075
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.6
+      value: 2
+      inSlope: -5.9925075
+      outSlope: -6.666668
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.75
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &4338843625278642753
 GameObject:
   m_ObjectHideFlags: 0
@@ -3007,9 +3087,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1634572121004757390, guid: 3676276704769d04da4f8a6f29022400, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 2508890334659768611, guid: 3676276704769d04da4f8a6f29022400, type: 3}
       propertyPath: m_Name
       value: SpawnPoints1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621389837917396922, guid: 3676276704769d04da4f8a6f29022400, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621389837917396922, guid: 3676276704769d04da4f8a6f29022400, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 7852729654309454770, guid: 3676276704769d04da4f8a6f29022400, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
