@@ -1,30 +1,33 @@
 using System.Collections;
 using UnityEngine;
 
-public class ActivateAfterDelay : MonoBehaviour
+namespace SplashScreen
 {
-    [SerializeField] private GameObject targetToActivate;
-    [SerializeField, Min(0f)] private float delaySeconds = 1f;
-
-    private void OnEnable()
+    public class ActivateAfterDelay : MonoBehaviour
     {
-        StartCoroutine(ActivateRoutine());
-    }
+        [SerializeField] private GameObject targetToActivate;
+        [SerializeField, Min(0f)] private float delaySeconds = 1f;
 
-    private IEnumerator ActivateRoutine()
-    {
-        if (targetToActivate == null)
+        private void OnEnable()
         {
-            Debug.LogWarning("ActivateAfterDelay: No target assigned in the Inspector.", this);
-            yield break;
+            StartCoroutine(ActivateRoutine());
         }
 
-        if (delaySeconds > 0f)
+        private IEnumerator ActivateRoutine()
         {
-            yield return new WaitForSeconds(delaySeconds);
-        }
+            if (targetToActivate == null)
+            {
+                Debug.LogWarning("ActivateAfterDelay: No target assigned in the Inspector.", this);
+                yield break;
+            }
 
-        targetToActivate.SetActive(true);
+            if (delaySeconds > 0f)
+            {
+                yield return new WaitForSeconds(delaySeconds);
+            }
+
+            targetToActivate.SetActive(true);
+        }
     }
 }
 

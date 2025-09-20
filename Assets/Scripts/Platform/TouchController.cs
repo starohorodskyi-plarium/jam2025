@@ -1,37 +1,39 @@
 using UnityEngine;
 
-public class TouchController : MonoBehaviour
+namespace Platform
 {
-    [Header("Gyro Aim (Mobile)")]
-    [SerializeField] private float maxOffsetPixels = 150f;
-    [SerializeField] private float gyroSensitivity = 2f;
-    [SerializeField] private float smoothTime = 0.05f;
-
-    private Vector2 _smoothedPointer;
-    private Vector2 _smoothVelocity;
-
-    public static Vector2 PointerPosition { get; private set; }
-    public static bool UsingGyroOffset { get; private set; }
-
-    void Start()
+    public class TouchController : MonoBehaviour
     {
+        [Header("Gyro Aim (Mobile)")]
+        [SerializeField] private float maxOffsetPixels = 150f;
+        [SerializeField] private float gyroSensitivity = 2f;
+        [SerializeField] private float smoothTime = 0.05f;
+
+        private Vector2 _smoothedPointer;
+        private Vector2 _smoothVelocity;
+
+        public static Vector2 PointerPosition { get; private set; }
+        public static bool UsingGyroOffset { get; private set; }
+
+        void Start()
+        {
 #if UNITY_IOS || UNITY_ANDROID
         if (SystemInfo.supportsGyroscope)
         {
             Input.gyro.enabled = true;
         }
 #endif
-    }
+        }
 
-    void Update()
-    {
+        void Update()
+        {
 #if UNITY_IOS || UNITY_ANDROID
         UpdateMobilePointerWithGyro();
 #else
-        PointerPosition = GamePointer.Pointer;
-        UsingGyroOffset = false;
+            PointerPosition = GamePointer.Pointer;
+            UsingGyroOffset = false;
 #endif
-    }
+        }
 
 #if UNITY_IOS || UNITY_ANDROID
     private void UpdateMobilePointerWithGyro()
@@ -72,4 +74,5 @@ public class TouchController : MonoBehaviour
         return new Vector2(x, y);
     }
 #endif
+    }
 }

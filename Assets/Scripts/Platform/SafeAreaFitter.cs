@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Menu
+namespace Platform
 {
     [RequireComponent(typeof(RectTransform))]
     public class SafeAreaFitter : MonoBehaviour

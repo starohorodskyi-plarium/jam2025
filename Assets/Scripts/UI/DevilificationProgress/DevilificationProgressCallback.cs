@@ -1,16 +1,19 @@
 using UnityEngine;
 
-public class DevilificationProgressCallback : MonoBehaviour
+namespace UI.DevilificationProgress
 {
-    [SerializeField] private float progressValue;
-
-    public void SetInstance()
+    public class DevilificationProgressCallback : MonoBehaviour
     {
-        DevilificationProgress.OnSetInstant?.Invoke(progressValue);
-    }
+        [SerializeField] private float progressValue;
 
-    public void SetSmooth()
-    {
-        DevilificationProgress.OnSetSmooth?.Invoke(progressValue);
+        public void SetInstance()
+        {
+            global::UI.DevilificationProgress.DevilificationProgress.OnSetInstant?.Invoke(progressValue);
+        }
+
+        public void SetSmooth()
+        {
+            global::UI.DevilificationProgress.DevilificationProgress.OnSetSmooth?.Invoke(progressValue);
+        }
     }
 }

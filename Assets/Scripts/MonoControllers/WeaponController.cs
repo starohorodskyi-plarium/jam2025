@@ -1,5 +1,9 @@
 using System;
+using Core;
+using Gameplay.Obstacle;
 using Gun;
+using NPC;
+using Platform;
 using UnityEngine;
 using UnityEngine.Events;
 

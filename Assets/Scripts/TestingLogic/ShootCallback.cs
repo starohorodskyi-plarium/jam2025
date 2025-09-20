@@ -1,23 +1,24 @@
+using Core;
 using UnityEngine;
 using UnityEngine.Events;
-#if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
-#endif
 
-public class ShootCallback : MonoBehaviour
+namespace TestingLogic
 {
-    public UnityEvent OnShootPressed;
-    
-    private bool IgnoreInputs => GameManager.Instance.CurrentState != GameManager.GameState.Playing || !GameManager.Instance.InputEnabled;
-    
-    private void Update()
+    public class ShootCallback : MonoBehaviour
     {
-        if (IgnoreInputs)
-            return;
+        public UnityEvent OnShootPressed;
+    
+        private bool IgnoreInputs => GameManager.Instance.CurrentState != GameManager.GameState.Playing || !GameManager.Instance.InputEnabled;
+    
+        private void Update()
+        {
+            if (IgnoreInputs)
+                return;
 
 #if ENABLE_INPUT_SYSTEM
-        var pressed = (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
-                      || (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasPressedThisFrame);
+            var pressed = (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+                          || (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasPressedThisFrame);
 #else
         bool pressed = Input.GetMouseButtonDown(0);
         if (!pressed && Input.touchCount > 0)
@@ -33,7 +34,8 @@ public class ShootCallback : MonoBehaviour
         }
 #endif
 
-        if (pressed) 
-            OnShootPressed?.Invoke();
+            if (pressed) 
+                OnShootPressed?.Invoke();
+        }
     }
 }

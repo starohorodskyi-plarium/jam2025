@@ -1,5 +1,7 @@
+using Core;
 using UnityEngine;
-using DG.Tweening; // added for smooth reset
+using DG.Tweening;
+using Platform; // added for smooth reset
 
 namespace MonoControllers.Camera
 {

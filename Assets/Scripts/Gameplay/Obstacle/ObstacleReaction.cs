@@ -1,29 +1,32 @@
 using System.Collections;
 using UnityEngine;
 
-public class ObstacleReaction : MonoBehaviour
+namespace Gameplay.Obstacle
 {
-    [Header("Reaction Prefab")]
-    [SerializeField] private GameObject reactionPrefab;
-
-    public void Hit(float impactDelay, Vector3 collisionPoint)
+    public class ObstacleReaction : MonoBehaviour
     {
-        Debug.Log($"{gameObject.name} was hit!");
-       
-        StartCoroutine(HitRoutine());
+        [Header("Reaction Prefab")]
+        [SerializeField] private GameObject reactionPrefab;
 
-        IEnumerator HitRoutine()
+        public void Hit(float impactDelay, Vector3 collisionPoint)
         {
-            yield return new WaitForSeconds(impactDelay);
-            CreateReaction(collisionPoint);
+            Debug.Log($"{gameObject.name} was hit!");
+       
+            StartCoroutine(HitRoutine());
+
+            IEnumerator HitRoutine()
+            {
+                yield return new WaitForSeconds(impactDelay);
+                CreateReaction(collisionPoint);
+            }
         }
-    }
     
-    public void CreateReaction(Vector3 collisionPoint)
-    {
-        if (!reactionPrefab)
-            Debug.LogWarning($"{nameof(ObstacleReaction)}: reactionPrefab is not assigned.", this);
-        else 
-            Instantiate(reactionPrefab, collisionPoint, Quaternion.identity);
+        public void CreateReaction(Vector3 collisionPoint)
+        {
+            if (!reactionPrefab)
+                Debug.LogWarning($"{nameof(ObstacleReaction)}: reactionPrefab is not assigned.", this);
+            else 
+                Instantiate(reactionPrefab, collisionPoint, Quaternion.identity);
+        }
     }
 }

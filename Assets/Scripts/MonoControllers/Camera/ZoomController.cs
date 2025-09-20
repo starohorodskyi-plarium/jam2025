@@ -1,9 +1,10 @@
 using System;
+using Core;
 using DG.Tweening;
 using GameCursor;
 using UnityEngine;
 
-namespace MonoControllers
+namespace MonoControllers.Camera
 {
     public class ZoomController : MonoBehaviour
     {
