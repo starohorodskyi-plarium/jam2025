@@ -1,22 +1,23 @@
 using System.Collections;
 using Core;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace NPC
 {
     public class RandomDemonSounds : MonoBehaviour
     {
         [Header("Audio")] 
-        [SerializeField] private AudioSource audioSource;
-        [SerializeField] private AudioClip[] clips;
-
+        [FormerlySerializedAs("audioSource")] [SerializeField] private AudioSource _audioSource;
+        [FormerlySerializedAs("clips")] [SerializeField] private AudioClip[] _clips;
+        
         [Header("Pitch Settings")] 
-        [SerializeField] [Range(0.1f, 3f)] private float minPitch = 0.9f;
-        [SerializeField] [Range(0.1f, 3f)] private float maxPitch = 1.1f;
-
+        [FormerlySerializedAs("minPitch")] [SerializeField] [Range(0.1f, 3f)] private float _minPitch = 0.9f;
+        [FormerlySerializedAs("maxPitch")] [SerializeField] [Range(0.1f, 3f)] private float _maxPitch = 1.1f;
+        
         [Header("Interval (seconds)")]
-        [SerializeField] [Min(0f)] private float minInterval = 6f;
-        [SerializeField] [Min(0f)] private float maxInterval = 12f;
+        [FormerlySerializedAs("minInterval")] [SerializeField] [Min(0f)] private float _minInterval = 6f;
+        [FormerlySerializedAs("maxInterval")] [SerializeField] [Min(0f)] private float _maxInterval = 12f;
 
         private Coroutine playRoutine;
         private GameManager gameManager;
@@ -24,8 +25,8 @@ namespace NPC
 
         private void Awake()
         {
-            if (!audioSource)
-                audioSource = GetComponent<AudioSource>();
+            if (!_audioSource)
+                _audioSource = GetComponent<AudioSource>();
         }
 
         private void OnEnable()
@@ -57,28 +58,24 @@ namespace NPC
 
         private void OnValidate()
         {
-            if (maxPitch < minPitch)
-                (minPitch, maxPitch) = (maxPitch, minPitch);
-            if (maxInterval < minInterval)
-                (minInterval, maxInterval) = (maxInterval, minInterval);
+            if (_maxPitch < _minPitch)
+                (_minPitch, _maxPitch) = (_maxPitch, _minPitch);
+            if (_maxInterval < _minInterval)
+                (_minInterval, _maxInterval) = (_maxInterval, _minInterval);
         }
 
-        private void HandleLevelStarted(int levelId)
-        {
+        private void HandleLevelStarted(int levelId) => 
             StartPlaying();
-        }
 
-        private void HandleLevelEnded(int levelId)
-        {
+        private void HandleLevelEnded(int levelId) => 
             StopPlaying();
-        }
 
         private void StartPlaying()
         {
             if (isLevelActive)
                 return;
 
-            if (!audioSource || clips == null || clips.Length == 0)
+            if (!_audioSource || _clips == null || _clips.Length == 0)
                 return;
 
             isLevelActive = true;
@@ -100,21 +97,21 @@ namespace NPC
         {
             while (isLevelActive)
             {
-                var waitTime = Random.Range(minInterval, maxInterval);
+                var waitTime = Random.Range(_minInterval, _maxInterval);
                 yield return new WaitForSeconds(waitTime);
 
                 if (!isLevelActive)
                     yield break;
 
-                if (!audioSource || clips == null || clips.Length == 0)
+                if (!_audioSource || _clips == null || _clips.Length == 0)
                     continue;
 
-                var clip = clips[Random.Range(0, clips.Length)];
+                var clip = _clips[Random.Range(0, _clips.Length)];
                 if (!clip)
                     continue;
 
-                audioSource.pitch = Random.Range(minPitch, maxPitch);
-                audioSource.PlayOneShot(clip);
+                _audioSource.pitch = Random.Range(_minPitch, _maxPitch);
+                _audioSource.PlayOneShot(clip);
             }
         }
     }

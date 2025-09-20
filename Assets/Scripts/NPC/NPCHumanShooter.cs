@@ -2,30 +2,31 @@ using System.Collections;
 using DG.Tweening;
 using Gameplay.DevilMode;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace NPC
 {
     public class NPCHumanShooter : MonoBehaviour
     {
         [Header("Delays (seconds)")]
-        [SerializeField, Min(0f)] private float initialDelayMin = 0f;
-        [SerializeField, Min(0f)] private float initialDelayMax = 2f;
-        [SerializeField, Min(0f)] private float betweenShotsDelayMin = 0.5f;
-        [SerializeField, Min(0f)] private float betweenShotsDelayMax = 2f;
-
+        [FormerlySerializedAs("initialDelayMin")] [SerializeField, Min(0f)] private float _initialDelayMin = 0f;
+        [FormerlySerializedAs("initialDelayMax")] [SerializeField, Min(0f)] private float _initialDelayMax = 2f;
+        [FormerlySerializedAs("betweenShotsDelayMin")] [SerializeField, Min(0f)] private float _betweenShotsDelayMin = 0.5f;
+        [FormerlySerializedAs("betweenShotsDelayMax")] [SerializeField, Min(0f)] private float _betweenShotsDelayMax = 2f;
+        
         [Header("Damage")]
-        [SerializeField, Min(1)] private int damageMin = 5;
-        [SerializeField, Min(1)] private int damageMax = 15;
-
+        [FormerlySerializedAs("damageMin")] [SerializeField, Min(1)] private int _damageMin = 5;
+        [FormerlySerializedAs("damageMax")] [SerializeField, Min(1)] private int _damageMax = 15;
+        
         [Header("Projectile")]
-        [SerializeField] private GameObject projectilePrefab;
-        [SerializeField] private Transform projectileSpawnPoint;
-        [SerializeField, Min(0.1f)] private float projectileSpeed = 10f; // units per second
-        [SerializeField] private Ease projectileEase = Ease.Linear;
-
+        [FormerlySerializedAs("projectilePrefab")] [SerializeField] private GameObject _projectilePrefab;
+        [FormerlySerializedAs("projectileSpawnPoint")] [SerializeField] private Transform _projectileSpawnPoint;
+        [FormerlySerializedAs("projectileSpeed")] [SerializeField, Min(0.1f)] private float _projectileSpeed = 10f; // units per second
+        [FormerlySerializedAs("projectileEase")] [SerializeField] private Ease _projectileEase = Ease.Linear;
+        
         [Header("Shot VFX")]
-        [SerializeField] private GameObject shotVfxPrefab;
-        [SerializeField, Min(0f)] private float shotVfxLifetime = 2f;
+        [FormerlySerializedAs("shotVfxPrefab")] [SerializeField] private GameObject _shotVfxPrefab;
+        [FormerlySerializedAs("shotVfxLifetime")] [SerializeField, Min(0f)] private float _shotVfxLifetime = 2f;
 
         private Coroutine _shootingCoroutine;
 
@@ -42,15 +43,11 @@ namespace NPC
             StopShooting();
         }
 
-        private void HandleDevilModeActivated()
-        {
+        private void HandleDevilModeActivated() => 
             StartShooting();
-        }
 
-        private void HandleDevilModeDeactivated()
-        {
+        private void HandleDevilModeDeactivated() => 
             StopShooting();
-        }
 
         private void StartShooting()
         {
@@ -60,22 +57,22 @@ namespace NPC
 
         private void StopShooting()
         {
-            if (_shootingCoroutine != null)
-            {
-                StopCoroutine(_shootingCoroutine);
-                _shootingCoroutine = null;
-            }
+            if (_shootingCoroutine == null) 
+                return;
+            
+            StopCoroutine(_shootingCoroutine);
+            _shootingCoroutine = null;
         }
 
         private IEnumerator ShootingLoop()
         {
-            float initialDelay = Random.Range(Mathf.Min(initialDelayMin, initialDelayMax), Mathf.Max(initialDelayMin, initialDelayMax));
+            var initialDelay = Random.Range(Mathf.Min(_initialDelayMin, _initialDelayMax), Mathf.Max(_initialDelayMin, _initialDelayMax));
             yield return new WaitForSeconds(initialDelay);
 
             while (true)
             {
                 PerformShot();
-                float delay = Random.Range(Mathf.Min(betweenShotsDelayMin, betweenShotsDelayMax), Mathf.Max(betweenShotsDelayMin, betweenShotsDelayMax));
+                var delay = Random.Range(Mathf.Min(_betweenShotsDelayMin, _betweenShotsDelayMax), Mathf.Max(_betweenShotsDelayMin, _betweenShotsDelayMax));
                 yield return new WaitForSeconds(delay);
             }
         }
@@ -88,63 +85,63 @@ namespace NPC
 
         private void SpawnShotVfx()
         {
-            if (!shotVfxPrefab) return;
-            Transform parent = transform;
-            Vector3 spawnPosition = projectileSpawnPoint ? projectileSpawnPoint.position : parent.position;
-            Quaternion spawnRotation = projectileSpawnPoint ? projectileSpawnPoint.rotation : parent.rotation;
+            if (!_shotVfxPrefab) 
+                return;
+            
+            var parent = transform;
+            var spawnPosition = _projectileSpawnPoint ? _projectileSpawnPoint.position : parent.position;
+            var spawnRotation = _projectileSpawnPoint ? _projectileSpawnPoint.rotation : parent.rotation;
 
-            GameObject vfxInstance = Instantiate(shotVfxPrefab, spawnPosition, spawnRotation, parent);
-            if (shotVfxLifetime > 0f)
-            {
-                Destroy(vfxInstance, shotVfxLifetime);
-            }
+            var vfxInstance = Instantiate(_shotVfxPrefab, spawnPosition, spawnRotation, parent);
+            
+            if (_shotVfxLifetime > 0f) 
+                Destroy(vfxInstance, _shotVfxLifetime);
         }
 
         private void SpawnAndLaunchProjectileTowardsCamera()
         {
-            if (!projectilePrefab) return;
-            Camera mainCamera = Camera.main;
-            if (!mainCamera) return;
+            if (!_projectilePrefab) 
+                return;
+            
+            var mainCamera = Camera.main;
+            if (!mainCamera)
+                return;
 
-            Vector3 start = projectileSpawnPoint ? projectileSpawnPoint.position : transform.position;
-            Vector3 target = mainCamera.transform.position;
+            var start = _projectileSpawnPoint ? _projectileSpawnPoint.position : transform.position;
+            var target = mainCamera.transform.position;
 
-            GameObject projectileInstance = Instantiate(projectilePrefab, start, Quaternion.identity);
+            var projectileInstance = Instantiate(_projectilePrefab, start, Quaternion.identity);
 
             // Rotate projectile to face the camera at spawn
-            Vector3 forward = (target - start).normalized;
-            if (forward.sqrMagnitude > 1e-6f)
-            {
+            var forward = (target - start).normalized;
+            if (forward.sqrMagnitude > 1e-6f) 
                 projectileInstance.transform.rotation = Quaternion.LookRotation(forward, Vector3.up);
-            }
 
-            float distance = Vector3.Distance(start, target);
+            var distance = Vector3.Distance(start, target);
             if (distance <= 0.001f)
             {
                 OnProjectileArrived(projectileInstance);
                 return;
             }
 
-            float speed = Mathf.Max(0.0001f, projectileSpeed);
-            float duration = distance / speed;
+            var speed = Mathf.Max(0.0001f, _projectileSpeed);
+            var duration = distance / speed;
 
             projectileInstance.transform.DOMove(target, duration)
-                .SetEase(projectileEase)
+                .SetEase(_projectileEase)
                 .OnComplete(() => OnProjectileArrived(projectileInstance));
         }
 
         private void OnProjectileArrived(GameObject projectileInstance)
         {
-            int min = Mathf.Max(1, Mathf.Min(damageMin, damageMax));
-            int max = Mathf.Max(min, Mathf.Max(damageMin, damageMax));
-            int damageAmount = Random.Range(min, max + 1);
+            var min = Mathf.Max(1, Mathf.Min(_damageMin, _damageMax));
+            var max = Mathf.Max(min, Mathf.Max(_damageMin, _damageMax));
+            var damageAmount = Random.Range(min, max + 1);
 
             Health.GetDamage?.Invoke(damageAmount);
 
-            if (projectileInstance)
-            {
+            if (projectileInstance) 
                 Destroy(projectileInstance);
-            }
         }
     }
 }

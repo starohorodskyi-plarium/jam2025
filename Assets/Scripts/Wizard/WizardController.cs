@@ -24,11 +24,6 @@ namespace Wizard
         public event Action<WizardId> OnWizardStarted;
         public event Action<WizardId> OnWizardFinished;
 
-        private void OnEnable()
-        {
-            
-        }
-
         public void ShowNext(float? forSeconds = null) => 
             Show(_next, forSeconds);
         
@@ -70,8 +65,8 @@ namespace Wizard
             var index = _current;
 
             _current = default;
-            _currentSlide = default;
-            _autoClose = default;
+            _currentSlide = null;
+            _autoClose = false;
             _view.Hide();
             
             if (index is WizardId.Level_1_Outro or WizardId.Level_2_Outro or WizardId.Level_3_Outro_2)

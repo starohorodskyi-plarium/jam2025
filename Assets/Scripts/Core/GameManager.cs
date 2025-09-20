@@ -8,6 +8,7 @@ using TMPro;
 using UI.DevilificationProgress;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace Core
 {
@@ -24,25 +25,26 @@ namespace Core
 
         public static int Attempt;
 
-        [Header("Timer Settings")]
-        public float startTime = 666f;
-        public int timeBonus = 1;
-        public int timePenalty = 10;
-        public float showLabelDuration = 1f;
+        [Header("Timer Settings")] 
+        [FormerlySerializedAs("startTime")] public float StartTime = 666f;
+        [FormerlySerializedAs("timeBonus")] public int TimeBonus = 1;
+        [FormerlySerializedAs("timePenalty")] public int TimePenalty = 10;
+        [FormerlySerializedAs("showLabelDuration")] public float ShowLabelDuration = 1f;
         private float currentTime;
 
-        [Header("UI")]
-        public TextMeshProUGUI timerText;
-        public GameObject timePenaltyLabel;
-        public GameObject timeBonusLabel;
-        public GameObject gameOverPanel;
-        public GameObject gameOverDevilPanel;
-        public GameObject levelPassedPanel;
+        [Header("UI")] 
+        [FormerlySerializedAs("timerText")] public TextMeshProUGUI TimerText;
+        [FormerlySerializedAs("timePenaltyLabel")] public GameObject TimePenaltyLabel;
+        [FormerlySerializedAs("timeBonusLabel")] public GameObject TimeBonusLabel;
+        [FormerlySerializedAs("gameOverPanel")] public GameObject GameOverPanel;
+        [FormerlySerializedAs("gameOverDevilPanel")] public GameObject GameOverDevilPanel;
+        [FormerlySerializedAs("levelPassedPanel")] public GameObject LevelPassedPanel;
 
+        
         [Header("Levels")]
-        [SerializeField] private List<LevelManager> levels;
+        [FormerlySerializedAs("levels")] [SerializeField] private List<LevelManager> _levels;
 
-        public Dictionary<int, int> timersByLevel = new Dictionary<int, int>()
+        private readonly Dictionary<int, int> timersByLevel = new()
         {
             {0, 30},
             {1, 60},
@@ -61,15 +63,11 @@ namespace Core
         public LevelManager LoadedLevel { get; private set; }
         public bool InputEnabled { get; private set; } = true;
 
-        private void OnEnable()
-        {
+        private void OnEnable() => 
             Health.PlayerDied += FailLevel;
-        }
 
-        private void OnDisable()
-        {
+        private void OnDisable() => 
             Health.PlayerDied -= FailLevel;
-        }
 
         public void EnableInputs()
         {
@@ -99,19 +97,19 @@ namespace Core
 
             CurrentState = GameState.Idle;
 
-            if (timerText != null)
-                timerText.gameObject.SetActive(false);
+            if (TimerText != null)
+                TimerText.gameObject.SetActive(false);
 
             LoadLevel(level: 0);
         }
 
         private void Update()
         {
-            if (CurrentState == GameState.Playing)
-            {
-                UpdateTimer();
-                CheckWinCondition();
-            }
+            if (CurrentState != GameState.Playing) 
+                return;
+            
+            UpdateTimer();
+            CheckWinCondition();
         }
 
         private void UpdateTimer()
@@ -121,8 +119,8 @@ namespace Core
 
             currentTime -= Time.deltaTime;
 
-            if (timerText != null)
-                timerText.text = $"Time: {Mathf.CeilToInt(currentTime)}";
+            if (TimerText != null)
+                TimerText.text = $"Time: {Mathf.CeilToInt(currentTime)}";
 
             if (currentTime <= 0f)
                 FailLevel();
@@ -136,7 +134,7 @@ namespace Core
 
         public void LoadNextLeve()
         {
-            levelPassedPanel.SetActive(false);
+            LevelPassedPanel.SetActive(false);
 
             if (LoadedLevel == null)
             {
@@ -147,7 +145,7 @@ namespace Core
             LoadLevel(LoadedLevel.LevelId + 1);
         }
 
-        public void LoadLevel(int level)
+        private void LoadLevel(int level)
         {
             if (LoadedLevelId == level)
             {
@@ -158,7 +156,7 @@ namespace Core
             if (LoadedLevelId != null && LoadedLevelId != level)
                 UnloadLevel(LoadedLevelId.Value);
 
-            var levelManager = levels.FirstOrDefault(x => x.LevelId == level);
+            var levelManager = _levels.FirstOrDefault(x => x.LevelId == level);
             if (levelManager == null)
                 return;
 
@@ -175,7 +173,7 @@ namespace Core
             OnLevelLoaded?.Invoke(LoadedLevel.LevelId);
         }
 
-        public void UnloadLevel(int level)
+        private void UnloadLevel(int level)
         {
             if (LoadedLevelId != level)
             {
@@ -183,7 +181,7 @@ namespace Core
                 return;
             }
 
-            var levelManager = levels.FirstOrDefault(x => x.LevelId == level);
+            var levelManager = _levels.FirstOrDefault(x => x.LevelId == level);
             if (levelManager == null)
                 return;
 
@@ -198,23 +196,25 @@ namespace Core
                 return;
             }
 
-            currentTime = timersByLevel.TryGetValue(LoadedLevelId.Value, out var time) ? time : startTime;
+            currentTime = LoadedLevelId != null 
+                          && timersByLevel.TryGetValue(LoadedLevelId.Value, out var time) 
+                ? time 
+                : StartTime;
+            
             CurrentState = GameState.Playing;
 
             LoadedLevel.SpawnManager.SpawnWave();
 
-            if (timerText != null)
-                timerText.gameObject.SetActive(true);
+            if (TimerText != null)
+                TimerText.gameObject.SetActive(true);
 
             OnLevelStarted?.Invoke(LoadedLevel.LevelId);
 
             if (LoadedLevel.name == "Level4")
-            {
                 ActivateDevilLevelRules();
-            }
         }
 
-        public void FailLevel()
+        private void FailLevel()
         {
             if (!LoadedLevel)
             {
@@ -225,12 +225,12 @@ namespace Core
             Attempt++;
             CurrentState = GameState.GameOver;
 
-            if (timerText)
-                timerText.gameObject.SetActive(false);
+            if (TimerText)
+                TimerText.gameObject.SetActive(false);
 
             LoadedLevel.SpawnManager.DestroyAll();
 
-            var overPanel = DevilModeScenario.IsInDevilMode ? gameOverDevilPanel : gameOverPanel;
+            var overPanel = DevilModeScenario.IsInDevilMode ? GameOverDevilPanel : GameOverPanel;
 
             overPanel.SetActive(true);
 
@@ -244,7 +244,7 @@ namespace Core
             Debug.Log("Game Over!");
         }
 
-        public void CompleteLevel()
+        private void CompleteLevel()
         {
             if (LoadedLevel == null)
             {
@@ -254,12 +254,12 @@ namespace Core
 
             CurrentState = GameState.Idle;
 
-            if (timerText != null)
-                timerText.gameObject.SetActive(false);
+            if (TimerText != null)
+                TimerText.gameObject.SetActive(false);
 
             LoadedLevel.SpawnManager.DestroyAll();
 
-            levelPassedPanel.SetActive(true);
+            LevelPassedPanel.SetActive(true);
 
             MusicManager.StopActiveMusic?.Invoke(() =>
             {
@@ -276,7 +276,7 @@ namespace Core
 
         public void RestartGame()
         {
-            var overPanel = DevilModeScenario.IsInDevilMode ? gameOverDevilPanel : gameOverPanel;
+            var overPanel = DevilModeScenario.IsInDevilMode ? GameOverDevilPanel : GameOverPanel;
             overPanel.SetActive(false);
 
             var sceneName = SceneManager.GetActiveScene().name;
@@ -289,16 +289,16 @@ namespace Core
         {
             currentTime += bonus;
 
-            StartCoroutine(ShowTimeLabel(timeBonusLabel, bonus));
+            StartCoroutine(ShowTimeLabel(TimeBonusLabel, bonus));
         }
 
         public void SubtractTime()
         {
-            currentTime -= timePenalty;
+            currentTime -= TimePenalty;
             if (currentTime < 0)
                 currentTime = 0;
 
-            StartCoroutine(ShowTimeLabel(timePenaltyLabel, -timePenalty));
+            StartCoroutine(ShowTimeLabel(TimePenaltyLabel, -TimePenalty));
         }
 
         private IEnumerator ShowTimeLabel(GameObject label, int amount)
@@ -312,14 +312,14 @@ namespace Core
                 label.GetComponentInChildren<TextMeshProUGUI>().text = $"+{amount}";
 
             label.SetActive(true);
-            yield return new WaitForSeconds(showLabelDuration);
+            yield return new WaitForSeconds(ShowLabelDuration);
             label.SetActive(false);
         }
 
         private void ActivateDevilLevelRules()
         {
             DevilModeScenario.ForceDevilMode?.Invoke();
-            timerText.gameObject.SetActive(false);
+            TimerText.gameObject.SetActive(false);
         }
     }
 }

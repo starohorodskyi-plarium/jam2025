@@ -1,14 +1,15 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Music
 {
    public class JingleManager : MonoBehaviour
    {
-      [SerializeField] private AudioSource jingleSource;
+      [FormerlySerializedAs("jingleSource")] [SerializeField] private AudioSource _jingleSource;
       [Space]
-      [SerializeField] private AudioClip win;
-      [SerializeField] private AudioClip lose;
+      [FormerlySerializedAs("win")] [SerializeField] private AudioClip _win;
+      [FormerlySerializedAs("lose")] [SerializeField] private AudioClip _lose;
 
       public static Action PlayWinJingle;
       public static Action PlayLoseJingle;
@@ -25,14 +26,10 @@ namespace Music
          PlayLoseJingle -= PlayLoseJingleClip;
       }
    
-      private void PlayWinJingleClip()
-      {
-         jingleSource.PlayOneShot(win);
-      }
-   
-      private void PlayLoseJingleClip()
-      {
-         jingleSource.PlayOneShot(lose);
-      }
+      private void PlayWinJingleClip() => 
+         _jingleSource.PlayOneShot(_win);
+
+      private void PlayLoseJingleClip() => 
+         _jingleSource.PlayOneShot(_lose);
    }
 }

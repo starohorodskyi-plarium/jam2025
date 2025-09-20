@@ -1,14 +1,15 @@
 using Platform;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace MonoControllers.Camera
 {
     public class CameraMovementController : MonoBehaviour
     {
-        [SerializeField] private float minX = -5f;
-        [SerializeField] private float maxX = 5f;
-        [SerializeField] private bool smooth = true;
-        [SerializeField] private float smoothSpeed = 10f;
+        [FormerlySerializedAs("minX")] [SerializeField] private float _minX = -5f;
+        [FormerlySerializedAs("maxX")] [SerializeField] private float _maxX = 5f;
+        [FormerlySerializedAs("smooth")] [SerializeField] private bool _smooth = true;
+        [FormerlySerializedAs("smoothSpeed")] [SerializeField] private float _smoothSpeed = 10f;
 
         [SerializeField] private AnimationCurve _screenAspectRatioCompensator;
 
@@ -29,8 +30,8 @@ namespace MonoControllers.Camera
             var aspectRatio = (float)Screen.width / Screen.height;
             var compensation = _screenAspectRatioCompensator.Evaluate(aspectRatio);
 
-            compensatedMinX = minX * compensation;
-            compensatedMaxX = maxX * compensation;
+            compensatedMinX = _minX * compensation;
+            compensatedMaxX = _maxX * compensation;
         }
 
         private void Update()
@@ -45,26 +46,24 @@ namespace MonoControllers.Camera
             var current = transform.position;
             float newX;
 
-            if (smooth)
+            if (_smooth)
             {
-                var t = 1f - Mathf.Exp(-smoothSpeed * Time.deltaTime);
+                var t = 1f - Mathf.Exp(-_smoothSpeed * Time.deltaTime);
                 newX = Mathf.Lerp(current.x, targetX, t);
             }
             else
-            {
                 newX = targetX;
-            }
 
             transform.position = new Vector3(newX, current.y, current.z);
         }
 
-        void OnValidate()
+        private void OnValidate()
         {
             if (compensatedMaxX < compensatedMinX)
                 (compensatedMinX, compensatedMaxX) = (compensatedMaxX, compensatedMinX);
 
-            if (smoothSpeed < 0f)
-                smoothSpeed = 0f;
+            if (_smoothSpeed < 0f)
+                _smoothSpeed = 0f;
         }
     }
 }

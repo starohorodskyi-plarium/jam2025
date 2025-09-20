@@ -37,15 +37,15 @@ namespace MonoControllers.Camera
         
         private void Awake()
         {
-            _defaultSensitivityX = _cameraController.sensitivityX;
-            _defaultSensitivityY = _cameraController.sensitivityY;
-            _defaultAngleX = _cameraController.maxXAngle;
-            _defaultAngleY = _cameraController.maxYAngle;
+            _defaultSensitivityX = _cameraController.SensitivityX;
+            _defaultSensitivityY = _cameraController.SensitivityY;
+            _defaultAngleX = _cameraController.MaxXAngle;
+            _defaultAngleY = _cameraController.MaxYAngle;
             
-            _defaultMinPitch = _cameraController.minPitch;
-            _defaultMaxPitch = _cameraController.maxPitch;
-            _defaultMinYaw   = _cameraController.minYaw;
-            _defaultMaxYaw   = _cameraController.maxYaw;
+            _defaultMinPitch = _cameraController.MinPitch;
+            _defaultMaxPitch = _cameraController.MaxPitch;
+            _defaultMinYaw   = _cameraController.MinYaw;
+            _defaultMaxYaw   = _cameraController.MaxYaw;
         }
 
         private void OnEnable() => 
@@ -76,14 +76,14 @@ namespace MonoControllers.Camera
 
 			_transitionTween = DOTween.Sequence();
 			_transitionTween.SetEase(_transitionEase);
-			_transitionTween.Join(DOTween.To(() => _cameraController.sensitivityX, v => _cameraController.sensitivityX = v, targetSensitivityX, _transitionDuration));
-			_transitionTween.Join(DOTween.To(() => _cameraController.sensitivityY, v => _cameraController.sensitivityY = v, targetSensitivityY, _transitionDuration));
-			_transitionTween.Join(DOTween.To(() => _cameraController.maxXAngle, v => _cameraController.maxXAngle = v, targetMaxXAngle, _transitionDuration));
-			_transitionTween.Join(DOTween.To(() => _cameraController.maxYAngle, v => _cameraController.maxYAngle = v, targetMaxYAngle, _transitionDuration));
-			_transitionTween.Join(DOTween.To(() => _cameraController.minPitch, v => _cameraController.minPitch = v, targetMinPitch, _transitionDuration));
-			_transitionTween.Join(DOTween.To(() => _cameraController.maxPitch, v => _cameraController.maxPitch = v, targetMaxPitch, _transitionDuration));
-			_transitionTween.Join(DOTween.To(() => _cameraController.minYaw, v => _cameraController.minYaw = v, targetMinYaw, _transitionDuration));
-			_transitionTween.Join(DOTween.To(() => _cameraController.maxYaw, v => _cameraController.maxYaw = v, targetMaxYaw, _transitionDuration));
+			_transitionTween.Join(DOTween.To(() => _cameraController.SensitivityX, v => _cameraController.SensitivityX = v, targetSensitivityX, _transitionDuration));
+			_transitionTween.Join(DOTween.To(() => _cameraController.SensitivityY, v => _cameraController.SensitivityY = v, targetSensitivityY, _transitionDuration));
+			_transitionTween.Join(DOTween.To(() => _cameraController.MaxXAngle, v => _cameraController.MaxXAngle = v, targetMaxXAngle, _transitionDuration));
+			_transitionTween.Join(DOTween.To(() => _cameraController.MaxYAngle, v => _cameraController.MaxYAngle = v, targetMaxYAngle, _transitionDuration));
+			_transitionTween.Join(DOTween.To(() => _cameraController.MinPitch, v => _cameraController.MinPitch = v, targetMinPitch, _transitionDuration));
+			_transitionTween.Join(DOTween.To(() => _cameraController.MaxPitch, v => _cameraController.MaxPitch = v, targetMaxPitch, _transitionDuration));
+			_transitionTween.Join(DOTween.To(() => _cameraController.MinYaw, v => _cameraController.MinYaw = v, targetMinYaw, _transitionDuration));
+			_transitionTween.Join(DOTween.To(() => _cameraController.MaxYaw, v => _cameraController.MaxYaw = v, targetMaxYaw, _transitionDuration));
 			_transitionTween.SetLink(gameObject);
 
 			if (zoomed == null)

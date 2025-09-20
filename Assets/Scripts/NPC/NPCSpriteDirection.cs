@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace NPC
 {
@@ -10,67 +11,53 @@ namespace NPC
             Right
         }
 
-        [SerializeField] private SpriteRenderer spriteRenderer;
-        [SerializeField] private Direction direction = Direction.Right;
+        [FormerlySerializedAs("spriteRenderer")] [SerializeField] private SpriteRenderer _spriteRenderer;
+        [FormerlySerializedAs("direction")] [SerializeField] private Direction _direction = Direction.Right;
         [Space]
-        [SerializeField] private Transform shadow;
+        [FormerlySerializedAs("shadow")][SerializeField] private Transform _shadow;
 
         private void Reset()
         {
-            if (!spriteRenderer)
-                spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            if (!_spriteRenderer)
+                _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
             ApplyFlip();
         }
 
-        private void OnValidate()
-        {
+        private void OnValidate() => 
             ApplyFlip();
-        }
-    
-        public void GoLeft()
-        {
+
+        public void GoLeft() => 
             SetDirection(Direction.Left);
-        }
 
-    
-        public void GoRight()
-        {
+
+        public void GoRight() => 
             SetDirection(Direction.Right);
-        }
 
 
         public void SetDirection(Direction newDirection)
         {
-            direction = newDirection;
+            _direction = newDirection;
             ApplyFlip();
-        }
-
-        public void SetDirectionByVector(Vector2 movement)
-        {
-            if (movement.x == 0f)
-                return;
-
-            SetDirection(movement.x < 0f ? Direction.Left : Direction.Right);
         }
 
         private void ApplyFlip()
         {
-            if (!spriteRenderer)
+            if (!_spriteRenderer)
                 return;
 
-            spriteRenderer.flipX = direction == Direction.Left;
+            _spriteRenderer.flipX = _direction == Direction.Left;
         
             ApplyFlipShadow();
         }
     
         private void ApplyFlipShadow()
         {
-            if (shadow) 
-                shadow.localScale = new Vector3(
-                    direction == Direction.Left ? -1f : 1f, 
-                    shadow.localScale.y, 
-                    shadow.localScale.z);
+            if (_shadow) 
+                _shadow.localScale = new Vector3(
+                    _direction == Direction.Left ? -1f : 1f, 
+                    _shadow.localScale.y, 
+                    _shadow.localScale.z);
         }
     }
 }

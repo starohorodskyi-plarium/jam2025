@@ -1,19 +1,18 @@
 using DG.Tweening;
-using DG.Tweening.Core;
-using DG.Tweening.Plugins.Options;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Wizard
 {
     public class NewspapperAppearTween : MonoBehaviour
     {
-        [SerializeField] private CanvasGroup canvasGroup;
-        [SerializeField] private float duration;
+        [FormerlySerializedAs("canvasGroup")] [SerializeField] private CanvasGroup _canvasGroup;
+        [FormerlySerializedAs("duration")] [SerializeField] private float _duration;
         
         public void Show() => 
-            canvasGroup.DOFade(1f, duration);
+            _canvasGroup.DOFade(1f, _duration);
 
         public void Hide() =>
-            canvasGroup.alpha = 0f;
+            _canvasGroup.alpha = 0f;
     }
 }

@@ -1,18 +1,18 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Core
 {
     public class Destroyer : MonoBehaviour
     {
+        [FormerlySerializedAs("delayBeforeDestroy")]
         [SerializeField]
         [Min(0f)]
         [Tooltip("Delay in seconds before destroying this GameObject.")]
-        private float delayBeforeDestroy = 0f;
+        private float _delayBeforeDestroy = 0f;
 
-        private void OnEnable()
-        {
-            Destroy(gameObject, Mathf.Max(0f, delayBeforeDestroy));
-        }
+        private void OnEnable() => 
+            Destroy(gameObject, Mathf.Max(0f, _delayBeforeDestroy));
     }
 }
 

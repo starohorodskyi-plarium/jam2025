@@ -13,22 +13,17 @@ namespace NPC
     
         private bool _initialFlip;
         private bool lastAppliedFlip;
-        private bool isUsingMimicSide;
 
         private void Start()
         {
             _initialFlip = _sprite.flipX;
             lastAppliedFlip = _initialFlip;
-            isUsingMimicSide = true;
         }
 
         private void Update()
         {
-            if (lastAppliedFlip != _sprite.flipX)
-            {
+            if (!lastAppliedFlip.Equals(_sprite.flipX)) 
                 lastAppliedFlip = _sprite.flipX;
-                isUsingMimicSide = lastAppliedFlip == _initialFlip;
-            }
         }
     }
 }

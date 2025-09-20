@@ -17,30 +17,30 @@ namespace Gameplay.DevilMode
         
         private const string DevilGoalMessage = "The game you played with cruel delight — now on yourself, it turns to bite.";
 
-        private void OnEnable()
-        {
+        private void OnEnable() => 
             ForceDevilMode += EnterDevilMode;
-        }
 
-        private void OnDisable()
-        {
+        private void OnDisable() => 
             ForceDevilMode -= EnterDevilMode;
-        }
 
         private void EnterDevilMode()
         {
             IsInDevilMode = true;
+            
             _postProcessing.EnableDevilPostProcessing();
-            GoalMessage.UpdateGoalMessage(DevilGoalMessage);	
+            GoalMessage.UpdateGoalMessage(DevilGoalMessage);
+            
             DevilModeActivated?.Invoke();
         }
 
         public void ExitDevilMode()
         {
-            if (!IsInDevilMode) return;
+            if (!IsInDevilMode) 
+                return;
             
             IsInDevilMode = false;
             _postProcessing.RevertDevilPostProcessing();
+            
             DevilModeDeactivated?.Invoke();
         }
     }

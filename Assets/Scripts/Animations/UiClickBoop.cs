@@ -1,6 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using Button = UnityEngine.UI.Button;
 
 namespace Animations
@@ -8,13 +9,13 @@ namespace Animations
     [RequireComponent(typeof(Button))]
     public class UiClickBoop : MonoBehaviour
     {
-        [SerializeField] private Vector3 force;
-        [SerializeField] [Range(0f,2f)] private float time;
+        [FormerlySerializedAs("force")] [SerializeField] private Vector3 _force;
+        [FormerlySerializedAs("time")] [SerializeField] [Range(0f,2f)] private float _time;
         
-        [SerializeField] private int vibrato;
-        [SerializeField] [Range(0f,1f)] private float elasticity;
+        [FormerlySerializedAs("vibrato")] [SerializeField] private int _vibrato;
+        [FormerlySerializedAs("elasticity")] [SerializeField] [Range(0f,1f)] private float _elasticity;
         
-        [SerializeField] private UnityEvent clickSequence;
+        [FormerlySerializedAs("clickSequence")] [SerializeField] private UnityEvent _clickSequence;
             
         private Button _button;
         private Vector3 _defaultScale;
@@ -28,16 +29,16 @@ namespace Animations
         public void Click()
         {
             _button.transform
-                .DOPunchScale(force, time, vibrato, elasticity)
+                .DOPunchScale(_force, _time, _vibrato, _elasticity)
                 .OnComplete(() =>
                 {
                     _button.transform.DOScale(_defaultScale.x, 0.3f).OnComplete(
-                        () =>  clickSequence?.Invoke());
+                        () =>  _clickSequence?.Invoke());
                 });
         } 
         
         // Alarm 🩼🩼🩼
         public void ClickSequenceInvokeReference() =>
-            clickSequence?.Invoke();
+            _clickSequence?.Invoke();
     }
 }

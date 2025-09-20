@@ -16,7 +16,7 @@ namespace UI
             if (loadedLevel == null)
                 return;
             
-            _text.text = string.Format(TextFormat, loadedLevel.SpawnManager.EnemiesDefeatCount, loadedLevel.SpawnManager.baddiesPerLevel);
+            _text.text = string.Format(TextFormat, loadedLevel.SpawnManager.EnemiesDefeatCount, loadedLevel.SpawnManager.BaddiesPerLevel);
         }
     }
 }

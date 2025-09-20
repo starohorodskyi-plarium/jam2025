@@ -23,7 +23,7 @@ namespace UI
                 Tween();
         }
 
-        public void Tween()
+        private void Tween()
         {
             var color = _graphic.color;
             var to = new Color(color.r, color.g, color.b, _to);

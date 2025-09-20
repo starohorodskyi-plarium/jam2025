@@ -1,49 +1,61 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Platform
 {
     public class FpsLimiterByDisplay : MonoBehaviour
     {
         [Header("Behavior")]
+        [FormerlySerializedAs("applyOnlyOnDesktop")]
         [Tooltip("Apply only on Windows and macOS (including Editor).")]
-        public bool applyOnlyOnDesktop = true;
+        public bool ApplyOnlyOnDesktop = true;
 
+        [FormerlySerializedAs("enableVSync")] 
         [Tooltip("Enable VSync to cap FPS to display refresh. On desktop this is the most reliable method.")]
-        public bool enableVSync = true;
+        public bool EnableVSync = true;
 
+        [FormerlySerializedAs("alsoSetTargetFrameRate")] 
         [Tooltip("Also set Application.targetFrameRate to the detected refresh rate as a backup.")]
-        public bool alsoSetTargetFrameRate = true;
-
+        public bool AlsoSetTargetFrameRate = true;
+        
         [Header("Dynamic updates")]
+        [FormerlySerializedAs("pollForChanges")]
         [Tooltip("Poll the current display refresh rate in runtime and re-apply if it changes.")]
-        public bool pollForChanges = true;
+        public bool PollForChanges = true;
 
+        [FormerlySerializedAs("pollIntervalSeconds")]
         [Tooltip("Seconds between refresh rate checks when polling is enabled.")]
         [Min(0.1f)]
-        public float pollIntervalSeconds = 2f;
+        public float PollIntervalSeconds = 2f;
 
         [Header("Logging")]
-        public bool verboseLogging;
+        [FormerlySerializedAs("verboseLogging")]public bool VerboseLogging;
 
         private int _lastAppliedFps = -1;
 
         private void OnEnable()
         {
             Apply();
-            if (!pollForChanges) return;
+            
+            if (!PollForChanges) 
+                return;
+            
             CancelInvoke(nameof(CheckAndReapplyIfChanged));
-            InvokeRepeating(nameof(CheckAndReapplyIfChanged), pollIntervalSeconds, pollIntervalSeconds);
+            InvokeRepeating(nameof(CheckAndReapplyIfChanged), PollIntervalSeconds, PollIntervalSeconds);
         }
 
         private void OnDisable()
         {
-            if (!pollForChanges) return;
+            if (!PollForChanges) 
+                return;
+            
             CancelInvoke(nameof(CheckAndReapplyIfChanged));
         }
 
         private void OnApplicationFocus(bool hasFocus)
         {
-            if (hasFocus) Apply();
+            if (hasFocus) 
+                Apply();
         }
 
         private void CheckAndReapplyIfChanged()
@@ -53,18 +65,18 @@ namespace Platform
             ApplyInternal(hz);
         }
 
-        public void Apply()
+        private void Apply()
         {
-            if (applyOnlyOnDesktop && !IsWindowsOrMacEditorOrPlayer())
+            if (ApplyOnlyOnDesktop && !IsWindowsOrMacEditorOrPlayer())
             {
-                if (verboseLogging) Debug.Log("[FpsLimiterByDisplay] Skipped (not Windows/macOS).");
+                if (VerboseLogging) Debug.Log("[FpsLimiterByDisplay] Skipped (not Windows/macOS).");
                 return;
             }
 
             var hz = DetectCurrentDisplayRefreshRate();
             if (hz <= 0)
             {
-                if (verboseLogging) Debug.Log("[FpsLimiterByDisplay] Could not detect refresh rate. Skipping.");
+                if (VerboseLogging) Debug.Log("[FpsLimiterByDisplay] Could not detect refresh rate. Skipping.");
                 return;
             }
 
@@ -73,13 +85,13 @@ namespace Platform
 
         private void ApplyInternal(int targetFps)
         {
-            QualitySettings.vSyncCount = enableVSync ? 1 : 0;
+            QualitySettings.vSyncCount = EnableVSync ? 1 : 0;
             
-            if (alsoSetTargetFrameRate) Application.targetFrameRate = targetFps;
+            if (AlsoSetTargetFrameRate) Application.targetFrameRate = targetFps;
             _lastAppliedFps = targetFps;
             
-            if (verboseLogging)
-                Debug.Log($"[FpsLimiterByDisplay] Applied: vSyncCount={(enableVSync ? 1 : 0)}, targetFrameRate={Application.targetFrameRate}, detectedHz={targetFps}");
+            if (VerboseLogging)
+                Debug.Log($"[FpsLimiterByDisplay] Applied: vSyncCount={(EnableVSync ? 1 : 0)}, targetFrameRate={Application.targetFrameRate}, detectedHz={targetFps}");
         }
 
         private static bool IsWindowsOrMacEditorOrPlayer() =>

@@ -1,17 +1,18 @@
 using UnityEngine;
 
-public class EditorPlayModeClose : MonoBehaviour
+namespace Core
 {
-    public void StopPlayModeIfActive()
+    public class EditorPlayModeClose : MonoBehaviour
     {
-#if UNITY_EDITOR
-        if (!UnityEditor.EditorApplication.isPlaying)
+        public void StopPlayModeIfActive()
         {
-            return;
-        }
+#if UNITY_EDITOR
+            if (!UnityEditor.EditorApplication.isPlaying)
+                return;
 
-        UnityEditor.EditorApplication.isPlaying = false;
+            UnityEditor.EditorApplication.isPlaying = false;
 #endif
+        }
     }
 }
 

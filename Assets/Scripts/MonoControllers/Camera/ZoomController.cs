@@ -3,16 +3,17 @@ using Core;
 using DG.Tweening;
 using GameCursor;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace MonoControllers.Camera
 {
     public class ZoomController : MonoBehaviour
     {
-        [SerializeField] private CursorTexture cursor;
+        [FormerlySerializedAs("cursor")] [SerializeField] private CursorTexture _cursor;
         
-        public float zoomFOV = 40f;
-        public float normalFOV = 60f;
-        public float duration = 0.5f;
+        [FormerlySerializedAs("zoomFOV")] public float ZoomFOV = 40f;
+        [FormerlySerializedAs("normalFOV")] public float NormalFOV = 60f;
+        [FormerlySerializedAs("duration")] public float Duration = 0.5f;
 
         public event Action<bool?> OnZoomChanged; 
         
@@ -24,7 +25,7 @@ namespace MonoControllers.Camera
         {
             isZoomed = false;
             
-            _camera.DOFieldOfView(normalFOV, duration).SetEase(Ease.OutQuad);
+            _camera.DOFieldOfView(NormalFOV, Duration).SetEase(Ease.OutQuad);
             
             OnZoomChanged?.Invoke(null);
         }
@@ -41,9 +42,9 @@ namespace MonoControllers.Camera
         private void ToggleFOV()
         {
             if (isZoomed)
-                _camera.DOFieldOfView(normalFOV, duration).SetEase(Ease.OutQuad);
+                _camera.DOFieldOfView(NormalFOV, Duration).SetEase(Ease.OutQuad);
             else
-                _camera.DOFieldOfView(zoomFOV, duration).SetEase(Ease.OutQuad);
+                _camera.DOFieldOfView(ZoomFOV, Duration).SetEase(Ease.OutQuad);
 
             isZoomed = !isZoomed;
             
@@ -58,15 +59,15 @@ namespace MonoControllers.Camera
         
         private void ChangeCursor(bool? zoomed)
         {
-            if (!cursor)
+            if (!_cursor)
                 return;
             
             if (!zoomed.HasValue)
-                cursor.SetDefaultCursor();
+                _cursor.SetDefaultCursor();
             else if (zoomed.Value)
-                cursor.SetCustomZoomCursor();
+                _cursor.SetCustomZoomCursor();
             else
-                cursor.SetCustomCursor();
+                _cursor.SetCustomCursor();
         }
     }
 }

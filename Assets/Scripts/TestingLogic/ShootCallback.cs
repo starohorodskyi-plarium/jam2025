@@ -9,7 +9,8 @@ namespace TestingLogic
     {
         public UnityEvent OnShootPressed;
     
-        private bool IgnoreInputs => GameManager.Instance.CurrentState != GameManager.GameState.Playing || !GameManager.Instance.InputEnabled;
+        private bool IgnoreInputs => 
+            GameManager.Instance.CurrentState != GameManager.GameState.Playing || !GameManager.Instance.InputEnabled;
     
         private void Update()
         {

@@ -1,74 +1,73 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Platform
 {
     public class ObjectActivatorByPlatform : MonoBehaviour
     {
-        public GameObject target;
+        [FormerlySerializedAs("target")] public GameObject Target;
         
         [Header("Enable on platforms")]
+        [FormerlySerializedAs("enableOnPC")]
         [Tooltip("If checked, this GameObject will be enabled on PC (Standalone + Editor).")]
-        public bool enableOnPC;
+        public bool EnableOnPC;
 
+        [FormerlySerializedAs("enableOnMobile")] 
         [Tooltip("If checked, this GameObject will be enabled on Mobile (iOS/Android).")]
-        public bool enableOnMobile;
+        public bool EnableOnMobile;
 
+        [FormerlySerializedAs("enableOnWeb")] 
         [Tooltip("If checked, this GameObject will be enabled on Web (WebGL).")]
-        public bool enableOnWeb;
-
+        public bool EnableOnWeb;
+        
         [Header("Disable on platforms")]
+        [FormerlySerializedAs("disableOnPC")]
         [Tooltip("If checked, this GameObject will be disabled on PC (Standalone + Editor). Overrides enable.")]
-        public bool disableOnPC;
+        public bool DisableOnPC;
 
+        [FormerlySerializedAs("disableOnMobile")] 
         [Tooltip("If checked, this GameObject will be disabled on Mobile (iOS/Android). Overrides enable.")]
-        public bool disableOnMobile;
+        public bool DisableOnMobile;
 
+        [FormerlySerializedAs("disableOnWeb")] 
         [Tooltip("If checked, this GameObject will be disabled on Web (WebGL). Overrides enable.")]
-        public bool disableOnWeb;
+        public bool DisableOnWeb;
 
-        private void Awake()
-        {
+        private void Awake() => 
             ApplyActivationForCurrentPlatform();
-        }
 
-        public void ApplyActivationForCurrentPlatform()
+        private void ApplyActivationForCurrentPlatform()
         {
             var isPC = IsPCPlatform();
-            bool isMobile = IsMobilePlatform();
-            bool isWeb = IsWebPlatform();
+            var isMobile = IsMobilePlatform();
+            var isWeb = IsWebPlatform();
 
-            bool shouldDisable = (isPC && disableOnPC) || (isMobile && disableOnMobile) || (isWeb && disableOnWeb);
-            bool shouldEnable = (isPC && enableOnPC) || (isMobile && enableOnMobile) || (isWeb && enableOnWeb);
+            var shouldDisable = (isPC && DisableOnPC) || (isMobile && DisableOnMobile) || (isWeb && DisableOnWeb);
+            var shouldEnable = (isPC && EnableOnPC) || (isMobile && EnableOnMobile) || (isWeb && EnableOnWeb);
 
             if (shouldDisable)
             {
-                target.SetActive(false);
+                Target.SetActive(false);
                 return;
             }
 
-            if (shouldEnable)
-            {
-                target.SetActive(true);
+            if (!shouldEnable) 
                 return;
-            }
+            
+            Target.SetActive(true);
 
             // If neither enable nor disable is specified for this platform, keep the current state
         }
 
         private static bool IsPCPlatform()
         {
-            switch (Application.platform)
+            return Application.platform switch
             {
-                case RuntimePlatform.WindowsPlayer:
-                case RuntimePlatform.OSXPlayer:
-                case RuntimePlatform.LinuxPlayer:
-                case RuntimePlatform.WindowsEditor:
-                case RuntimePlatform.OSXEditor:
-                case RuntimePlatform.LinuxEditor:
-                    return true;
-                default:
-                    return false;
-            }
+                RuntimePlatform.WindowsPlayer or RuntimePlatform.OSXPlayer or RuntimePlatform.LinuxPlayer
+                    or RuntimePlatform.WindowsEditor or RuntimePlatform.OSXEditor
+                    or RuntimePlatform.LinuxEditor => true,
+                _ => false
+            };
         }
 
         private static bool IsMobilePlatform() => 

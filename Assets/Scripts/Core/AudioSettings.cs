@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Serialization;
 
 namespace Core
 {
@@ -8,31 +9,32 @@ namespace Core
         private const string SoundsSettingKey = "Sounds";
         private const string MusicSettingKey = "Music";
         
-        [SerializeField] private AudioMixer mixer;
+        [FormerlySerializedAs("mixer")] [SerializeField] private AudioMixer _mixer;
+  
         [Space(20)]
-        [SerializeField] private string soundKey;
-        [SerializeField] private string musicKey;
+        [FormerlySerializedAs("soundKey")] [SerializeField] private string _soundKey;
+        [FormerlySerializedAs("musicKey")] [SerializeField] private string _musicKey;
 
         private const float MutedVolumeValue = -80f;
 
         private void Start()
         {
             if (PlayerPrefs.HasKey(SoundsSettingKey))
-                mixer.SetFloat(soundKey, PlayerPrefs.GetFloat(SoundsSettingKey)); 
+                _mixer.SetFloat(_soundKey, PlayerPrefs.GetFloat(SoundsSettingKey)); 
             
             if (PlayerPrefs.HasKey(MusicSettingKey))
-                mixer.SetFloat(musicKey, PlayerPrefs.GetFloat(MusicSettingKey));
+                _mixer.SetFloat(_musicKey, PlayerPrefs.GetFloat(MusicSettingKey));
         }
 
-        public bool IsSoundsMuted()
+        private bool IsSoundsMuted()
         {
-            mixer.GetFloat(soundKey, out var volume);
+            _mixer.GetFloat(_soundKey, out var volume);
             return Mathf.Approximately(volume, MutedVolumeValue);
         }
 
-        public bool IsMusicMuted()
+        private bool IsMusicMuted()
         {
-            mixer.GetFloat(musicKey, out var volume);
+            _mixer.GetFloat(_musicKey, out var volume);
             return Mathf.Approximately(volume, MutedVolumeValue);
         }
         
@@ -55,25 +57,25 @@ namespace Core
         private void MuteSounds()
         {
             PlayerPrefs.SetFloat(SoundsSettingKey, -80f);
-            mixer.SetFloat(soundKey, -80f);
+            _mixer.SetFloat(_soundKey, -80f);
         }
 
         private void UnmuteSounds()
         {
             PlayerPrefs.SetFloat(SoundsSettingKey, 0f);
-            mixer.SetFloat(soundKey, 0f);
+            _mixer.SetFloat(_soundKey, 0f);
         }
 
         private void MuteMusic()
         {
             PlayerPrefs.SetFloat(MusicSettingKey, -80f);
-            mixer.SetFloat(musicKey, -80f);
+            _mixer.SetFloat(_musicKey, -80f);
         }
 
         private void UnmuteMusic()
         {
             PlayerPrefs.SetFloat(MusicSettingKey, 0f);
-            mixer.SetFloat(musicKey, 0f);
+            _mixer.SetFloat(_musicKey, 0f);
         }
     }
 }

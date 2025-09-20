@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace UI.SnailUI
 {
@@ -16,112 +17,76 @@ namespace UI.SnailUI
     public class SnailProgress : MonoBehaviour
     {
         [Header("Letter Text References (TextMeshPro)")]
-        [SerializeField] private TextMeshProUGUI sText;
-        [SerializeField] private TextMeshProUGUI nText;
-        [SerializeField] private TextMeshProUGUI aText;
-        [SerializeField] private TextMeshProUGUI iText;
-        [SerializeField] private TextMeshProUGUI lText;
-
+        [FormerlySerializedAs("sText")] [SerializeField] private TextMeshProUGUI _sText;
+        [FormerlySerializedAs("nText")] [SerializeField] private TextMeshProUGUI _nText;
+        [FormerlySerializedAs("aText")] [SerializeField] private TextMeshProUGUI _aText;
+        [FormerlySerializedAs("iText")] [SerializeField] private TextMeshProUGUI _iText;
+        [FormerlySerializedAs("lText")] [SerializeField] private TextMeshProUGUI _lText;
+        
         [Header("State")]
-        [SerializeField] private bool[] unlocked = new bool[5];
-
-        private static readonly Color ActiveColor = new Color(226, 84, 44);
+        [FormerlySerializedAs("unlocked")] [SerializeField] private bool[] _unlocked = new bool[5];
+        
         private static readonly Color InactiveColor = Color.gray;
 
-        private int MaxLetters => unlocked != null ? unlocked.Length : 5; // S, N, A, I, L
+        private int MaxLetters => _unlocked?.Length ?? 5; // S, N, A, I, L
     
         public static Action<SnailLetter> LetterOpen;
 
-        void Start()
-        {
+        private void Start() => 
             UpdateLettersVisual();
-        }
 
-        private void OnEnable()
-        {
+        private void OnEnable() => 
             LetterOpen += Unlock;
-        }
 
-        private void OnDisable()
-        {
+        private void OnDisable() => 
             LetterOpen -= Unlock;
-        }
 
-        void OnValidate()
+        private void OnValidate()
         {
-            if (unlocked == null || unlocked.Length != 5)
+            if (_unlocked is not { Length: 5 })
             {
                 var newArr = new bool[5];
-                if (unlocked != null)
+                if (_unlocked != null)
                 {
-                    int copy = Mathf.Min(unlocked.Length, 5);
-                    for (int i = 0; i < copy; i++) newArr[i] = unlocked[i];
+                    var copy = Mathf.Min(_unlocked.Length, 5);
+                    for (var i = 0; i < copy; i++) newArr[i] = _unlocked[i];
                 }
-                unlocked = newArr;
+                _unlocked = newArr;
             }
             UpdateLettersVisual();
         }
 
-        public void ResetProgress()
-        {
-            for (int i = 0; i < MaxLetters; i++) unlocked[i] = false;
-            UpdateLettersVisual();
-        }
-
-        public void UpdateLettersVisual()
+        private void UpdateLettersVisual()
         {
             var letters = GetLettersArray();
-            for (int i = 0; i < letters.Length; i++)
+            for (var i = 0; i < letters.Length; i++)
             {
                 var text = letters[i];
-                if (text == null) continue;
-                bool isUnlocked = i >= 0 && i < MaxLetters && unlocked[i];
+                if (text == null) 
+                    continue;
+                
+                var isUnlocked = i >= 0 && i < MaxLetters && _unlocked[i];
                 text.color = isUnlocked ? new Color(226, 84, 44, 255) : InactiveColor;
             }
         }
 
-        public int GetUnlockedLettersCount()
+        private void SetLetter(SnailLetter letter, bool isUnlocked)
         {
-            int count = 0;
-            for (int i = 0; i < MaxLetters; i++) if (unlocked[i]) count++;
-            return count;
-        }
-
-        public void SetLetter(SnailLetter letter, bool isUnlocked)
-        {
-            int index = (int)letter;
-            if (index < 0 || index >= MaxLetters) return;
-            if (unlocked[index] == isUnlocked) return;
-            unlocked[index] = isUnlocked;
+            var index = (int)letter;
+            if (index < 0 || index >= MaxLetters) 
+                return;
+            
+            if (_unlocked[index] == isUnlocked) 
+                return;
+            
+            _unlocked[index] = isUnlocked;
             UpdateLettersVisual();
         }
 
-        public void Unlock(SnailLetter letter)
-        {
+        private void Unlock(SnailLetter letter) => 
             SetLetter(letter, true);
-        }
 
-        public void Lock(SnailLetter letter)
-        {
-            SetLetter(letter, false);
-        }
-
-        public bool IsUnlocked(SnailLetter letter)
-        {
-            int index = (int)letter;
-            if (index < 0 || index >= MaxLetters) return false;
-            return unlocked[index];
-        }
-
-        private int FindNextLockedIndex()
-        {
-            for (int i = 0; i < MaxLetters; i++) if (!unlocked[i]) return i;
-            return -1;
-        }
-
-        private TextMeshProUGUI[] GetLettersArray()
-        {
-            return new[] { sText, nText, aText, iText, lText };
-        }
+        private TextMeshProUGUI[] GetLettersArray() => 
+            new[] { _sText, _nText, _aText, _iText, _lText };
     }
 }

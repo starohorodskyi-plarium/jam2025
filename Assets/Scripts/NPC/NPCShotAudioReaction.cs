@@ -1,25 +1,26 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace NPC
 {
     public class NPCShotAudioReaction : MonoBehaviour
     {
         [Header("Audio")] 
-        [SerializeField] private AudioSource audioSource;
-
+        [FormerlySerializedAs("audioSource")][SerializeField] private AudioSource _audioSource;
+        
         [Header("Death Sounds - Humans")]
-        [SerializeField] private AudioClip[] humanMaleDeathClips;
-        [SerializeField] private AudioClip[] humanFemaleDeathClips;
-
+        [FormerlySerializedAs("humanMaleDeathClips")]  [SerializeField] private AudioClip[] _humanMaleDeathClips;
+        [FormerlySerializedAs("humanFemaleDeathClips")] [SerializeField] private AudioClip[] _humanFemaleDeathClips;
+        
         [Header("Death Sounds - Demons")]
-        [SerializeField] private AudioClip[] demonMaleDeathClips;
-        [SerializeField] private AudioClip[] demonFemaleDeathClips;
+        [FormerlySerializedAs("demonMaleDeathClips")] [SerializeField] private AudioClip[] _demonMaleDeathClips;
+        [FormerlySerializedAs("demonFemaleDeathClips")] [SerializeField] private AudioClip[] _demonFemaleDeathClips;
 
-        public AudioClip GetRandomHumanDeathClip(NPCController.Gender gender) =>
-            GetRandomClip(gender == NPCController.Gender.Male ? humanMaleDeathClips : humanFemaleDeathClips);
+        private AudioClip GetRandomHumanDeathClip(NPCController.Gender gender) =>
+            GetRandomClip(gender == NPCController.Gender.Male ? _humanMaleDeathClips : _humanFemaleDeathClips);
 
-        public AudioClip GetRandomDemonDeathClip(NPCController.Gender gender) =>
-            GetRandomClip(gender == NPCController.Gender.Male ? demonMaleDeathClips : demonFemaleDeathClips);
+        private AudioClip GetRandomDemonDeathClip(NPCController.Gender gender) =>
+            GetRandomClip(gender == NPCController.Gender.Male ? _demonMaleDeathClips : _demonFemaleDeathClips);
 
         public void PlayHumanDeath() =>
             PlayHumanDeath(NPCController.Gender.Male);
@@ -38,9 +39,10 @@ namespace NPC
 
         private void PlayClip(AudioClip clip)
         {
-            if (clip == null || audioSource == null)
+            if (clip == null || _audioSource == null)
                 return;
-            audioSource.PlayOneShot(clip);
+            
+            _audioSource.PlayOneShot(clip);
             Destroy(gameObject, 4f);
         }
     }

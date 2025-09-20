@@ -1,18 +1,20 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Gameplay.Obstacle
 {
     public class ObstacleReaction : MonoBehaviour
     {
         [Header("Reaction Prefab")]
-        [SerializeField] private GameObject reactionPrefab;
+        [FormerlySerializedAs("reactionPrefab")] [SerializeField] private GameObject _reactionPrefab;
 
         public void Hit(float impactDelay, Vector3 collisionPoint)
         {
             Debug.Log($"{gameObject.name} was hit!");
        
             StartCoroutine(HitRoutine());
+            return;
 
             IEnumerator HitRoutine()
             {
@@ -20,13 +22,13 @@ namespace Gameplay.Obstacle
                 CreateReaction(collisionPoint);
             }
         }
-    
-        public void CreateReaction(Vector3 collisionPoint)
+
+        private void CreateReaction(Vector3 collisionPoint)
         {
-            if (!reactionPrefab)
+            if (!_reactionPrefab)
                 Debug.LogWarning($"{nameof(ObstacleReaction)}: reactionPrefab is not assigned.", this);
             else 
-                Instantiate(reactionPrefab, collisionPoint, Quaternion.identity);
+                Instantiate(_reactionPrefab, collisionPoint, Quaternion.identity);
         }
     }
 }

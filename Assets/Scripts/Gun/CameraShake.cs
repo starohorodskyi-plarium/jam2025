@@ -1,24 +1,25 @@
 using System;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Gun
 {
     public class CameraShake : MonoBehaviour
     {
         [Header("Target")]
-        [SerializeField] private Transform targetToShake;
-
+        [FormerlySerializedAs("targetToShake")] [SerializeField] private Transform _targetToShake;
+        
         [Header("Shake Settings")]
-        [SerializeField, Min(0.01f)] private float durationSeconds = 0.12f;
-        [SerializeField] private Vector3 strength = new Vector3(0.15f, 0.15f, 0.15f);
-        [SerializeField, Min(1)] private int vibrato = 20;
-        [SerializeField, Range(0f, 180f)] private float randomness = 90f;
-        [SerializeField] private bool snapping = false;
-        [SerializeField] private bool fadeOut = true;
-
+        [FormerlySerializedAs("durationSeconds")] [SerializeField, Min(0.01f)] private float _durationSeconds = 0.12f;
+        [FormerlySerializedAs("strength")] [SerializeField] private Vector3 _strength = new(0.15f, 0.15f, 0.15f);
+        [FormerlySerializedAs("vibrato")] [SerializeField, Min(1)] private int _vibrato = 20;
+        [FormerlySerializedAs("randomness")] [SerializeField, Range(0f, 180f)] private float _randomness = 90f;
+        [FormerlySerializedAs("snapping")] [SerializeField] private bool _snapping;
+        [FormerlySerializedAs("fadeOut")] [SerializeField] private bool _fadeOut = true;
+        
         [Header("Ease")]
-        [SerializeField] private Ease ease = Ease.OutQuad;
+        [FormerlySerializedAs("ease")] [SerializeField] private Ease _ease = Ease.OutQuad;
 
         private Tween activeShakeTween;
         
@@ -26,37 +27,27 @@ namespace Gun
 
         private void Awake()
         {
-            if (targetToShake == null)
-            {
-                targetToShake = transform;
-            }
+            if (_targetToShake == null) 
+                _targetToShake = transform;
         }
 
-        private void OnEnable()
-        {
+        private void OnEnable() => 
             TriggerShake += PlayShake;
-        }
 
-        private void OnDisable()
-        {
+        private void OnDisable() => 
             TriggerShake -= PlayShake;
-        }
 
         public void PlayShake()
         {
-            if (targetToShake == null)
-            {
+            if (_targetToShake == null)
                 return;
-            }
 
-            if (activeShakeTween != null && activeShakeTween.IsActive())
-            {
+            if (activeShakeTween != null && activeShakeTween.IsActive()) 
                 activeShakeTween.Kill(true);
-            }
 
-            activeShakeTween = targetToShake
-                .DOShakePosition(durationSeconds, strength, vibrato, randomness, snapping, fadeOut)
-                .SetEase(ease);
+            activeShakeTween = _targetToShake
+                .DOShakePosition(_durationSeconds, _strength, _vibrato, _randomness, _snapping, _fadeOut)
+                .SetEase(_ease);
         }
     }
 }

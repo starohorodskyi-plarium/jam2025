@@ -1,11 +1,12 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Core
 {
     public class FpsDisplay : MonoBehaviour
     {
-        public Font font;
-        public bool showVersion = true;
+        [FormerlySerializedAs("font")] public Font Font;
+        [FormerlySerializedAs("showVersion")] public bool ShowVersion = true;
         private float _deltaTime;
 
         private void Update()
@@ -23,12 +24,11 @@ namespace Core
             style.alignment = TextAnchor.UpperLeft;
             style.fontSize = h * 2 / 100;
             style.normal.textColor = new Color(1f, 1f, 0.49f);
-            style.font = font;
-            var msec = _deltaTime * 1000.0f;
+            style.font = Font;
             var fps = 1.0f / _deltaTime;
             var textVersion = $"  v.{Application.version}";
             var text = $"{fps:0.} FPS ";
-            GUI.Label(rect, showVersion ? text + textVersion : text, style);
+            GUI.Label(rect, ShowVersion ? text + textVersion : text, style);
         }
     }
 }

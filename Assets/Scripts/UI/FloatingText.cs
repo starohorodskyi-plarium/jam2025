@@ -5,8 +5,8 @@ namespace UI
 {
     public class FloatingText : MonoBehaviour
     {
-        private float moveUpDistance = 20f;  // How far up the text moves
-        private float duration = 0.5f;         // How long the effect lasts
+        private const float MoveUpDistance = 20f; // How far up the text moves
+        private const float Duration = 0.5f; // How long the effect lasts
 
         private TextMeshProUGUI text;
         private RectTransform rectTransform;
@@ -30,24 +30,22 @@ namespace UI
             StartCoroutine(AnimateText());
         }
 
-        private void OnDisable()
-        {
+        private void OnDisable() => 
             rectTransform.anchoredPosition = startPos;
-        }
 
         private System.Collections.IEnumerator AnimateText()
         {
-            float elapsed = 0f;
-            Vector2 startPos = rectTransform.anchoredPosition;
-            Vector2 endPos = startPos + new Vector2(0, moveUpDistance);
+            var elapsed = 0f;
+            var anchoredPosition = rectTransform.anchoredPosition;
+            var endPos = anchoredPosition + new Vector2(0, MoveUpDistance);
 
-            while (elapsed < duration)
+            while (elapsed < Duration)
             {
                 elapsed += Time.deltaTime;
-                float t = elapsed / duration;
+                var t = elapsed / Duration;
 
                 // Move upward
-                rectTransform.anchoredPosition = Vector2.Lerp(startPos, endPos, t);
+                rectTransform.anchoredPosition = Vector2.Lerp(anchoredPosition, endPos, t);
 
                 // Fade out
                 text.color = new Color(startColor.r, startColor.g, startColor.b, 1f - t);

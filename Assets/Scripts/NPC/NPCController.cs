@@ -1,12 +1,13 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace NPC
 {
     public class NPCController : MonoBehaviour
     {
-        public enum Faction
+        private enum Faction
         {
             Ally,
             Enemy
@@ -22,34 +23,31 @@ namespace NPC
         private Transform point2;
         private Transform target;
 
-        private float moveSpeed = 0.5f;
-        private float reachThreshold = 0.1f; // how close is "arrived"
+        private const float MoveSpeed = 0.5f;
+        private const float ReachThreshold = 0.1f; // how close is "arrived"
 
         private SpriteRenderer spriteRenderer;
-
+        
         [Header("Character Settings")]
-        [SerializeField] private Faction faction = Faction.Enemy;
-        [SerializeField] private Gender gender = Gender.Male;
-        [SerializeField] private GameObject allyHitEffect;
-        [SerializeField] private GameObject enemyHitEffect;
-        [SerializeField] private GameObject soundPlayerPrefab;
-        [SerializeField] private NPCSpriteDirection spriteDirection;
+        [FormerlySerializedAs("faction")] [SerializeField] private Faction _faction = Faction.Enemy;
+        [FormerlySerializedAs("gender")] [SerializeField] private Gender _gender = Gender.Male;
+        [FormerlySerializedAs("allyHitEffect")] [SerializeField] private GameObject _allyHitEffect;
+        [FormerlySerializedAs("enemyHitEffect")] [SerializeField] private GameObject _enemyHitEffect;
+        [FormerlySerializedAs("soundPlayerPrefab")] [SerializeField] private GameObject _soundPlayerPrefab;
+        [FormerlySerializedAs("spriteDirection")] [SerializeField] private NPCSpriteDirection _spriteDirection;
 
-        private void Awake()
-        {
+        private void Awake() => 
             spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        }
 
-        private void Update()
-        {
+        private void Update() => 
             Move();
-        }
 
         public void Hit(float impactDelay)
         {
             Debug.Log($"{gameObject.name} was hit!");
 
             StartCoroutine(HitRoutine());
+            return;
 
             IEnumerator HitRoutine()
             {
@@ -91,43 +89,48 @@ namespace NPC
             transform.position = Vector3.MoveTowards(
                 transform.position,
                 target.position,
-                moveSpeed * Time.deltaTime
+                MoveSpeed * Time.deltaTime
             );
 
             // Flip sprite based on movement direction (x axis)
             var dir = target.position - transform.position;
             if (spriteRenderer)
             {
-                if (dir.x > 0.01f)
-                    spriteDirection.SetDirection(NPCSpriteDirection.Direction.Right);
-                else if (dir.x < -0.01f)
-                    spriteDirection.SetDirection(NPCSpriteDirection.Direction.Left);
+                switch (dir.x)
+                {
+                    case > 0.01f:
+                        _spriteDirection.SetDirection(NPCSpriteDirection.Direction.Right);
+                        break;
+                    case < -0.01f:
+                        _spriteDirection.SetDirection(NPCSpriteDirection.Direction.Left);
+                        break;
+                }
             }
 
             // Switch target if reached
-            if (Vector3.Distance(transform.position, target.position) < reachThreshold)
+            if (Vector3.Distance(transform.position, target.position) < ReachThreshold)
                 target = target == point1 ? point2 : point1;
         }
 
         private void PlayDeathEffects()
         {
-            var effectPrefab = faction == Faction.Ally ? allyHitEffect : enemyHitEffect;
+            var effectPrefab = _faction == Faction.Ally ? _allyHitEffect : _enemyHitEffect;
             if (effectPrefab)
                 Instantiate(effectPrefab, transform.position, Quaternion.identity);
 
-            if (!soundPlayerPrefab)
+            if (!_soundPlayerPrefab)
                 return;
 
-            var soundObj = Instantiate(soundPlayerPrefab, transform.position, Quaternion.identity);
+            var soundObj = Instantiate(_soundPlayerPrefab, transform.position, Quaternion.identity);
             var reaction = soundObj.GetComponent<NPCShotAudioReaction>();
 
             if (!reaction)
                 return;
 
-            if (faction == Faction.Ally)
-                reaction.PlayHumanDeath(gender);
+            if (_faction == Faction.Ally)
+                reaction.PlayHumanDeath(_gender);
             else
-                reaction.PlayDemonDeath(gender);
+                reaction.PlayDemonDeath(_gender);
         }
     }
 }

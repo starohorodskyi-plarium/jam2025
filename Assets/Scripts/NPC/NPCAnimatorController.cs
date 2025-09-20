@@ -1,42 +1,42 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace NPC
 {
   public class NPCAnimatorController : MonoBehaviour
   {
-    [SerializeField] private Animator animator;
-    [Space]
-    [SerializeField] private float minDelay;
-    [SerializeField] private float maxDelay;
-  
-    private string _triggerIdleKey = "StartIdle";
-    private string _idleStateKey = "IsIdle";
+    private static readonly int StartIdle = Animator.StringToHash(TriggerIdleKey);
+    private static readonly int IsIdle = Animator.StringToHash(IdleStateKey);
 
-    private void Start()
-    {
+    [FormerlySerializedAs("animator")] [SerializeField] private Animator _animator;
+    [Space]
+    [FormerlySerializedAs("minDelay")] [SerializeField] private float _minDelay;
+    [FormerlySerializedAs("maxDelay")] [SerializeField] private float _maxDelay;
+  
+    private const string TriggerIdleKey = "StartIdle";
+    private const string IdleStateKey = "IsIdle";
+
+    private void Start() => 
       StartCoroutine(TriggerIdleAfterDelay());
-    }
 
     private IEnumerator TriggerIdleAfterDelay()
     {
-      float min = Mathf.Min(minDelay, maxDelay);
-      float max = Mathf.Max(minDelay, maxDelay);
-      float delay = Mathf.Max(0f, UnityEngine.Random.Range(min, max));
+      var min = Mathf.Min(_minDelay, _maxDelay);
+      var max = Mathf.Max(_minDelay, _maxDelay);
+      var delay = Mathf.Max(0f, Random.Range(min, max));
+      
       if (delay > 0f)
         yield return new WaitForSeconds(delay);
-      animator.SetTrigger(_triggerIdleKey);
-      animator.SetBool(_idleStateKey, true);
+      
+      _animator.SetTrigger(StartIdle);
+      _animator.SetBool(IsIdle, true);
     }
 
-    public void StartMoving()
-    {
-      animator.SetBool(_idleStateKey, false);
-    }
-  
-    public void EndMoving()
-    {
-      animator.SetBool(_idleStateKey, true);
-    }
+    public void StartMoving() => 
+      _animator.SetBool(IsIdle, false);
+
+    public void EndMoving() => 
+      _animator.SetBool(IsIdle, true);
   }
 }

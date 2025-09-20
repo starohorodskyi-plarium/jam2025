@@ -1,24 +1,25 @@
 using Core;
 using UnityEngine;
 using DG.Tweening;
-using Platform; // added for smooth reset
+using Platform;
+using UnityEngine.Serialization; // added for smooth reset
 
 namespace MonoControllers.Camera
 {
     public class CameraController : MonoBehaviour
     {
         [Header("Settings")]
-        public float maxXAngle = 5f;       // max up/down tilt
-        public float maxYAngle = 5f;       // max left/right tilt
-        public float sensitivityX = 2f;    // horizontal sensitivity
-        public float sensitivityY = 2f;    // vertical sensitivity
-        public float smoothTime = 0.1f;    // smoothing time
+        [FormerlySerializedAs("maxXAngle")] public float MaxXAngle = 5f;       // max up/down tilt
+        [FormerlySerializedAs("maxYAngle")] public float MaxYAngle = 5f;       // max left/right tilt
+        [FormerlySerializedAs("sensitivityX")] public float SensitivityX = 2f;    // horizontal sensitivity
+        [FormerlySerializedAs("sensitivityY")] public float SensitivityY = 2f;    // vertical sensitivity
+        [FormerlySerializedAs("smoothTime")] public float SmoothTime = 0.1f;    // smoothing time
         
         [Header("Limits")]
-        public float minPitch = -10f; // looking down
-        public float maxPitch = 10f;  // looking up
-        public float minYaw = -10f;   // left
-        public float maxYaw = 10f;  
+        [FormerlySerializedAs("minPitch")] public float MinPitch = -10f; // looking down
+        [FormerlySerializedAs("maxPitch")] public float MaxPitch = 10f;  // looking up
+        [FormerlySerializedAs("minYaw")] public float MinYaw = -10f;   // left
+        [FormerlySerializedAs("maxYaw")] public float MaxYaw = 10f;  
 
         private Vector2 currentRotation;
         private Vector2 rotationVelocity;
@@ -29,31 +30,30 @@ namespace MonoControllers.Camera
         private Tween _resetTween; 
         private bool _isResetting;
 
-        void Update()
+        private void Update()
         {
             if (GameManager.Instance.CurrentState != GameManager.GameState.Playing)
                 return;
+            
             if (_isResetting) // while tweening back to zero, ignore input logic
-            {
                 return;
-            }
             
             // Normalized mouse position (-1..1)
-            float mouseX = (GamePointer.Pointer.x / Screen.width - 0.5f) * 2f;
-            float mouseY = (GamePointer.Pointer.y / Screen.height - 0.5f) * 2f;
+            var mouseX = (GamePointer.Pointer.x / Screen.width - 0.5f) * 2f;
+            var mouseY = (GamePointer.Pointer.y / Screen.height - 0.5f) * 2f;
 
             // Target rotation scaled by sensitivity and clamped by max angles
-            float targetX = -mouseY * maxXAngle * sensitivityY;
-            float targetY =  mouseX * maxYAngle * sensitivityX;
+            var targetX = -mouseY * MaxXAngle * SensitivityY;
+            var targetY =  mouseX * MaxYAngle * SensitivityX;
 
-            Vector2 targetRotation = new Vector2(targetX, targetY);
+            var targetRotation = new Vector2(targetX, targetY);
 
             // Smooth towards target
-            currentRotation = Vector2.SmoothDamp(currentRotation, targetRotation, ref rotationVelocity, smoothTime);
+            currentRotation = Vector2.SmoothDamp(currentRotation, targetRotation, ref rotationVelocity, SmoothTime);
 
             // Clamp rotation to limits
-            currentRotation.x = Mathf.Clamp(currentRotation.x, minPitch, maxPitch);
-            currentRotation.y = Mathf.Clamp(currentRotation.y, minYaw, maxYaw);
+            currentRotation.x = Mathf.Clamp(currentRotation.x, MinPitch, MaxPitch);
+            currentRotation.y = Mathf.Clamp(currentRotation.y, MinYaw, MaxYaw);
 
             // Apply rotation
             transform.localRotation = Quaternion.Euler(currentRotation.x, currentRotation.y, 0f);
@@ -61,10 +61,9 @@ namespace MonoControllers.Camera
 
         private void OnDisable()
         {
-            if (_resetTween != null && _resetTween.IsActive())
-            {
+            if (_resetTween != null && _resetTween.IsActive()) 
                 _resetTween.Kill();
-            }
+            
             _isResetting = false;
         }
 
@@ -73,7 +72,8 @@ namespace MonoControllers.Camera
             _resetTween?.Kill();
             _isResetting = true;
             rotationVelocity = Vector2.zero; // stop smoothing momentum
-            float duration = customDuration ?? _resetDuration;
+            var duration = customDuration ?? _resetDuration;
+            
             _resetTween = DOTween.To(() => currentRotation, v =>
             {
                 currentRotation = v;

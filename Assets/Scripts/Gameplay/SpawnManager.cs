@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using NPC;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Gameplay
@@ -8,23 +9,23 @@ namespace Gameplay
     public class SpawnManager : MonoBehaviour
     {
         [Header("Prefab Collections")]
-        public GameObject[] goodNpcPrefabs;
-        public GameObject[] badNpcPrefabs;
+        [FormerlySerializedAs("goodNpcPrefabs")] public GameObject[] GoodNpcPrefabs;
+        [FormerlySerializedAs("badNpcPrefabs")] public GameObject[] BadNpcPrefabs;
     
-        public SnailController[] snails;
+        [FormerlySerializedAs("snails")] public SnailController[] Snails;
 
         [Header("Spawn Settings")]
-        public Transform[] spawnPoints;
+        [FormerlySerializedAs("spawnPoints")] public Transform[] SpawnPoints;
 
         [Tooltip("How many baddies should spawn on this level.")]
-        public int baddiesPerLevel = 2;
+        [FormerlySerializedAs("baddiesPerLevel")] public int BaddiesPerLevel = 2;
 
         public int EnemiesDefeatCount
         {
             get
             {
-                var count = baddiesPerLevel;
-                foreach (var point in spawnPoints)
+                var count = BaddiesPerLevel;
+                foreach (var point in SpawnPoints)
                 {
                     for (var i = 0; i < point.childCount; i++)
                     {
@@ -40,19 +41,19 @@ namespace Gameplay
     
         public void SpawnWave()
         {
-            foreach (var snailController in snails)
+            foreach (var snailController in Snails)
                 snailController.Activate();
         
-            if (spawnPoints == null || spawnPoints.Length == 0)
+            if (SpawnPoints == null || SpawnPoints.Length == 0)
             {
                 Debug.LogWarning("No spawn points assigned!");
                 return;
             }
 
             // Clean spawn points
-            foreach (var point in spawnPoints)
+            foreach (var point in SpawnPoints)
             {
-                for (int i = point.childCount - 1; i >= 0; i--)
+                for (var i = point.childCount - 1; i >= 0; i--)
                 {
                     var child = point.GetChild(i);
                     if (child.name != "p1" && child.name != "p2")
@@ -61,19 +62,23 @@ namespace Gameplay
             }
 
             // Clamp baddies count
-            int numBaddies = Mathf.Clamp(baddiesPerLevel, 0, spawnPoints.Length);
-            int numGoodies = spawnPoints.Length - numBaddies;
+            var numBaddies = Mathf.Clamp(BaddiesPerLevel, 0, SpawnPoints.Length);
+            var numGoodies = SpawnPoints.Length - numBaddies;
 
             // Make randomized spawn order
-            List<bool> spawnOrder = new List<bool>();
-            for (int i = 0; i < numBaddies; i++) spawnOrder.Add(true);
-            for (int i = 0; i < numGoodies; i++) spawnOrder.Add(false);
+            var spawnOrder = new List<bool>();
+            for (var i = 0; i < numBaddies; i++) 
+                spawnOrder.Add(true);
+            
+            for (var i = 0; i < numGoodies; i++) 
+                spawnOrder.Add(false);
+            
             Shuffle(spawnOrder);
 
             // Spawn NPCs
-            for (int i = 0; i < spawnPoints.Length; i++)
+            for (var i = 0; i < SpawnPoints.Length; i++)
             {
-                var point = spawnPoints[i];
+                var point = SpawnPoints[i];
                 var p1 = point.Find("p1");
                 var p2 = point.Find("p2");
 
@@ -84,9 +89,9 @@ namespace Gameplay
                 }
 
                 // Pick random prefab from correct pool
-                GameObject prefab = spawnOrder[i]
-                    ? badNpcPrefabs[Random.Range(0, badNpcPrefabs.Length)]
-                    : goodNpcPrefabs[Random.Range(0, goodNpcPrefabs.Length)];
+                var prefab = spawnOrder[i]
+                    ? BadNpcPrefabs[Random.Range(0, BadNpcPrefabs.Length)]
+                    : GoodNpcPrefabs[Random.Range(0, GoodNpcPrefabs.Length)];
 
                 // Spawn at p1
                 var instance = Instantiate(prefab, prefab.transform.position, prefab.transform.rotation, point);
@@ -100,12 +105,12 @@ namespace Gameplay
 
         public void DestroyAll()
         {
-            foreach (var snailController in snails)
+            foreach (var snailController in Snails)
                 snailController.Deactivate();
         
-            foreach (var point in spawnPoints)
+            foreach (var point in SpawnPoints)
             {
-                for (int i = point.childCount - 1; i >= 0; i--)
+                for (var i = point.childCount - 1; i >= 0; i--)
                 {
                     var child = point.GetChild(i);
                     if (child.name != "p1" && child.name != "p2")
@@ -116,24 +121,25 @@ namespace Gameplay
 
         public bool AllEnemiesDefeated()
         {
-            foreach (var point in spawnPoints)
+            foreach (var point in SpawnPoints)
             {
-                for (int i = 0; i < point.childCount; i++)
+                for (var i = 0; i < point.childCount; i++)
                 {
                     var child = point.GetChild(i).gameObject;
                     if (child.CompareTag("Enemy"))
                         return false;
                 }
             }
+            
             return true;
         }
 
         // Fisher–Yates shuffle
-        private void Shuffle<T>(List<T> list)
+        private static void Shuffle<T>(List<T> list)
         {
-            for (int i = 0; i < list.Count; i++)
+            for (var i = 0; i < list.Count; i++)
             {
-                int rand = Random.Range(i, list.Count);
+                var rand = Random.Range(i, list.Count);
                 (list[i], list[rand]) = (list[rand], list[i]);
             }
         }

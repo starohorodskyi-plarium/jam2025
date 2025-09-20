@@ -7,14 +7,14 @@ namespace Platform
     {
         public static Vector2 Pointer;
     
-        private static Vector2 Center;
+        private static Vector2 _center;
 
         private void Awake()
         {
-            Center = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
+            _center = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
             // On mobile, initialize pointer at screen center at start
 #if UNITY_IOS || UNITY_ANDROID
-        Pointer = Center;
+        Pointer = _center;
 #else
             Pointer = MousePosition();
 #endif
@@ -31,9 +31,8 @@ namespace Platform
 
         private void Update()
         {
-            if (TouchController.UsingGyroOffset) {
-                Pointer = Center + TouchController.PointerPosition;
-            }
+            if (TouchController.UsingGyroOffset) 
+                Pointer = _center + TouchController.PointerPosition;
        
 #if UNITY_IOS || UNITY_ANDROID
 

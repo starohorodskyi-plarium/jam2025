@@ -18,8 +18,6 @@ namespace MonoControllers
         private DateTime _destroyTime;
         private ProjectileData _projectileData;
         
-        public float Speed => _speed;
-        
         public void Initialize(ProjectileData projectileData) => 
             _projectileData = projectileData;
         
@@ -28,7 +26,7 @@ namespace MonoControllers
         
         private void LateUpdate()
         {
-            transform.position += transform.forward * _speed * Time.deltaTime;
+            transform.position += transform.forward * (_speed * Time.deltaTime);
 
             var shouldDestroy = DateTime.Now >= _destroyTime ||
                                 Vector3.Distance(transform.position, _projectileData.EndPosition) <= _distanceToDestroy;  

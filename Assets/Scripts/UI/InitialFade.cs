@@ -1,62 +1,65 @@
 using Core;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI
 {
     public class InitialFade : MonoBehaviour
     {
-        [SerializeField] private Transform initialFadeUI;
-        [SerializeField] private Transform initialFadeUICenter;
-        [SerializeField] private Transform initialFadeUIInnedDarkness;
-        [SerializeField] private float animationDuration = 1.5f;
-        [SerializeField] private float scaleUpFactor = 1.1f;
+        [FormerlySerializedAs("initialFadeUI")] [SerializeField] private Transform _initialFadeUI;
+        [FormerlySerializedAs("initialFadeUICenter")] [SerializeField] private Transform _initialFadeUICenter;
+        [FormerlySerializedAs("initialFadeUIInnedDarkness")] [SerializeField] private Transform _initialFadeUIInnedDarkness;
+        [FormerlySerializedAs("animationDuration")] [SerializeField] private float _animationDuration = 1.5f;
+        [FormerlySerializedAs("scaleUpFactor")] [SerializeField] private float _scaleUpFactor = 1.1f;
 
         private void Awake()
         {
             if (GameManager.Attempt	> 0)   
-                initialFadeUI.gameObject.SetActive(false);
+                _initialFadeUI.gameObject.SetActive(false);
         }
 
         private void Start()
         {
-            if (initialFadeUI.gameObject.activeSelf)
+            if (_initialFadeUI.gameObject.activeSelf)
                 ShowAnimation();
         }
 
         private void ShowAnimation()
         {
-            if (initialFadeUI == null)
+            if (_initialFadeUI == null)
                 return;
 
-            float fadeDuration = Mathf.Max(0f, animationDuration * 0.1f);
+            var fadeDuration = Mathf.Max(0f, _animationDuration * 0.1f);
 
             // Ensure the root is active
-            initialFadeUI.gameObject.SetActive(true);
+            _initialFadeUI.gameObject.SetActive(true);
 
-            Sequence sequence = DOTween.Sequence();
+            var sequence = DOTween.Sequence();
 
             // Scale up main UI over the full duration
-            Vector3 startScale = initialFadeUI.localScale;
-            Vector3 targetScale = startScale * scaleUpFactor;
-            Tween scaleTween = initialFadeUI.DOScale(targetScale, animationDuration);
+            var startScale = _initialFadeUI.localScale;
+            var targetScale = startScale * _scaleUpFactor;
+            Tween scaleTween = _initialFadeUI.DOScale(targetScale, _animationDuration);
             sequence.Join(scaleTween);
 
             // Fade out inner darkness in 10% of total duration, in parallel
-            if (initialFadeUIInnedDarkness != null)
+            if (_initialFadeUIInnedDarkness != null)
             {
-                Tween fadeTween = CreateFadeOutTween(initialFadeUIInnedDarkness, fadeDuration);
+                var fadeTween = CreateFadeOutTween(_initialFadeUIInnedDarkness, fadeDuration);
                 if (fadeTween != null)
                     sequence.Join(fadeTween);
             }
 
             // Fade out center over the last 20% of the total duration
-            if (initialFadeUICenter != null)
+            if (_initialFadeUICenter != null)
             {
-                float centerFadeStart = Mathf.Max(0f, animationDuration * 0.8f);
-                float centerFadeDuration = Mathf.Max(0f, animationDuration * 0.2f);
-                Tween centerFadeTween = CreateFadeOutTween(initialFadeUICenter, centerFadeDuration);
+                var centerFadeStart = Mathf.Max(0f, _animationDuration * 0.8f);
+                var centerFadeDuration = Mathf.Max(0f, _animationDuration * 0.2f);
+                
+                var centerFadeTween = CreateFadeOutTween(_initialFadeUICenter, centerFadeDuration);
+                
                 if (centerFadeTween != null)
                     sequence.Insert(centerFadeStart, centerFadeTween);
             }
@@ -64,37 +67,37 @@ namespace UI
             // Disable the root object after the whole sequence
             sequence.OnComplete(() =>
             {
-                if (initialFadeUI != null)
-                    initialFadeUI.gameObject.SetActive(false);
+                if (_initialFadeUI != null)
+                    _initialFadeUI.gameObject.SetActive(false);
             });
         }
 
-        private Tween CreateFadeOutTween(Transform target, float duration)
+        private static Tween CreateFadeOutTween(Transform target, float duration)
         {
             if (target == null)
                 return null;
 
             // Prefer CanvasGroup if present
-            CanvasGroup canvasGroup = target.GetComponent<CanvasGroup>();
+            var canvasGroup = target.GetComponent<CanvasGroup>();
             if (canvasGroup != null)
                 return canvasGroup.DOFade(0f, duration);
 
             // Try UI Graphic (e.g., Image, Text)
-            Graphic graphic = target.GetComponent<Graphic>();
+            var graphic = target.GetComponent<Graphic>();
             if (graphic != null)
                 return graphic.DOFade(0f, duration);
 
             // Try SpriteRenderer
-            SpriteRenderer spriteRenderer = target.GetComponent<SpriteRenderer>();
+            var spriteRenderer = target.GetComponent<SpriteRenderer>();
             if (spriteRenderer != null)
                 return spriteRenderer.DOFade(0f, duration);
 
             // Try in children as a fallback
-            Graphic childGraphic = target.GetComponentInChildren<Graphic>(true);
+            var childGraphic = target.GetComponentInChildren<Graphic>(true);
             if (childGraphic != null)
                 return childGraphic.DOFade(0f, duration);
 
-            SpriteRenderer childSprite = target.GetComponentInChildren<SpriteRenderer>(true);
+            var childSprite = target.GetComponentInChildren<SpriteRenderer>(true);
             if (childSprite != null)
                 return childSprite.DOFade(0f, duration);
 

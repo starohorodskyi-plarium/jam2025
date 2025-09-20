@@ -2,6 +2,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Serialization;
 
 namespace Wizard
 {
@@ -23,7 +24,7 @@ namespace Wizard
         [SerializeField] private WizardAudio _voice;
         [SerializeField] private Animator _characterAnimator;
 
-        [SerializeField] private float letterInterval = 0.03f;
+        [FormerlySerializedAs("letterInterval")] [SerializeField] private float _letterInterval = 0.03f;
         
         private Sequence _sequence;
         private Coroutine _showRoutine;
@@ -123,12 +124,11 @@ namespace Wizard
                 return;
             
             _sequence?.Kill();
-
-            var oldText = text.text ?? string.Empty;
+            
             var newText = message ?? string.Empty;
             var finalText = RemoveSquareBrackets(newText);
 
-            if (Mathf.Approximately(letterInterval, 0f))
+            if (Mathf.Approximately(_letterInterval, 0f))
             {
                 text.text = finalText;
                 return;
@@ -136,96 +136,86 @@ namespace Wizard
 
             var seq = DOTween.Sequence();
 
-            int openIndex = newText.IndexOf('[');
-            int closeIndex = openIndex >= 0 ? newText.IndexOf(']', openIndex + 1) : -1;
-            bool hasBracketChunk = openIndex >= 0 && closeIndex > openIndex;
+            var openIndex = newText.IndexOf('[');
+            var closeIndex = openIndex >= 0 ? newText.IndexOf(']', openIndex + 1) : -1;
+            var hasBracketChunk = openIndex >= 0 && closeIndex > openIndex;
 
             if (!hasBracketChunk)
             {
                 // Default behavior: type full text letter-by-letter (using finalText)
-                int i = 1;
+                var i = 1;
                 while (i <= finalText.Length)
                 {
-                    int targetIndex = i;
+                    var targetIndex = i;
                     if (i <= finalText.Length - 1)
                     {
-                        int currentCharIndex = i - 1;
-                        int nextCharIndex = i;
-                        if (finalText[currentCharIndex] == '\\' && finalText[nextCharIndex] == 'n')
-                        {
+                        var currentCharIndex = i - 1;
+
+                        if (finalText[currentCharIndex] == '\\' && finalText[i] == 'n') 
                             targetIndex = i + 1;
-                        }
                     }
 
-                    int index = targetIndex; // capture
+                    var index = targetIndex; // capture
                     seq.AppendCallback(() => { text.text = finalText.Substring(0, index); });
-                    if (index < finalText.Length)
-                    {
-                        seq.AppendInterval(letterInterval);
-                    }
+                    
+                    if (index < finalText.Length) 
+                        seq.AppendInterval(_letterInterval);
 
                     i = index + 1;
                 }
             }
             else
             {
-                string prefix = newText.Substring(0, openIndex);
-                string inner = newText.Substring(openIndex + 1, closeIndex - openIndex - 1);
-                string suffix = newText.Substring(closeIndex + 1);
+                var prefix = newText[..openIndex];
+                var inner = newText.Substring(openIndex + 1, closeIndex - openIndex - 1);
+                var suffix = newText[(closeIndex + 1)..];
 
                 // Type prefix letter-by-letter
-                int i = 1;
+                var i = 1;
                 while (i <= prefix.Length)
                 {
-                    int targetIndex = i;
+                    var targetIndex = i;
                     if (i <= prefix.Length - 1)
                     {
-                        int currentCharIndex = i - 1;
-                        int nextCharIndex = i;
-                        if (prefix[currentCharIndex] == '\\' && prefix[nextCharIndex] == 'n')
-                        {
+                        var currentCharIndex = i - 1;
+                        
+                        if (prefix[currentCharIndex] == '\\' && prefix[i] == 'n') 
                             targetIndex = i + 1;
-                        }
                     }
 
-                    int index = targetIndex; // capture
-                    seq.AppendCallback(() => { text.text = prefix.Substring(0, index); });
-                    if (index < prefix.Length)
-                    {
-                        seq.AppendInterval(letterInterval);
-                    }
+                    var index = targetIndex; // capture
+                    seq.AppendCallback(() => { text.text = prefix[..index]; });
+                    
+                    if (index < prefix.Length) 
+                        seq.AppendInterval(_letterInterval);
 
                     i = index + 1;
                 }
 
                 // Show entire bracketed content at once (without brackets)
                 seq.AppendCallback(() => { text.text = prefix + inner; });
-                if (suffix.Length > 0)
-                {
-                    seq.AppendInterval(letterInterval);
-                }
+                
+                if (suffix.Length > 0) 
+                    seq.AppendInterval(_letterInterval);
 
                 // Continue typing the suffix letter-by-letter
                 i = 1;
                 while (i <= suffix.Length)
                 {
-                    int targetIndex = i;
+                    var targetIndex = i;
                     if (i <= suffix.Length - 1)
                     {
-                        int currentCharIndex = i - 1;
-                        int nextCharIndex = i;
-                        if (suffix[currentCharIndex] == '\\' && suffix[nextCharIndex] == 'n')
-                        {
+                        var currentCharIndex = i - 1;
+                        
+                        if (suffix[currentCharIndex] == '\\' && suffix[i] == 'n') 
                             targetIndex = i + 1;
-                        }
                     }
 
-                    int index = targetIndex; // capture
-                    seq.AppendCallback(() => { text.text = prefix + inner + suffix.Substring(0, index); });
-                    if (index < suffix.Length)
-                    {
-                        seq.AppendInterval(letterInterval);
-                    }
+                    var index = targetIndex; // capture
+                    seq.AppendCallback(() => { text.text = prefix + inner + suffix[..index]; });
+                    
+                    if (index < suffix.Length) 
+                        seq.AppendInterval(_letterInterval);
 
                     i = index + 1;
                 }
@@ -243,24 +233,19 @@ namespace Wizard
         private static string RemoveSquareBrackets(string value)
         {
             if (string.IsNullOrEmpty(value))
-            {
                 return value;
-            }
 
-            int openIndex = value.IndexOf('[');
+            var openIndex = value.IndexOf('[');
             if (openIndex < 0)
-            {
                 return value;
-            }
 
-            int closeIndex = value.IndexOf(']', openIndex + 1);
+            var closeIndex = value.IndexOf(']', openIndex + 1);
             if (closeIndex < 0)
-            {
                 return value;
-            }
 
-            string withoutClose = value.Remove(closeIndex, 1);
-            string withoutBoth = withoutClose.Remove(openIndex, 1);
+            var withoutClose = value.Remove(closeIndex, 1);
+            var withoutBoth = withoutClose.Remove(openIndex, 1);
+            
             return withoutBoth;
         }
 
@@ -273,7 +258,6 @@ namespace Wizard
             _voice.Stop();
             CancelVoiceDelay();
             _characterAnimator.SetBool(IsTalking, false);
-   
         }
     }
 }

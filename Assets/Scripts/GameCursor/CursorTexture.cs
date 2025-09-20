@@ -1,39 +1,38 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GameCursor
 {
     public class CursorTexture : MonoBehaviour
     {
-        [SerializeField] private Texture2D cursorTexture;
-        [SerializeField] private Texture2D cursorZoomTexture;
-        [SerializeField] private Vector2 hotspot = Vector2.zero;
-        [SerializeField] private CursorMode cursorMode = CursorMode.Auto;
+        [FormerlySerializedAs("cursorTexture")] [SerializeField] private Texture2D _cursorTexture;
+        [FormerlySerializedAs("cursorZoomTexture")] [SerializeField] private Texture2D _cursorZoomTexture;
+        [FormerlySerializedAs("hotspot")] [SerializeField] private Vector2 _hotspot = Vector2.zero;
+        [FormerlySerializedAs("cursorMode")] [SerializeField] private CursorMode _cursorMode = CursorMode.Auto;
 
-        public void SetDefaultCursor()
-        {
+        public void SetDefaultCursor() => 
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-        }
 
         public void SetCustomCursor()
         {
-            if (!cursorTexture)
+            if (!_cursorTexture)
             {
                 Debug.LogWarning("CursorTexture: No cursor texture assigned in the Inspector.");
                 return;
             }
 
-            Cursor.SetCursor(cursorTexture, hotspot, cursorMode);
+            Cursor.SetCursor(_cursorTexture, _hotspot, _cursorMode);
         }
         
         public void SetCustomZoomCursor()
         {
-            if (!cursorZoomTexture)
+            if (!_cursorZoomTexture)
             {
                 Debug.LogWarning("CursorTexture: No cursor texture assigned in the Inspector.");
                 return;
             }
 
-            Cursor.SetCursor(cursorZoomTexture, hotspot, cursorMode);
+            Cursor.SetCursor(_cursorZoomTexture, _hotspot, _cursorMode);
         }
     }
 }

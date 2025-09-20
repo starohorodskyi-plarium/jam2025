@@ -2,73 +2,67 @@ using System;
 using TMPro;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Serialization;
 
 namespace UI.Goal
 {
     public class GoalMessage : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI goalMessageText;
-        [SerializeField] private float letterInterval = 0.03f;
+        [FormerlySerializedAs("goalMessageText")] [SerializeField] private TextMeshProUGUI _goalMessageText;
+        [FormerlySerializedAs("letterInterval")] [SerializeField] private float _letterInterval = 0.03f;
         
         public static Action<string> UpdateGoalMessage;
 
         private Sequence _sequence;
 
-        private void OnEnable()
-        {
+        private void OnEnable() => 
             UpdateGoalMessage += UpdateGoalMessageText;
-        }
 
         private void UpdateGoalMessageText(string message)
         {
-            if (goalMessageText == null)
-            {
+            if (_goalMessageText == null)
                 return;
-            }
 
             _sequence?.Kill();
 
-            string oldText = goalMessageText.text ?? string.Empty;
-            string newText = message ?? string.Empty;
+            var oldText = _goalMessageText.text ?? string.Empty;
+            var newText = message ?? string.Empty;
 
-            if (Mathf.Approximately(letterInterval, 0f))
+            if (Mathf.Approximately(_letterInterval, 0f))
             {
-                goalMessageText.text = newText;
+                _goalMessageText.text = newText;
                 return;
             }
 
             var seq = DOTween.Sequence();
 
             // Remove old text letter by letter
-            for (int i = oldText.Length; i >= 0; i--)
+            for (var i = oldText.Length; i >= 0; i--)
             {
-                int index = i; // capture
+                var index = i; // capture
                 seq.AppendCallback(() =>
                 {
-                    goalMessageText.text = oldText.Substring(0, index);
+                    _goalMessageText.text = oldText[..index];
                 });
-                if (i > 0)
-                {
-                    seq.AppendInterval(letterInterval);
-                }
+                
+                if (i > 0) 
+                    seq.AppendInterval(_letterInterval);
             }
 
             // Add new text letter by letter
-            for (int i = 1; i <= newText.Length; i++)
+            for (var i = 1; i <= newText.Length; i++)
             {
-                int index = i; // capture
+                var index = i; // capture
                 seq.AppendCallback(() =>
                 {
-                    goalMessageText.text = newText.Substring(0, index);
+                    _goalMessageText.text = newText[..index];
                 });
-                if (i < newText.Length)
-                {
-                    seq.AppendInterval(letterInterval);
-                }
+                if (i < newText.Length) 
+                    seq.AppendInterval(_letterInterval);
             }
 
             // Ensure final state is the full new text
-            seq.OnComplete(() => goalMessageText.text = newText);
+            seq.OnComplete(() => _goalMessageText.text = newText);
 
             _sequence = seq;
         }

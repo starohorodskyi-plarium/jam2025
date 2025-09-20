@@ -1,14 +1,13 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace UI.Goal
 {
     public class GoalMessageCallback : MonoBehaviour
     {
-        [SerializeField] private string goalMessage;
+        [FormerlySerializedAs("goalMessage")] [SerializeField] private string _goalMessage;
 
-        public void PushMessage()
-        {
-            GoalMessage.UpdateGoalMessage?.Invoke(goalMessage); 
-        }
+        public void PushMessage() => 
+            GoalMessage.UpdateGoalMessage?.Invoke(_goalMessage);
     }
 }

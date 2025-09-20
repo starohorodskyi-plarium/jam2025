@@ -15,7 +15,7 @@ namespace Platform
         public static Vector2 PointerPosition { get; private set; }
         public static bool UsingGyroOffset { get; private set; }
 
-        void Start()
+        private void Start()
         {
 #if UNITY_IOS || UNITY_ANDROID
         if (SystemInfo.supportsGyroscope)

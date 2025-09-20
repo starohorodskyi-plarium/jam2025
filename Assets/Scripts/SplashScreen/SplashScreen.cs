@@ -1,61 +1,62 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace SplashScreen
 {
     public class SplashScreen : MonoBehaviour
     {
-	    [SerializeField] private Transform parentPlatformScaler;
-	    [SerializeField] private Vector3 desktopScale;
-	    [SerializeField] private Vector3 mobileScale;
+	    [FormerlySerializedAs("parentPlatformScaler")] [SerializeField] private Transform _parentPlatformScaler;
+	    [FormerlySerializedAs("desktopScale")] [SerializeField] private Vector3 _desktopScale;
+	    [FormerlySerializedAs("mobileScale")] [SerializeField] private Vector3 _mobileScale;
 	    [Space]
 	    [Header("Audio")]
-	    [SerializeField] private AudioSource initialSound;
-	    [SerializeField] private AudioSource electroSound;
-	    [SerializeField] private AudioSource intenseElectroSound;
-	    [SerializeField] private AudioSource gearsSound;
-	    [SerializeField] private AudioSource activation;
+	    [FormerlySerializedAs("initialSound")] [SerializeField] private AudioSource _initialSound;
+	    [FormerlySerializedAs("electroSound")] [SerializeField] private AudioSource _electroSound;
+	    [FormerlySerializedAs("intenseElectroSound")] [SerializeField] private AudioSource _intenseElectroSound;
+	    [FormerlySerializedAs("gearsSound")] [SerializeField] private AudioSource _gearsSound;
+	    [FormerlySerializedAs("activation")] [SerializeField] private AudioSource _activation;
 	    [Space]
-	    [SerializeField] private ParticleSystem activationParticles;
+	    [FormerlySerializedAs("activationParticles")] [SerializeField] private ParticleSystem _activationParticles;
         [Space]
-        [SerializeField] private string startMenuSceneName;
-        [SerializeField] private UnityEvent<string> sceneLoader;
+        [FormerlySerializedAs("startMenuSceneName")] [SerializeField] private string _startMenuSceneName;
+        [FormerlySerializedAs("sceneLoader")] [SerializeField] private UnityEvent<string> _sceneLoader;
 
         private void Awake()
         {
 	#if UNITY_IOS || UNITY_ANDROID
-	        parentPlatformScaler.localScale = mobileScale;
+	        _parentPlatformScaler.localScale = _mobileScale;
 	#else
-			parentPlatformScaler.localScale = desktopScale;
+			_parentPlatformScaler.localScale = _desktopScale;
 	#endif
         }
 
 		public void LoadGameScene() =>
-			sceneLoader?.Invoke(startMenuSceneName);
+			_sceneLoader?.Invoke(_startMenuSceneName);
 
 		public void ActivateLogo() =>
-			activationParticles.Play();
+			_activationParticles.Play();
 		
 		public void PlayActivationSound() =>
-			activation.Play();
+			_activation.Play();
 		
 		public void PlayInitialSound() =>
-			initialSound.Play();
+			_initialSound.Play();
 		
 		public void PlayElectroSound() =>
-			electroSound.Play();
+			_electroSound.Play();
 		
 		public void StopElectroSound() =>
-			electroSound.Stop();
+			_electroSound.Stop();
 		
 		public void PlayIntenseElectroSound() =>
-			intenseElectroSound.Play();
+			_intenseElectroSound.Play();
 		
 		public void StopIntenseElectroSound() =>
-			intenseElectroSound.Stop();
+			_intenseElectroSound.Stop();
 			
 		public void PlayGearSound() =>
-			gearsSound.Play();
+			_gearsSound.Play();
     }
 }
 
