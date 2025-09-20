@@ -13,11 +13,11 @@ namespace MonoControllers
         public float normalFOV = 60f;
         public float duration = 0.5f;
 
-        public event Action<bool> OnZoomChanged; 
+        public event Action<bool?> OnZoomChanged; 
         
         private bool isZoomed;
 
-        private Camera _camera;
+        private UnityEngine.Camera _camera;
         
         public void ResetZoom()
         {
@@ -25,11 +25,11 @@ namespace MonoControllers
             
             _camera.DOFieldOfView(normalFOV, duration).SetEase(Ease.OutQuad);
             
-            OnZoomChanged?.Invoke(false);
+            OnZoomChanged?.Invoke(null);
         }
 
         private void Awake() => 
-            _camera = Camera.main;
+            _camera = UnityEngine.Camera.main;
 
         private void Update()
         {
@@ -55,12 +55,14 @@ namespace MonoControllers
         private void OnDisable() =>
             OnZoomChanged -= ChangeCursor;
         
-        private void ChangeCursor(bool zoomed)
+        private void ChangeCursor(bool? zoomed)
         {
             if (!cursor)
                 return;
-
-            if (zoomed)
+            
+            if (!zoomed.HasValue)
+                cursor.SetDefaultCursor();
+            else if (zoomed.Value)
                 cursor.SetCustomZoomCursor();
             else
                 cursor.SetCustomCursor();

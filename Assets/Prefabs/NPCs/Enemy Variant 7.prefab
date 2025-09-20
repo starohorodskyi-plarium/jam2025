@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 6871556023793173113, guid: e2768bcf58da54bed9d7611c9d85ea58, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 20a30c6ada48e476cb07b2f18b5d3f11, type: 2}
     - target: {fileID: 7136130725805732604, guid: e2768bcf58da54bed9d7611c9d85ea58, type: 3}
       propertyPath: m_Name
       value: Enemy Variant 7

@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4be2b9acd91d4b82b9f4fa53a7bf6f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultCursorTexture: {fileID: 2800000, guid: d031e91489b4b45db937362a395eef50, type: 3}
   cursorTexture: {fileID: 2800000, guid: 17fc640f26bf84217b733220382c2d5f, type: 3}
   cursorZoomTexture: {fileID: 2800000, guid: 200e8b2b310ba5f429e72c1eb7e1c656, type: 3}
   hotspot: {x: 16, y: 16}

@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 5895493860222282225, guid: 7f65480ba9889e1499948c748b423c17, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 20a30c6ada48e476cb07b2f18b5d3f11, type: 2}
     - target: {fileID: 7891725689576905076, guid: 7f65480ba9889e1499948c748b423c17, type: 3}
       propertyPath: m_Name
       value: Friend Variant 7

@@ -32,6 +32,7 @@ public class NPCController : MonoBehaviour
     [SerializeField] private GameObject allyHitEffect;
     [SerializeField] private GameObject enemyHitEffect;
     [SerializeField] private GameObject soundPlayerPrefab;
+    [SerializeField] private NPCSpriteDirection spriteDirection;
 
     private void Awake()
     {
@@ -63,7 +64,7 @@ public class NPCController : MonoBehaviour
         point2 = p2;
 
         // pick 0 or 1
-        int random = Random.Range(0, 2);
+        var random = Random.Range(0, 2);
 
         if (random == 0)
         {
@@ -76,13 +77,13 @@ public class NPCController : MonoBehaviour
             target = point1;
         }
 
-        if (spriteRenderer == null)
+        if (!spriteRenderer)
             spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Move()
     {
-        if (point1 == null || point2 == null || target == null)
+        if (!point1 || !point2 || !target)
             return;
 
         // Move
@@ -93,20 +94,18 @@ public class NPCController : MonoBehaviour
         );
 
         // Flip sprite based on movement direction (x axis)
-        Vector3 dir = target.position - transform.position;
-        if (spriteRenderer != null)
+        var dir = target.position - transform.position;
+        if (spriteRenderer)
         {
             if (dir.x > 0.01f)
-                spriteRenderer.flipX = false; // facing right
+                spriteDirection.SetDirection(NPCSpriteDirection.Direction.Right);
             else if (dir.x < -0.01f)
-                spriteRenderer.flipX = true;  // facing left
+                spriteDirection.SetDirection(NPCSpriteDirection.Direction.Left);
         }
 
         // Switch target if reached
         if (Vector3.Distance(transform.position, target.position) < reachThreshold)
-        {
             target = target == point1 ? point2 : point1;
-        }
     }
     
     private void PlayDeathEffects()

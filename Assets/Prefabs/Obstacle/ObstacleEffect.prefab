@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1072662394340662671}
-  clip: {fileID: 8300000, guid: adb85bd3fc8e048db8bf5eed0c150061, type: 3}
+  clip: {fileID: 8300000, guid: 4f704e0e7efc84520baad8755981445f, type: 3}
   pitchMin: 0.85
   pitchMax: 1.15
   destroyAfterSeconds: 2

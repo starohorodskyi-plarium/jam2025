@@ -64,7 +64,7 @@ namespace MonoControllers
         
         private void HandleTargetHit(GameObject hitObject, float projectileSpeed, Vector3 collisionPoint)
         {
-            var distance = Vector3.Distance(_fireOriginPoint.position, hitObject.transform.position);
+            var distance = Vector3.Distance(_fireOriginPoint.position, collisionPoint);
             var impactDelay = distance / projectileSpeed;
             
             if (hitObject.CompareTag("Friend"))
@@ -120,7 +120,7 @@ namespace MonoControllers
 
         private void UpdateMousePosition()
         {
-            var mouseRay = Camera.main?.ScreenPointToRay(GamePointer.Pointer);
+            var mouseRay = UnityEngine.Camera.main?.ScreenPointToRay(GamePointer.Pointer);
             if (mouseRay == null)
                 return;
 
@@ -148,7 +148,7 @@ namespace MonoControllers
                 projectileData = new ProjectileData
                 {
                     StartPosition = startPosition,
-                    EndPosition = _fireOriginPoint.position + _fireOriginPoint.forward * _maxDistance,
+                    EndPosition = _mousePosition,
                 };
                 hitObject = null;
             }

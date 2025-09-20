@@ -10,6 +10,8 @@ public class NPCSpriteDirection : MonoBehaviour
 
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Direction direction = Direction.Right;
+    [Space]
+    [SerializeField] private Transform shadow;
 
     private void Reset()
     {
@@ -56,6 +58,17 @@ public class NPCSpriteDirection : MonoBehaviour
             return;
 
         spriteRenderer.flipX = direction == Direction.Left;
+        
+        ApplyFlipShadow();
+    }
+    
+    private void ApplyFlipShadow()
+    {
+        if (shadow) 
+            shadow.localScale = new Vector3(
+                direction == Direction.Left ? -1f : 1f, 
+                shadow.localScale.y, 
+                shadow.localScale.z);
     }
 }
 

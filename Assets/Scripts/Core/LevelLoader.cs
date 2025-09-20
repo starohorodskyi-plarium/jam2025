@@ -39,6 +39,7 @@ namespace Core
       private void EndLoading()
       {
          MusicManager.SceneLoaded?.Invoke(_loadingScene);
+         AmbientManager.SceneLoaded?.Invoke(_loadingScene);
 
          _isLoading = false;
       }

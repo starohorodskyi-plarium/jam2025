@@ -163,9 +163,12 @@ public class GameManager : MonoBehaviour
         levelManager.gameObject.SetActive(true);
 
         LoadedLevel = levelManager;
-        
-        if(LoadedLevel.LevelId	!= 0) 
+
+        if (LoadedLevel.LevelId != 0)
+        {
             MusicManager.SceneLoaded?.Invoke(LoadedLevel.name);
+            AmbientManager.SceneLoaded?.Invoke(LoadedLevel.name);
+        }
         
         OnLevelLoaded?.Invoke(LoadedLevel.LevelId);
     }
@@ -276,6 +279,7 @@ public class GameManager : MonoBehaviour
         
         var sceneName = SceneManager.GetActiveScene().name;
         MusicManager.SceneLoaded?.Invoke(sceneName);
+        AmbientManager.SceneLoaded?.Invoke(sceneName);
         SceneManager.LoadScene(sceneName);
     }
 

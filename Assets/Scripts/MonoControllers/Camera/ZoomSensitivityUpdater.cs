@@ -1,7 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
 
-namespace MonoControllers
+namespace MonoControllers.Camera
 {
     public class ZoomSensitivityUpdater : MonoBehaviour
     {
@@ -55,26 +55,24 @@ namespace MonoControllers
 		{
 			_zoomController.OnZoomChanged -= UpdateSensitivity;
 			if (_transitionTween != null && _transitionTween.IsActive())
-			{
 				_transitionTween.Kill();
-			}
 		}
 
-		private void UpdateSensitivity(bool zoomed)
+		private void UpdateSensitivity(bool? zoomed)
 		{
+			var isZoomed = zoomed.HasValue && zoomed.Value;
+			
 			if (_transitionTween != null && _transitionTween.IsActive())
-			{
 				_transitionTween.Kill();
-			}
 
-			float targetSensitivityX = zoomed ? _zoomSensitivityX : _defaultSensitivityX;
-			float targetSensitivityY = zoomed ? _zoomSensitivityY : _defaultSensitivityY;
-			float targetMaxXAngle = zoomed ? _maxAngleX : _defaultAngleX;
-			float targetMaxYAngle = zoomed ? _maxAngleY : _defaultAngleY;
-			float targetMinPitch = zoomed ? _zoomMinPitch : _defaultMinPitch;
-			float targetMaxPitch = zoomed ? _zoomMaxPitch : _defaultMaxPitch;
-			float targetMinYaw = zoomed ? _zoomMinYaw : _defaultMinYaw;
-			float targetMaxYaw = zoomed ? _zoomMaxYaw : _defaultMaxYaw;
+			var targetSensitivityX = isZoomed ? _zoomSensitivityX : _defaultSensitivityX;
+			var targetSensitivityY = isZoomed ? _zoomSensitivityY : _defaultSensitivityY;
+			var targetMaxXAngle = isZoomed ? _maxAngleX : _defaultAngleX;
+			var targetMaxYAngle = isZoomed ? _maxAngleY : _defaultAngleY;
+			var targetMinPitch = isZoomed ? _zoomMinPitch : _defaultMinPitch;
+			var targetMaxPitch = isZoomed ? _zoomMaxPitch : _defaultMaxPitch;
+			var targetMinYaw = isZoomed ? _zoomMinYaw : _defaultMinYaw;
+			var targetMaxYaw = isZoomed ? _zoomMaxYaw : _defaultMaxYaw;
 
 			_transitionTween = DOTween.Sequence();
 			_transitionTween.SetEase(_transitionEase);
@@ -87,6 +85,9 @@ namespace MonoControllers
 			_transitionTween.Join(DOTween.To(() => _cameraController.minYaw, v => _cameraController.minYaw = v, targetMinYaw, _transitionDuration));
 			_transitionTween.Join(DOTween.To(() => _cameraController.maxYaw, v => _cameraController.maxYaw = v, targetMaxYaw, _transitionDuration));
 			_transitionTween.SetLink(gameObject);
+
+			if (zoomed == null)
+				_cameraController.ResetCameraRotationSmooth();
 		}
     }
 }

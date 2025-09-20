@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7891725689576905076, guid: 7f65480ba9889e1499948c748b423c17, type: 3}
       propertyPath: m_Name
-      value: Friend
+      value: Friend Variant 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
