@@ -1,5 +1,6 @@
 using Gameplay;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Core
 {
@@ -7,5 +8,7 @@ namespace Core
     {
         public int LevelId;
         public SpawnManager SpawnManager;
+        
+        public UnityEvent OnLevelStarted;
     }
 }

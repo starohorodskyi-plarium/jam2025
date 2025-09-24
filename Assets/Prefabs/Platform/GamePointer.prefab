@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 689926188916130826}
   - component: {fileID: 9131224109607775481}
+  - component: {fileID: 3213354780545043903}
   m_Layer: 0
   m_Name: GamePointer
   m_TagString: Untagged
@@ -44,3 +45,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32eb338e573584dfd939ef4252c261cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3213354780545043903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721132362639061646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f43d4305b9f143418557ee9d4abc2d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 0}
+  EnableOnPC: 0
+  EnableOnMobile: 1
+  EnableOnWeb: 0
+  DisableOnPC: 1
+  DisableOnMobile: 0
+  DisableOnWeb: 1

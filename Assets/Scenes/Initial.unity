@@ -164,8 +164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84b822983cca7465781721b309715622, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSceneName: MainMenu
-  ambientMap:
+  _initialSceneName: MainMenu
+  _ambientMap:
     m_keys:
     - MainMenu
     - Game
@@ -184,9 +184,9 @@ MonoBehaviour:
     - {fileID: 8300000, guid: dcda6ba5ace5442eca7e54fa6669ace6, type: 3}
     - {fileID: 8300000, guid: dcda6ba5ace5442eca7e54fa6669ace6, type: 3}
     - {fileID: 8300000, guid: dcda6ba5ace5442eca7e54fa6669ace6, type: 3}
-  audioSource: {fileID: 53341428}
-  maxVolume: 0.1
-  transitionDuration: 3
+  _audioSource: {fileID: 53341428}
+  _maxVolume: 0.1
+  _transitionDuration: 3
 --- !u!82 &53341428
 AudioSource:
   m_ObjectHideFlags: 0
@@ -328,12 +328,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b5226f56465f4cee82249c44741ea9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  applyOnlyOnDesktop: 1
-  enableVSync: 1
-  alsoSetTargetFrameRate: 1
-  pollForChanges: 1
-  pollIntervalSeconds: 6
-  verboseLogging: 0
+  ApplyOnlyOnDesktop: 1
+  EnableVSync: 1
+  AlsoSetTargetFrameRate: 1
+  PollForChanges: 1
+  PollIntervalSeconds: 6
+  VerboseLogging: 0
 --- !u!1 &562214279
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,9 +560,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4059f60fc059f48fc820d9e4850bb614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jingleSource: {fileID: 1086792263}
-  win: {fileID: 8300000, guid: 9f8d65e221d86433ab2e60b2765a869e, type: 3}
-  lose: {fileID: 8300000, guid: cf1183149cac94aa98f0e44e2a10f1e5, type: 3}
+  _jingleSource: {fileID: 1086792263}
+  _win: {fileID: 8300000, guid: 9f8d65e221d86433ab2e60b2765a869e, type: 3}
+  _lose: {fileID: 8300000, guid: cf1183149cac94aa98f0e44e2a10f1e5, type: 3}
 --- !u!82 &1086792263
 AudioSource:
   m_ObjectHideFlags: 0
@@ -720,13 +720,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f43d4305b9f143418557ee9d4abc2d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 383467250}
-  enableOnPC: 1
-  enableOnMobile: 0
-  enableOnWeb: 0
-  disableOnPC: 0
-  disableOnMobile: 0
-  disableOnWeb: 0
+  Target: {fileID: 383467250}
+  EnableOnPC: 1
+  EnableOnMobile: 0
+  EnableOnWeb: 0
+  DisableOnPC: 0
+  DisableOnMobile: 0
+  DisableOnWeb: 0
 --- !u!1 &1193614298
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,8 +775,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a68a4bc1a1b0b44769ee34f21efc7927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSceneName: Initial
-  musicMap:
+  _initialSceneName: Initial
+  _musicMap:
     m_keys:
     - MainMenu
     - Game
@@ -797,9 +797,9 @@ MonoBehaviour:
     - {fileID: 8300000, guid: ffe3cbaadc6be487d83dff26a4709128, type: 3}
     - {fileID: 8300000, guid: ffe3cbaadc6be487d83dff26a4709128, type: 3}
     - {fileID: 8300000, guid: 36085d6b6a77c47fdaf881d6ddd8ecdf, type: 3}
-  audioSource: {fileID: 1193614302}
-  maxVolume: 0.1
-  transitionDuration: 2
+  _audioSource: {fileID: 1193614302}
+  _maxVolume: 0.1
+  _transitionDuration: 2
 --- !u!114 &1193614301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1045,7 +1045,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2021373179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1058,8 +1058,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99401202ffc78449dbeab3444df70371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  font: {fileID: 12800000, guid: 515f269e4001c44b69b975de7eebb2b9, type: 3}
-  showVersion: 0
+  Font: {fileID: 12800000, guid: ce485ed472db04bffab8e162b836b2e8, type: 3}
+  ShowVersion: 0
 --- !u!4 &2021373180
 Transform:
   m_ObjectHideFlags: 0
@@ -1189,8 +1189,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc36e23363d51449b94c892fdfa4808b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startMenuSceneName: SplashScreen
-  sceneLoader:
+  _startMenuSceneName: SplashScreen
+  _sceneLoader:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8290623578196694212}
@@ -1229,10 +1229,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4be2b9acd91d4b82b9f4fa53a7bf6f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorTexture: {fileID: 0}
-  cursorZoomTexture: {fileID: 0}
-  hotspot: {x: 0, y: 0}
-  cursorMode: 0
+  _cursorTexture: {fileID: 2800000, guid: 17fc640f26bf84217b733220382c2d5f, type: 3}
+  _cursorZoomTexture: {fileID: 2800000, guid: 200e8b2b310ba5f429e72c1eb7e1c656, type: 3}
+  _hotspot: {x: 0.5, y: 0.5}
+  _cursorMode: 0
+  _mobilePointer: {fileID: 0}
+  _cursorMobile: {fileID: 0}
+  _cursorZoomMobile: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

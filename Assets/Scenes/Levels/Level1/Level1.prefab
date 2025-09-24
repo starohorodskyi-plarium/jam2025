@@ -190,7 +190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4659676972211745239
 Transform:
   m_ObjectHideFlags: 0
@@ -6784,6 +6784,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelId: 0
   SpawnManager: {fileID: 1917007112484932715}
+  OnLevelStarted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7737907167445830943}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1380975714435916527}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1917007112484932715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6796,7 +6823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0397b198d54f28544b31c8ae3480dfce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goodNpcPrefabs:
+  GoodNpcPrefabs:
   - {fileID: 2641508248361112915, guid: b8e93aaf2b93e3a42b693f84e6c78dc5, type: 3}
   - {fileID: 2641508248361112915, guid: cc642c353ca995440b7aeddaa7a3e16a, type: 3}
   - {fileID: 2641508248361112915, guid: cdd3e732906aa5b45991e86390dc826c, type: 3}
@@ -6809,7 +6836,7 @@ MonoBehaviour:
   - {fileID: 2641508248361112915, guid: e39d347113f23984ba8513569a4f82a7, type: 3}
   - {fileID: 2641508248361112915, guid: 774b104b5efd6af4789cbcbd223f0603, type: 3}
   - {fileID: 2641508248361112915, guid: 3a4babf82ff97594a8ff944433a692f2, type: 3}
-  badNpcPrefabs:
+  BadNpcPrefabs:
   - {fileID: 1112137590729717154, guid: 9b5e8553e169194418554e3fa9005fe7, type: 3}
   - {fileID: 1112137590729717154, guid: 7f50abe71c07310438ad0d03e595cced, type: 3}
   - {fileID: 1112137590729717154, guid: aad5458699c6a1b4caae5c0ba0e6c6c7, type: 3}
@@ -6822,9 +6849,9 @@ MonoBehaviour:
   - {fileID: 1112137590729717154, guid: b51ded0d8b9721c4988a81c960535e46, type: 3}
   - {fileID: 1112137590729717154, guid: b6de7b39f385c144497af6937be79a7d, type: 3}
   - {fileID: 1112137590729717154, guid: 411deeb49325a8a4bb77450d988ca068, type: 3}
-  snails:
+  Snails:
   - {fileID: 4708159428237480208}
-  spawnPoints:
+  SpawnPoints:
   - {fileID: 1222753388008686373}
   - {fileID: 5426416145950567776}
   - {fileID: 4986449840475290391}
@@ -6832,7 +6859,7 @@ MonoBehaviour:
   - {fileID: 5305777050812659739}
   - {fileID: 3800300314140421161}
   - {fileID: 2857229873775590077}
-  baddiesPerLevel: 1
+  BaddiesPerLevel: 1
 --- !u!114 &4908704745830989418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8719,7 +8746,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &581480731029914461
 Transform:
   m_ObjectHideFlags: 0
@@ -10197,6 +10224,10 @@ PrefabInstance:
       propertyPath: reactionPrefab
       value: 
       objectReference: {fileID: 8194992990867289339, guid: cfa99caf3f61540209bdcef77de5e95d, type: 3}
+    - target: {fileID: 4340950648440745232, guid: 9aa3b6fff441442e0be8325fec283fdd, type: 3}
+      propertyPath: _reactionPrefab
+      value: 
+      objectReference: {fileID: 8194992990867289339, guid: cfa99caf3f61540209bdcef77de5e95d, type: 3}
     - target: {fileID: 8426261089602739276, guid: 9aa3b6fff441442e0be8325fec283fdd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -10338,6 +10369,10 @@ PrefabInstance:
     - target: {fileID: 6175915354214430731, guid: 2d5939986a414314b99a08d8846fb5fa, type: 3}
       propertyPath: m_Name
       value: Interiors1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6175915354214430731, guid: 2d5939986a414314b99a08d8846fb5fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6927243612797894651, guid: 2d5939986a414314b99a08d8846fb5fa, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

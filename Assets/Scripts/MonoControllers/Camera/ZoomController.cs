@@ -35,12 +35,17 @@ namespace MonoControllers.Camera
 
         private void Update()
         {
-            if (GameManager.Instance.InputEnabled && Input.GetKeyDown(KeyCode.Mouse1))
+#if UNITY_STANDALONE || UNITY_WEBGL || UNITY_EDITOR
+            if (Input.GetKeyDown(KeyCode.Mouse1))
                 ToggleFOV();
+#endif
         }
 
-        private void ToggleFOV()
+        public void ToggleFOV()
         {
+            if (!GameManager.Instance.InputEnabled) 
+                return;
+            
             if (isZoomed)
                 _camera.DOFieldOfView(NormalFOV, Duration).SetEase(Ease.OutQuad);
             else

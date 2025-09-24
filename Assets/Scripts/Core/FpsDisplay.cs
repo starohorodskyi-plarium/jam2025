@@ -22,7 +22,7 @@ namespace Core
 
             var rect = new Rect(80, 5, w, h * 50);
             style.alignment = TextAnchor.UpperLeft;
-            style.fontSize = h * 2 / 100;
+            style.fontSize = h * 4 / 100;
             style.normal.textColor = new Color(1f, 1f, 0.49f);
             style.font = Font;
             var fps = 1.0f / _deltaTime;

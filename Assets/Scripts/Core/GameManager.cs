@@ -204,6 +204,7 @@ namespace Core
             CurrentState = GameState.Playing;
 
             LoadedLevel.SpawnManager.SpawnWave();
+            LoadedLevel.OnLevelStarted?.Invoke();
 
             if (TimerText != null)
                 TimerText.gameObject.SetActive(true);
