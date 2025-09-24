@@ -34,17 +34,17 @@ namespace Platform
 
         private void Update()
         {
-            // if (TouchController.UsingGyroOffset) 
-            //     Pointer = _center + TouchController.PointerPosition;
-
             _pointerTransform.position = Pointer;
 #if UNITY_IOS || UNITY_ANDROID
              
 #else
             // Only pull from mouse if nothing else is actively overriding the pointer
-            if (!ExternalOverrideActive && !TouchController.UsingGyroOffset)
+            if (!ExternalOverrideActive && !GyroController.UsingGyroOffset)
                 Pointer = MousePosition();
 #endif
         }
+        
+        public static void ResetPointer() => 
+            Pointer = _center;
     }
 }

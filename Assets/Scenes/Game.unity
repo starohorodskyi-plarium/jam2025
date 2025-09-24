@@ -1564,6 +1564,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1987496450}
+        m_TargetAssemblyTypeName: Platform.PointerController, Assembly-CSharp
+        m_MethodName: ResetMobilePointer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnLevelStarted:
     m_PersistentCalls:
       m_Calls:
@@ -3487,6 +3499,8 @@ GameObject:
   - component: {fileID: 1987496449}
   - component: {fileID: 1987496448}
   - component: {fileID: 1987496450}
+  - component: {fileID: 1987496451}
+  - component: {fileID: 1987496452}
   m_Layer: 5
   m_Name: PointerController
   m_TagString: Untagged
@@ -3568,6 +3582,33 @@ MonoBehaviour:
   _smoothTime: 0.42
   _clampToScreen: 1
   _enableInEditor: 0
+  _gyro: {fileID: 1987496451}
+--- !u!114 &1987496451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987496446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbf1b53ceb5bf49a78d6c128fb5e850f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gyroscopeSystem: {fileID: 1987496452}
+  _gyroSensitivity: 5
+--- !u!114 &1987496452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987496446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f07231abd10b4e35a36e8118bad8247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2073005519
 GameObject:
   m_ObjectHideFlags: 0

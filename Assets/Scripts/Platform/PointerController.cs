@@ -1,5 +1,4 @@
 using UnityEngine;
-using DG.Tweening;
 
 namespace Platform
 {
@@ -17,13 +16,15 @@ namespace Platform
         [SerializeField] private bool _clampToScreen = true;
         [Tooltip("Also allow this to work in editor play mode for debugging.")] 
         [SerializeField] private bool _enableInEditor = true;
+        
+        [Header("Gyro")] 
+        [SerializeField] private GyroController _gyro;
 
         private int _activeTouchId = -1;
         
         private Vector2 _lastTouchPos;
         private Vector2 _targetPointer;
         private Vector2 _smoothVelocity;
-        private Tweener _moveTweener;
 
         private bool PlatformActive
         {
@@ -39,6 +40,9 @@ namespace Platform
             }
         }
 
+        private void Start() => 
+            ResetMobilePointer();
+
         private void OnEnable()
         {
             _targetPointer = GamePointer.Pointer;
@@ -48,8 +52,6 @@ namespace Platform
 
         private void OnDisable()
         {
-            if (_moveTweener != null && _moveTweener.IsActive())
-                _moveTweener.Kill();
             _activeTouchId = -1;
             if (GamePointer.ExternalOverrideActive)
                 GamePointer.ExternalOverrideActive = false;
@@ -71,18 +73,18 @@ namespace Platform
                 GamePointer.ExternalOverrideActive = true;
             }
 
-            // If gyro aiming active, don't override pointer (GamePointer handles it)
-            if (TouchController.UsingGyroOffset)
-                return;
-
             ProcessTouchpad();
-
-            // If using SmoothDamp, and we have a target (e.g., last frame finger moved) keep smoothing towards it
-            if (_activeTouchId == -1) 
-                return;
             
-            if ((GamePointer.Pointer - _targetPointer).sqrMagnitude > 0.01f) 
-                GamePointer.Pointer = Vector2.Lerp(GamePointer.Pointer, _targetPointer, _smoothTime);
+            var finalTarget = _targetPointer;
+            
+            if (GyroController.UsingGyroOffset)
+                finalTarget += GyroController.GyroInputOffset;
+            
+            if (_clampToScreen)
+                finalTarget = ClampToScreen(finalTarget);
+            
+            if ((GamePointer.Pointer - finalTarget).sqrMagnitude > 0.01f) 
+                GamePointer.Pointer = Vector2.Lerp(GamePointer.Pointer, finalTarget, _smoothTime);
         }
 
         private void ProcessTouchpad()
@@ -145,33 +147,35 @@ namespace Platform
                     case TouchPhase.Ended:
                     case TouchPhase.Canceled:
                         _activeTouchId = -1;
-                        if (_moveTweener != null && _moveTweener.IsActive())
-                            _moveTweener.Kill();
                         break;
                 }
             }
 #endif
         }
 
-        private void ApplyPointerDelta(Vector2 delta)
-        {
+        private void ApplyPointerDelta(Vector2 delta) => 
             _targetPointer += delta;
-            
-            if (_clampToScreen)
-                _targetPointer = ClampToScreen(_targetPointer);
-        }
 
-        private bool IsInsideArea(Vector2 screenPos)
-        {
-            return _pointerMoveControlArea != null 
-                   && RectTransformUtility.RectangleContainsScreenPoint(_pointerMoveControlArea, screenPos, null);
-        }
+        private bool IsInsideArea(Vector2 screenPos) =>
+            _pointerMoveControlArea != null 
+            && RectTransformUtility.RectangleContainsScreenPoint(_pointerMoveControlArea, screenPos, null);
 
         private static Vector2 ClampToScreen(Vector2 p)
         {
             var x = Mathf.Clamp(p.x, 0f, Screen.width);
             var y = Mathf.Clamp(p.y, 0f, Screen.height);
             return new Vector2(x, y);
+        }
+
+        public void ResetMobilePointer()
+        {
+            _activeTouchId = -1;
+            _targetPointer = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
+            GyroController.ResetGyro();
+            
+#if UNITY_IOS || UNITY_ANDROID
+            GamePointer.ResetPointer();  
+#endif
         }
     }
 }
