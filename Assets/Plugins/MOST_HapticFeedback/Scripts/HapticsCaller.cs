@@ -11,31 +11,8 @@ namespace Solo.MOST_IN_ONE
     // or Most_HapticFeedback.GenerateWithCooldown(HapticTypes type, float cooldown)
     // or StartCoroutine(Most_HapticFeedback.GeneratePattern(CustomHapticPattern CustomPattern));
 
-    public class HapticsExample : MonoBehaviour
+    public class HapticsCaller : MonoBehaviour
     {
-        public Most_HapticFeedback.CustomHapticPattern CustomHapticPatternA;
-        public Most_HapticFeedback.CustomHapticPattern CustomHapticPatternB;
-
-        public void GenerateBasicHaptic(Most_HapticFeedback.HapticTypes type)
-        {
-            Most_HapticFeedback.Generate(type);
-        }
-
-        public void GenerateBasicHapticWithCoolDown(Most_HapticFeedback.HapticTypes type, float cooldown)
-        {
-            Most_HapticFeedback.GenerateWithCooldown(type, cooldown);
-        }
-
-        public void GenerateCustomHapticA()
-        {
-            StartCoroutine(Most_HapticFeedback.GeneratePattern(CustomHapticPatternA));
-        }
-
-        public void GenerateCustomHapticB()
-        {
-            StartCoroutine(Most_HapticFeedback.GeneratePattern(CustomHapticPatternB));
-        }
-
         // __________________________________ Basic Haptics __________________________________
         public void SelectionHaptic()
         {
@@ -129,15 +106,10 @@ namespace Solo.MOST_IN_ONE
         }
 
         // ___________________ Enable / Disable Haptic Feedback ___________________  
-        public void ToggleHaptics(bool enabled)
-        {
+        public void ToggleHaptics(bool enabled) => 
             Most_HapticFeedback.HapticsEnabled = enabled;
-        }
 
-        // Opem URL
-        public void OpenURL()
-        {
-            Application.OpenURL("https://assetstore.unity.com/packages/slug/295013");
-        }
+        public void ReToggleHaptics() => 
+            Most_HapticFeedback.HapticsEnabled = !Most_HapticFeedback.HapticsEnabled;
     }
 }

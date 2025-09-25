@@ -1,3 +1,4 @@
+using Solo.MOST_IN_ONE;
 using UnityEngine;
 
 namespace Wizard
@@ -9,6 +10,7 @@ namespace Wizard
         public WizardActorId ActorId;
         public string Text;
         public AudioClip AudioClip;
+        public Most_HapticFeedback.HapticTypes HapticType = Most_HapticFeedback.HapticTypes.None;
         public float Delay;
 
         public bool DisableInputs;

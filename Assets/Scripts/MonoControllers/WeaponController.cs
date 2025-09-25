@@ -4,6 +4,7 @@ using Gameplay.Obstacle;
 using Gun;
 using NPC;
 using Platform;
+using Solo.MOST_IN_ONE;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -62,6 +63,10 @@ namespace MonoControllers
                 // 75f is an arbitrary projectile speed for calculating impact delay (COPY FROM ProjectileController)
                 HandleTargetHit(hitObject, 75f, projectileData.EndPosition);
             }
+            else
+            {
+                Most_HapticFeedback.Generate(Most_HapticFeedback.HapticTypes.Selection);
+            }
 
             DispatchAmmoChanged();
         }
@@ -76,21 +81,29 @@ namespace MonoControllers
                 GameManager.Instance.SubtractTime();
                 
                 hitObject.GetComponent<NPCController>()?.Hit(impactDelay);
+                Most_HapticFeedback.Generate(Most_HapticFeedback.HapticTypes.SoftImpact);
             }
             else if (hitObject.CompareTag("Enemy"))
             {
                 GameManager.Instance.AddTime(5);
                 
                 hitObject.GetComponent<NPCController>()?.Hit(impactDelay);
+                Most_HapticFeedback.Generate(Most_HapticFeedback.HapticTypes.SelectionPlus);
             }
             else if (hitObject.CompareTag("Obstacle"))
             {
                 hitObject.GetComponent<ObstacleReaction>()?.Hit(impactDelay, collisionPoint);
+                Most_HapticFeedback.Generate(Most_HapticFeedback.HapticTypes.Selection);
             }
             else if (hitObject.CompareTag("Snail"))
             {
                 GameManager.Instance.AddTime(10);
                 hitObject.GetComponent<SnailController>()?.Hit(impactDelay, collisionPoint);
+                Most_HapticFeedback.Generate(Most_HapticFeedback.HapticTypes.SelectionPlus);
+            }
+            else
+            {
+                Most_HapticFeedback.Generate(Most_HapticFeedback.HapticTypes.Selection);
             }
         }
 

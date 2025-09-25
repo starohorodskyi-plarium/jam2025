@@ -1,5 +1,6 @@
 using System;
 using Gun;
+using Solo.MOST_IN_ONE;
 using UI.DevilificationProgress;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -43,6 +44,8 @@ namespace Gameplay.DevilMode
             _currentHealth = Mathf.Clamp(_currentHealth - amount, 0, _maxHealth);
             CameraShake.TriggerShake?.Invoke();
             UpdateProgressHealth();
+            
+            Most_HapticFeedback.Generate(Most_HapticFeedback.HapticTypes.Selection);
             
             if (_currentHealth <= 0) 
                 Die();

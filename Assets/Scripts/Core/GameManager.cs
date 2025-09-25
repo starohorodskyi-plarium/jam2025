@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Gameplay.DevilMode;
 using Music;
+using Solo.MOST_IN_ONE;
 using TMPro;
 using UI.DevilificationProgress;
 using UnityEngine;
@@ -241,6 +242,8 @@ namespace Core
                 JingleManager.PlayLoseJingle?.Invoke();
                 MusicManager.SceneLoaded?.Invoke(MusicManager.MenuBetweenLevelsSceneName);
             });
+            
+            Most_HapticFeedback.Generate(Most_HapticFeedback.HapticTypes.Failure);
 
             Debug.Log("Game Over!");
         }

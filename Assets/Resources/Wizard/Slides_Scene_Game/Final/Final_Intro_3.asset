@@ -16,5 +16,6 @@ MonoBehaviour:
   ActorId: 2
   Text: '[<color=#a86125>Buddy Bob:</color>] *gets \nkilled*.'
   AudioClip: {fileID: 8300000, guid: 08acf91c85ba14977a63b1c5fca35939, type: 3}
+  HapticType: 8
   Delay: 0
   DisableInputs: 1

@@ -71,6 +71,7 @@ namespace Solo.MOST_IN_ONE
             // so i have used these names on android as well...
             // it's limited on ios but you can create unlimited custom patterns on android(check IOSDefaultHapticsToAndroidPatterns() line 49)
             Selection,    // case 0 // IOS 10+
+            SelectionPlus,    // case 0 // IOS 10+
             Success,      // case 1 // IOS 10+
             Warning,      // case 2 // IOS 10+
             Failure,      // case 3 // IOS 10+
@@ -79,6 +80,7 @@ namespace Solo.MOST_IN_ONE
             HeavyImpact,  // case 6 // IOS 10+
             RigidImpact,  // case 7 // IOS 13+ <<
             SoftImpact,   // case 8 // IOS 13+ <<
+            None,   // case 9 // 
         }
 #if UNITY_ANDROID && !UNITY_EDITOR  // This function reverse iOS default haptics enum to android haptic patterns (Android only)
         static void IOSDefaultHapticsToAndroidPatterns( 
@@ -92,6 +94,10 @@ namespace Solo.MOST_IN_ONE
                 case HapticTypes.Selection:
                     pattern = new long[] { 0, 20 };
                     amplitudes = new int[] { 0, 80 };
+                    break;
+                case HapticTypes.SelectionPlus:
+                    pattern = new long[] { 0, 27 };
+                    amplitudes = new int[] { 0, 90 };
                     break;
                 case HapticTypes.Success:
                     pattern = new long[] { 0, 100, 50, 100 };
@@ -140,6 +146,7 @@ namespace Solo.MOST_IN_ONE
         static int _androidApiLevel;
         static float _lastHapticTime;
         static float _hapticCooldown = 0.1f; // 100ms minimum between haptics
+        static string _playerPrefKey = "MOST_HAPTICS_ENABLED";
 
         // iOS Native Plugin Interface
 #if UNITY_IOS && !UNITY_EDITOR
@@ -159,6 +166,12 @@ namespace Solo.MOST_IN_ONE
 #endif
 
             _initialized = true;
+
+            if (PlayerPrefs.HasKey(_playerPrefKey)) 
+                _hapticsEnabled = PlayerPrefs.GetInt(_playerPrefKey).Equals(1);
+            else 
+                PlayerPrefs.SetInt(_playerPrefKey, _hapticsEnabled ? 1 : 0);
+           
         }
 
         public static void GenerateWithCooldown(HapticTypes type, float cooldown = -1f)
@@ -288,7 +301,11 @@ namespace Solo.MOST_IN_ONE
         public static bool HapticsEnabled
         {
             get => _hapticsEnabled;
-            set => _hapticsEnabled = value;
+            set
+            {
+                _hapticsEnabled = value;
+                PlayerPrefs.SetInt(_playerPrefKey, value ? 1 : 0);
+            }
         }
     }
 }

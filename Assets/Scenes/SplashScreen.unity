@@ -638,6 +638,7 @@ GameObject:
   - component: {fileID: 468495973}
   - component: {fileID: 468495974}
   - component: {fileID: 468495975}
+  - component: {fileID: 468495976}
   m_Layer: 0
   m_Name: SplashLogo
   m_TagString: Untagged
@@ -701,17 +702,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65c1c6cd8b53f4e4c892fcf83ab78182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentPlatformScaler: {fileID: 620407605}
-  desktopScale: {x: 0.6, y: 0.6, z: 1}
-  mobileScale: {x: 1, y: 1, z: 1}
-  initialSound: {fileID: 765994819}
-  electroSound: {fileID: 1509312198}
-  intenseElectroSound: {fileID: 1124564860}
-  gearsSound: {fileID: 1940568229}
-  activation: {fileID: 1523207183}
-  activationParticles: {fileID: 1292407039}
-  startMenuSceneName: Game
-  sceneLoader:
+  _parentPlatformScaler: {fileID: 620407605}
+  _desktopScale: {x: 0.6, y: 0.6, z: 1}
+  _mobileScale: {x: 1, y: 1, z: 1}
+  _initialSound: {fileID: 765994819}
+  _electroSound: {fileID: 1509312198}
+  _intenseElectroSound: {fileID: 1124564860}
+  _gearsSound: {fileID: 1940568229}
+  _activation: {fileID: 1523207183}
+  _activationParticles: {fileID: 1292407039}
+  _startMenuSceneName: Game
+  _sceneLoader:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1164662812}
@@ -726,6 +727,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &468495976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468495972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 881cf4582b8e641c49b4e1d2de3a4c08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &597166196
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,8 +863,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc43ce782eb44e59bdc3efa7b84ad24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetToActivate: {fileID: 468495972}
-  delaySeconds: 0.5
+  _targetToActivate: {fileID: 468495972}
+  _delaySeconds: 0.5
 --- !u!1001 &678407913
 PrefabInstance:
   m_ObjectHideFlags: 0
