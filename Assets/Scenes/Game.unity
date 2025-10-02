@@ -457,10 +457,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 400323129}
     m_Modifications:
-    - target: {fileID: 1313317196048650029, guid: d45b6ef230b40424b9672b64effd8389, type: 3}
-      propertyPath: LevelId
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1730523722575634116, guid: d45b6ef230b40424b9672b64effd8389, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -501,17 +497,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4295668623767448341, guid: d45b6ef230b40424b9672b64effd8389, type: 3}
-      propertyPath: m_Shadows.m_Type
-      value: 1
+    - target: {fileID: 3731287590174470068, guid: d45b6ef230b40424b9672b64effd8389, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4295668623767448341, guid: d45b6ef230b40424b9672b64effd8389, type: 3}
-      propertyPath: m_Shadows.m_Strength
-      value: 0.3
+    - target: {fileID: 3731287590174470068, guid: d45b6ef230b40424b9672b64effd8389, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4295668623767448341, guid: d45b6ef230b40424b9672b64effd8389, type: 3}
-      propertyPath: m_Shadows.m_NearPlane
-      value: 0.3
+    - target: {fileID: 3731287590174470068, guid: d45b6ef230b40424b9672b64effd8389, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4306879584099273581, guid: d45b6ef230b40424b9672b64effd8389, type: 3}
       propertyPath: m_Name
@@ -525,14 +521,6 @@ PrefabInstance:
       propertyPath: _cameraMovementController
       value: 
       objectReference: {fileID: 1360423023}
-    - target: {fileID: 4659676972211745239, guid: d45b6ef230b40424b9672b64effd8389, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.74
-      objectReference: {fileID: 0}
-    - target: {fileID: 4659676972211745239, guid: d45b6ef230b40424b9672b64effd8389, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0
-      objectReference: {fileID: 0}
     - target: {fileID: 4908704745830989418, guid: d45b6ef230b40424b9672b64effd8389, type: 3}
       propertyPath: _zoomController
       value: 
@@ -541,14 +529,6 @@ PrefabInstance:
       propertyPath: _cameraController
       value: 
       objectReference: {fileID: 1360423022}
-    - target: {fileID: 7667316993657486359, guid: d45b6ef230b40424b9672b64effd8389, type: 3}
-      propertyPath: NoiseModule.frequency
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7667316993657486359, guid: d45b6ef230b40424b9672b64effd8389, type: 3}
-      propertyPath: NoiseModule.strength.scalar
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -898,6 +878,10 @@ PrefabInstance:
     - target: {fileID: 4758812425577950279, guid: 0f6a5be008df74b78a6d7d06b9a14625, type: 3}
       propertyPath: m_Color.a
       value: 0.39215687
+      objectReference: {fileID: 0}
+    - target: {fileID: 4792200894455939501, guid: 0f6a5be008df74b78a6d7d06b9a14625, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4910287694938151085, guid: 0f6a5be008df74b78a6d7d06b9a14625, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
