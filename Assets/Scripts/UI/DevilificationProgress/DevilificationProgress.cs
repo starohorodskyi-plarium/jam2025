@@ -2,19 +2,23 @@ using System;
 using DG.Tweening;
 using Gameplay.DevilMode;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 namespace UI.DevilificationProgress
 {
     public class DevilificationProgress : MonoBehaviour
     {
-        public const float DevilificationLevelId = 3f;
+        public const int DemonsStaticCount = 9;
+        public static int KilledDemonsCount = 0;
 
         [Header("Slider Reference")]
-        [SerializeField] private Slider _slider;
-        [SerializeField] private Image _background;
-        [SerializeField] private Image _sliderImage;
+        [SerializeField] private RectTransform _devilificationSliderTransform;
+        [SerializeField] private RectTransform _hpSliderTransform;
+        [SerializeField] private CanvasGroup _devilificationCanvasGroup;
+        [SerializeField] private CanvasGroup _hpCanvasGroup;
+        
+        [Header("Slider Positions")]
+        [SerializeField] private float _fullProgressPositionX = 0f;
+        [SerializeField] private float _emptyProgressPositionX = -206f;
 
         [Header("Tween Settings")]
         [SerializeField] private float _tweenDuration = 0.5f;
@@ -33,17 +37,9 @@ namespace UI.DevilificationProgress
         [SerializeField] private bool _moveIgnoreTimeScale;
         [SerializeField] private Vector2 _movePositionA;
         [SerializeField] private Vector2 _movePositionB;
-        
-        [Header("DevilificationSettings")]
-        [FormerlySerializedAs("backgroundDevilificationColor")] [SerializeField] private Color _backgroundDevilificationColor ;
-        [FormerlySerializedAs("sliderDevilificationColor")] [SerializeField] private Color _sliderDevilificationColor;
-        
-        [Header("HPSettings")]
-        [FormerlySerializedAs("backgroundHPColor")] [SerializeField] private Color _backgroundHPColor ;
-        [FormerlySerializedAs("sliderHPColor")] [SerializeField] private Color _sliderHPColor;
 
-        private float _minValue;
-        private float _maxValue;
+        private const float MinValue = 0f;
+        private const float MaxValue = 1f;
         private Tween _activeTween;
         private Tween _activeColorTween;
         private Tween _activeMoveTween;
@@ -51,22 +47,13 @@ namespace UI.DevilificationProgress
         public static Action<float> OnSetInstant;
         public static Action<float> OnSetSmooth;
 
+        public static void ResetProgress() => 
+            KilledDemonsCount = 0;
+
         private void Awake()
         {
-            if (_slider == null) 
-                _slider = GetComponent<Slider>();
-
             if (_rectTransform == null) 
                 _rectTransform = GetComponent<RectTransform>();
-
-            if (_slider == null)
-            {
-                Debug.LogError("DevilificationProgress: Slider reference is missing.");
-                return;
-            }
-
-            _minValue = _slider.minValue;
-            _maxValue = _slider.maxValue;
         }
 
         private void OnEnable()
@@ -89,14 +76,14 @@ namespace UI.DevilificationProgress
         {
             SetColorsToDevilificationMode();
             MoveToPositionA();
-            HandleSetSmooth(_minValue);
+            HandleSetSmooth(MinValue);
         }
 
         private void DevilModeActivate()
         {
             SetColorsToHPMode();
             MoveToPositionB();
-            HandleSetSmooth(_maxValue);
+            HandleSetInstant(MaxValue);
         }
 
         private void OnDestroy()
@@ -122,33 +109,64 @@ namespace UI.DevilificationProgress
 
         private void HandleSetInstant(float newValue)
         {
-            if (_slider == null) 
-                return;
-
             if (_activeTween != null && _activeTween.IsActive())
             {
                 _activeTween.Kill();
                 _activeTween = null;
             }
 
-            var clamped = Mathf.Clamp(newValue, _minValue, _maxValue);
-            _slider.value = clamped;
+            var clamped = Mathf.Clamp01(newValue);
+            var positionX = Mathf.Lerp(_emptyProgressPositionX, _fullProgressPositionX, clamped);
+            
+            if (_devilificationSliderTransform != null)
+            {
+                var devilPos = _devilificationSliderTransform.anchoredPosition;
+                devilPos.x = positionX;
+                _devilificationSliderTransform.anchoredPosition = devilPos;
+            }
+            
+            if (_hpSliderTransform != null)
+            {
+                var hpPos = _hpSliderTransform.anchoredPosition;
+                hpPos.x = positionX;
+                _hpSliderTransform.anchoredPosition = hpPos;
+            }
         }
 
         private void HandleSetSmooth(float targetValue)
         {
-            if (_slider == null) 
-                return;
-
-            var clampedTarget = Mathf.Clamp(targetValue, _minValue, _maxValue);
+            var clampedTarget = Mathf.Clamp01(targetValue);
 
             if (_activeTween != null && _activeTween.IsActive()) 
                 _activeTween.Kill();
 
+            var currentValue = 0f;
+            if (_devilificationSliderTransform != null)
+            {
+                var currentX = _devilificationSliderTransform.anchoredPosition.x;
+                currentValue = Mathf.InverseLerp(_emptyProgressPositionX, _fullProgressPositionX, currentX);
+            }
+
             _activeTween = DOTween
-                .To(() => _slider.value, x =>
+                .To(() => currentValue, x =>
                 {
-                    _slider.value = x;
+                    var positionX = Mathf.Lerp(_emptyProgressPositionX, _fullProgressPositionX, x);
+                    
+                    if (_devilificationSliderTransform != null)
+                    {
+                        var devilPos = _devilificationSliderTransform.anchoredPosition;
+                        devilPos.x = positionX;
+                        _devilificationSliderTransform.anchoredPosition = devilPos;
+                    }
+                    
+                    if (_hpSliderTransform != null)
+                    {
+                        var hpPos = _hpSliderTransform.anchoredPosition;
+                        hpPos.x = positionX;
+                        _hpSliderTransform.anchoredPosition = hpPos;
+                    }
+                    
+                    currentValue = x;
                 }, clampedTarget, _tweenDuration)
                 .SetEase(_tweenEase)
                 .SetUpdate(_ignoreTimeScale);
@@ -156,9 +174,6 @@ namespace UI.DevilificationProgress
 
         private void SetColorsToDevilificationMode()
         {
-            if (_background == null && _sliderImage == null) 
-                return;
-
             if (_activeColorTween != null && _activeColorTween.IsActive())
             {
                 _activeColorTween.Kill();
@@ -167,11 +182,11 @@ namespace UI.DevilificationProgress
 
             var sequence = DOTween.Sequence();
             
-            if (_background != null) 
-                sequence.Join(_background.DOColor(_backgroundDevilificationColor, _colorTweenDuration));
+            if (_devilificationCanvasGroup != null) 
+                sequence.Join(_devilificationCanvasGroup.DOFade(1f, _colorTweenDuration));
             
-            if (_sliderImage != null) 
-                sequence.Join(_sliderImage.DOColor(_sliderDevilificationColor, _colorTweenDuration));
+            if (_hpCanvasGroup != null) 
+                sequence.Join(_hpCanvasGroup.DOFade(0f, _colorTweenDuration));
 
             _activeColorTween = sequence
                 .SetEase(_colorTweenEase)
@@ -180,9 +195,6 @@ namespace UI.DevilificationProgress
 
         private void SetColorsToHPMode()
         {
-            if (_background == null && _sliderImage == null) 
-                return;
-
             if (_activeColorTween != null && _activeColorTween.IsActive())
             {
                 _activeColorTween.Kill();
@@ -191,10 +203,11 @@ namespace UI.DevilificationProgress
 
             var sequence = DOTween.Sequence();
             
-            if (_background != null) 
-                sequence.Join(_background.DOColor(_backgroundHPColor, _colorTweenDuration));
-            if (_sliderImage != null) 
-                sequence.Join(_sliderImage.DOColor(_sliderHPColor, _colorTweenDuration));
+            if (_devilificationCanvasGroup != null) 
+                sequence.Join(_devilificationCanvasGroup.DOFade(0f, _colorTweenDuration));
+            
+            if (_hpCanvasGroup != null) 
+                sequence.Join(_hpCanvasGroup.DOFade(1f, _colorTweenDuration));
 
             _activeColorTween = sequence
                 .SetEase(_colorTweenEase)

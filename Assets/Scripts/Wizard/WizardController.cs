@@ -69,7 +69,7 @@ namespace Wizard
             _autoClose = false;
             _view.Hide();
             
-            if (index is WizardId.Level_1_Outro or WizardId.Level_2_Outro or WizardId.Level_3_Outro_2)
+            if (index is WizardId.Level_1_Outro or WizardId.Level_2_Outro_2 or WizardId.Level_3_Outro_2)
                 _nextLevelButton.SetActive(true);
             
             OnWizardFinished?.Invoke(index);

@@ -5,6 +5,7 @@ using Gun;
 using NPC;
 using Platform;
 using Solo.MOST_IN_ONE;
+using UI.DevilificationProgress;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -87,7 +88,8 @@ namespace MonoControllers
             {
                 GameManager.Instance.AddTime(5);
                 
-                hitObject.GetComponent<NPCController>()?.Hit(impactDelay);
+                hitObject.GetComponent<NPCController>()?.Hit(impactDelay, UpdateProgress);
+                
                 Most_HapticFeedback.Generate(Most_HapticFeedback.HapticTypes.SelectionPlus);
             }
             else if (hitObject.CompareTag("Obstacle"))
@@ -105,6 +107,18 @@ namespace MonoControllers
             {
                 Most_HapticFeedback.Generate(Most_HapticFeedback.HapticTypes.Selection);
             }
+        }
+
+        private void UpdateProgress()
+        {
+            if(GameManager.Instance.LoadedLevelId == 3) 
+                return;
+            
+            DevilificationProgress.KilledDemonsCount++;
+            var progress = DevilificationProgress.KilledDemonsCount /
+                           (float)DevilificationProgress.DemonsStaticCount;
+                
+            DevilificationProgress.OnSetSmooth?.Invoke(progress);
         }
 
         private void UpdateAfterReload()

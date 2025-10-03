@@ -244,6 +244,8 @@ namespace Core
             });
             
             Most_HapticFeedback.Generate(Most_HapticFeedback.HapticTypes.Failure);
+            
+            DevilificationProgress.ResetProgress();
 
             Debug.Log("Game Over!");
         }
@@ -271,8 +273,6 @@ namespace Core
                 MusicManager.SceneLoaded?.Invoke(MusicManager.MenuBetweenLevelsSceneName);
             });
 
-            DevilificationProgress.OnSetSmooth?.Invoke((LoadedLevel.LevelId + 1)/DevilificationProgress.DevilificationLevelId);
-
             OnLevelFinishedSuccess?.Invoke(LoadedLevel.LevelId);
 
             Debug.Log("Level Passed!");
@@ -282,6 +282,8 @@ namespace Core
         {
             var overPanel = DevilModeScenario.IsInDevilMode ? GameOverDevilPanel : GameOverPanel;
             overPanel.SetActive(false);
+            
+            DevilificationProgress.ResetProgress();
 
             var sceneName = SceneManager.GetActiveScene().name;
             MusicManager.SceneLoaded?.Invoke(sceneName);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -53,6 +54,22 @@ namespace NPC
             {
                 yield return new WaitForSeconds(impactDelay);
                 PlayDeathEffects();
+                Destroy(gameObject);
+            }
+        }
+        
+        public void Hit(float impactDelay, Action onHit)
+        {
+            Debug.Log($"{gameObject.name} was hit!");
+
+            StartCoroutine(HitRoutine());
+            return;
+
+            IEnumerator HitRoutine()
+            {
+                yield return new WaitForSeconds(impactDelay);
+                PlayDeathEffects();
+                onHit?.Invoke();
                 Destroy(gameObject);
             }
         }

@@ -17,8 +17,15 @@ namespace Gun
 
         private Sequence _blinkSequence;
 
-        private void OnDisable() => 
+        private void OnEnable() => 
+            _light.intensity = 0f;
+
+        private void OnDisable()
+        {
             _blinkSequence?.Kill();
+            _light.intensity = 0f; 
+        }
+            
 
         public void Blink()
         {

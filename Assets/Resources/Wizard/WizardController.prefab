@@ -746,6 +746,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cb6f70adbcf9a4e70a635cc185f864d3, type: 2}
   - {fileID: 11400000, guid: be20d415616124136a0bc6f1dc88df44, type: 2}
   - {fileID: 11400000, guid: 1deffe5fa11864c9bb7008c7028a0dc8, type: 2}
+  - {fileID: 11400000, guid: fdac3b1f8b6ff4548a22872325621c79, type: 2}
   - {fileID: 11400000, guid: f71dbe6da5ed44c619a197d6223ef946, type: 2}
   - {fileID: 11400000, guid: 7b20154cda423498cbb74a66d93d7a75, type: 2}
   - {fileID: 11400000, guid: f130bf5df93894a71b947f90f542f9c3, type: 2}
@@ -753,7 +754,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 58632a0875efc453bb95a86aea5fc907, type: 2}
   - {fileID: 11400000, guid: 24253397f382d46b09964b8f1f804e30, type: 2}
   - {fileID: 11400000, guid: dde1c64a28c1441688632293cb89d075, type: 2}
-  - {fileID: 11400000, guid: fdac3b1f8b6ff4548a22872325621c79, type: 2}
+  _nextLevelButton: {fileID: 0}
 --- !u!1 &2826274826489361173
 GameObject:
   m_ObjectHideFlags: 0

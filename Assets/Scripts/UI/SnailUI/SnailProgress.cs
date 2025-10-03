@@ -26,7 +26,7 @@ namespace UI.SnailUI
         [Header("State")]
         [FormerlySerializedAs("unlocked")] [SerializeField] private bool[] _unlocked = new bool[5];
         
-        private static readonly Color InactiveColor = Color.gray;
+        private static readonly Color InactiveColor = new (1f, 1f, 1f, 0.02f);
 
         private int MaxLetters => _unlocked?.Length ?? 5; // S, N, A, I, L
     
@@ -66,7 +66,7 @@ namespace UI.SnailUI
                     continue;
                 
                 var isUnlocked = i >= 0 && i < MaxLetters && _unlocked[i];
-                text.color = isUnlocked ? new Color(226, 84, 44, 255) : InactiveColor;
+                text.color = isUnlocked ? new Color(0.886f, 0.329f, 0.173f, 1f) : InactiveColor;
             }
         }
 
