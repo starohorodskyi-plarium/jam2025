@@ -17,13 +17,13 @@ namespace MonoControllers.Camera
 
         public event Action<bool?> OnZoomChanged; 
         
-        private bool isZoomed;
+        public bool IsZoomed;
 
         private UnityEngine.Camera _camera;
         
         public void ResetZoom()
         {
-            isZoomed = false;
+            IsZoomed = false;
             
             _camera.DOFieldOfView(NormalFOV, Duration).SetEase(Ease.OutQuad);
             
@@ -46,14 +46,14 @@ namespace MonoControllers.Camera
             if (!GameManager.Instance.InputEnabled) 
                 return;
             
-            if (isZoomed)
+            if (IsZoomed)
                 _camera.DOFieldOfView(NormalFOV, Duration).SetEase(Ease.OutQuad);
             else
                 _camera.DOFieldOfView(ZoomFOV, Duration).SetEase(Ease.OutQuad);
 
-            isZoomed = !isZoomed;
+            IsZoomed = !IsZoomed;
             
-            OnZoomChanged?.Invoke(isZoomed);
+            OnZoomChanged?.Invoke(IsZoomed);
         }
 
         private void OnEnable() => 

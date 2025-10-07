@@ -3186,6 +3186,7 @@ MonoBehaviour:
   ZoomFOV: 35
   NormalFOV: 60
   Duration: 0.5
+  IsZoomed: 0
 --- !u!114 &1407212332 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7435099010899220295, guid: 87af8ed249b683d429d53a9d5c5bb641, type: 3}
@@ -3828,6 +3829,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5471811742966257123, guid: 87af8ed249b683d429d53a9d5c5bb641, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502456112392158850, guid: 87af8ed249b683d429d53a9d5c5bb641, type: 3}
+      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5845357038387367057, guid: 87af8ed249b683d429d53a9d5c5bb641, type: 3}
@@ -4761,6 +4766,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7324096207249855408, guid: e0b9617fe737244d4b0878721b93b951, type: 3}
+      propertyPath: _aimWeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7324096207249855408, guid: e0b9617fe737244d4b0878721b93b951, type: 3}
       propertyPath: viewCamera
       value: 
       objectReference: {fileID: 1360423019}
@@ -4776,6 +4785,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8330856703678476681, guid: e0b9617fe737244d4b0878721b93b951, type: 3}
+      propertyPath: _zoom
+      value: 
+      objectReference: {fileID: 1360423025}
     - target: {fileID: 9030381811698364051, guid: e0b9617fe737244d4b0878721b93b951, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0

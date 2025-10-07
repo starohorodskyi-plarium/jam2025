@@ -13,7 +13,7 @@ namespace MonoControllers
 {
     public class WeaponController : MonoBehaviour
     {
-        [SerializeField] private Transform _fireOriginPoint;
+        [SerializeField] private SpriteSwapper _fireOriginPoint;
         [SerializeField] private float _fireRateSec = .1f;
         [SerializeField] private float _maxDistance = 100f;
         [SerializeField] private float _reloadDurationSec = 1f;
@@ -74,7 +74,7 @@ namespace MonoControllers
         
         private void HandleTargetHit(GameObject hitObject, float projectileSpeed, Vector3 collisionPoint)
         {
-            var distance = Vector3.Distance(_fireOriginPoint.position, collisionPoint);
+            var distance = Vector3.Distance(_fireOriginPoint.ActiveMuzzle().position, collisionPoint);
             var impactDelay = distance / projectileSpeed;
             
             if (hitObject.CompareTag("Friend"))
@@ -162,8 +162,8 @@ namespace MonoControllers
 
         private void CalculateTrajectory(out ProjectileData projectileData, out GameObject hitObject)
         {
-            var rayDirection = _mousePosition - _fireOriginPoint.position;
-            var startPosition = _fireOriginPoint.position;
+            var rayDirection = _mousePosition - _fireOriginPoint.ActiveMuzzle().position;
+            var startPosition = _fireOriginPoint.ActiveMuzzle().position;
 
             if (Physics.Raycast(startPosition, rayDirection, out var hitInfo, _maxDistance, _hitMask))
             {

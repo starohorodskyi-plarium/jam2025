@@ -1,3 +1,4 @@
+using Gun;
 using UnityEngine;
 
 namespace MonoControllers
@@ -5,9 +6,9 @@ namespace MonoControllers
     public class ShootSoundController : MonoBehaviour
     {
         [SerializeField] private GameObject _shootSoundPrefab;
-        [SerializeField] private Transform _spawnPoint;
+        [SerializeField] private SpriteSwapper _spawnPoint;
         
         public void PlaySound() => 
-            Instantiate(_shootSoundPrefab, _spawnPoint);
+            Instantiate(_shootSoundPrefab, _spawnPoint.ActiveMuzzle());
     }
 }
