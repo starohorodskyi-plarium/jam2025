@@ -153,8 +153,11 @@ namespace Platform
 #endif
         }
 
-        private void ApplyPointerDelta(Vector2 delta) => 
+        private void ApplyPointerDelta(Vector2 delta)
+        {
             _targetPointer += delta;
+            ClampToScreen(_targetPointer);
+        }
 
         private bool IsInsideArea(Vector2 screenPos) =>
             _pointerMoveControlArea != null 

@@ -19,6 +19,8 @@ namespace Gameplay
 
         [Tooltip("How many baddies should spawn on this level.")]
         [FormerlySerializedAs("baddiesPerLevel")] public int BaddiesPerLevel = 2;
+        
+        public List<NPCController> Npcs = new();
 
         public int EnemiesDefeatCount
         {
@@ -96,10 +98,15 @@ namespace Gameplay
                 // Spawn at p1
                 var instance = Instantiate(prefab, prefab.transform.position, prefab.transform.rotation, point);
 
+                
+                
                 // Assign waypoints
                 var controller = instance.GetComponent<NPCController>();
                 if (controller != null)
+                {
                     controller.SetWaypoints(p1, p2);
+                    Npcs.Add(controller);
+                }
             }
         }
 
@@ -117,6 +124,8 @@ namespace Gameplay
                         Destroy(child.gameObject);
                 }
             }
+            
+            Npcs.Clear();
         }
 
         public bool AllEnemiesDefeated()

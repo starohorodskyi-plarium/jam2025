@@ -1083,7 +1083,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _light: {fileID: 2648319584877739521}
-  _peakIntensity: 800
+  _peakIntensity:
+    m_keys: 00000000010000000200000003000000
+    m_values:
+    - 800
+    - 800
+    - 50
+    - 40
   _upDuration: 0.05
   _downDuration: 0.1
   _upEase: 6

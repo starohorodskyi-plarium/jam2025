@@ -176,16 +176,23 @@ MonoBehaviour:
     - Level5
     - DemonicLevel
     m_values:
-    - {fileID: 8300000, guid: 5ebdd5085abc440a4af137c2174073e3, type: 3}
-    - {fileID: 8300000, guid: 5ebdd5085abc440a4af137c2174073e3, type: 3}
-    - {fileID: 8300000, guid: 5ebdd5085abc440a4af137c2174073e3, type: 3}
-    - {fileID: 8300000, guid: eb2137a0427f64671a45dab24da79f22, type: 3}
-    - {fileID: 8300000, guid: 3b9f284729f924e15b1f0d3a9ce21841, type: 3}
-    - {fileID: 8300000, guid: dcda6ba5ace5442eca7e54fa6669ace6, type: 3}
-    - {fileID: 8300000, guid: dcda6ba5ace5442eca7e54fa6669ace6, type: 3}
-    - {fileID: 8300000, guid: dcda6ba5ace5442eca7e54fa6669ace6, type: 3}
+    - MaxVolume: 0.25
+      Clip: {fileID: 8300000, guid: 5ebdd5085abc440a4af137c2174073e3, type: 3}
+    - MaxVolume: 0.3
+      Clip: {fileID: 8300000, guid: 5ebdd5085abc440a4af137c2174073e3, type: 3}
+    - MaxVolume: 0.4
+      Clip: {fileID: 8300000, guid: 5ebdd5085abc440a4af137c2174073e3, type: 3}
+    - MaxVolume: 0.5
+      Clip: {fileID: 8300000, guid: eb2137a0427f64671a45dab24da79f22, type: 3}
+    - MaxVolume: 0.5
+      Clip: {fileID: 8300000, guid: 3b9f284729f924e15b1f0d3a9ce21841, type: 3}
+    - MaxVolume: 0.1
+      Clip: {fileID: 8300000, guid: dcda6ba5ace5442eca7e54fa6669ace6, type: 3}
+    - MaxVolume: 0.1
+      Clip: {fileID: 8300000, guid: dcda6ba5ace5442eca7e54fa6669ace6, type: 3}
+    - MaxVolume: 0.1
+      Clip: {fileID: 8300000, guid: dcda6ba5ace5442eca7e54fa6669ace6, type: 3}
   _audioSource: {fileID: 53341428}
-  _maxVolume: 0.1
   _transitionDuration: 3
 --- !u!82 &53341428
 AudioSource:
@@ -788,17 +795,25 @@ MonoBehaviour:
     - DemonicLevel
     - MenuBetweenLevels
     m_values:
-    - {fileID: 8300000, guid: 7166c61b9c5d24fa7a65ab89240e69f7, type: 3}
-    - {fileID: 8300000, guid: 7166c61b9c5d24fa7a65ab89240e69f7, type: 3}
-    - {fileID: 8300000, guid: 125d35bbbe27d436981aaec81786c0a1, type: 3}
-    - {fileID: 8300000, guid: 30ba4f27fa8ed4ae6ae29964d09da396, type: 3}
-    - {fileID: 8300000, guid: 262012b176b444529b11f5517b3616b3, type: 3}
-    - {fileID: 8300000, guid: ffe3cbaadc6be487d83dff26a4709128, type: 3}
-    - {fileID: 8300000, guid: ffe3cbaadc6be487d83dff26a4709128, type: 3}
-    - {fileID: 8300000, guid: ffe3cbaadc6be487d83dff26a4709128, type: 3}
-    - {fileID: 8300000, guid: 36085d6b6a77c47fdaf881d6ddd8ecdf, type: 3}
+    - MaxVolume: 0.1
+      Clip: {fileID: 8300000, guid: 7166c61b9c5d24fa7a65ab89240e69f7, type: 3}
+    - MaxVolume: 0.1
+      Clip: {fileID: 8300000, guid: 7166c61b9c5d24fa7a65ab89240e69f7, type: 3}
+    - MaxVolume: 0.1
+      Clip: {fileID: 8300000, guid: 125d35bbbe27d436981aaec81786c0a1, type: 3}
+    - MaxVolume: 0.1
+      Clip: {fileID: 8300000, guid: 30ba4f27fa8ed4ae6ae29964d09da396, type: 3}
+    - MaxVolume: 0.1
+      Clip: {fileID: 8300000, guid: 262012b176b444529b11f5517b3616b3, type: 3}
+    - MaxVolume: 0.1
+      Clip: {fileID: 8300000, guid: ffe3cbaadc6be487d83dff26a4709128, type: 3}
+    - MaxVolume: 0.1
+      Clip: {fileID: 8300000, guid: ffe3cbaadc6be487d83dff26a4709128, type: 3}
+    - MaxVolume: 0.1
+      Clip: {fileID: 8300000, guid: ffe3cbaadc6be487d83dff26a4709128, type: 3}
+    - MaxVolume: 0.1
+      Clip: {fileID: 8300000, guid: 36085d6b6a77c47fdaf881d6ddd8ecdf, type: 3}
   _audioSource: {fileID: 1193614302}
-  _maxVolume: 0.1
   _transitionDuration: 2
 --- !u!114 &1193614301
 MonoBehaviour:

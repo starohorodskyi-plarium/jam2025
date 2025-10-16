@@ -37,6 +37,13 @@ namespace Gun
         
         private AngleWeapon _currentAngle;
 
+        public SpriteRenderer ActiveSprite;
+        
+        public List<SpriteRenderer> AllSprites => 
+            _spriteSwaps.Select(x => x.WeaponImage.GetComponent<SpriteRenderer>()).ToList();
+
+        public static event Action SpriteChanged;
+
         private void OnEnable()
         {
             _currentAngle = AngleWeapon.Middle;
@@ -95,7 +102,12 @@ namespace Gun
                 var isActive = spriteSwap.Angle == angleWeapon;
                 spriteSwap.WeaponImage.SetActive(isActive);
                 spriteSwap.Muzzle.SetActive(isActive);
+
+                if (isActive)
+                    ActiveSprite = spriteSwap.WeaponImage.GetComponent<SpriteRenderer>();
             }
+            
+            SpriteChanged?.Invoke();
         }
     }
 }

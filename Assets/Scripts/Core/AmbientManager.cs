@@ -10,7 +10,6 @@ namespace Core
         [FormerlySerializedAs("initialSceneName")] [SerializeField] private string _initialSceneName = "MainMenu";
         [FormerlySerializedAs("ambientMap")] [SerializeField] private StringAudioClipDictionary _ambientMap;
         [FormerlySerializedAs("audioSource")] [SerializeField] private AudioSource _audioSource;
-        [FormerlySerializedAs("maxVolume")] [SerializeField][Range(0f, 1f)] private float _maxVolume = 0.1f;
         [FormerlySerializedAs("transitionDuration")] [SerializeField][Range(0f, 5f)] private float _transitionDuration = 3f;
 
         public static Action<string> SceneLoaded;
@@ -38,10 +37,10 @@ namespace Core
         private void PlayNewAmbient(string sceneName)
         {
             if (!_ambientMap.TryGetValue(sceneName, out var value)) return;
-            if (!value || !_audioSource) return;
-            _audioSource.clip = value;
+            if (!value.Clip || !_audioSource) return;
+            _audioSource.clip = value.Clip;
             _audioSource.Play();
-            _audioSource.DOFade(_maxVolume, _transitionDuration);
+            _audioSource.DOFade(value.MaxVolume, _transitionDuration);
         }
     }
 }

@@ -13,7 +13,6 @@ namespace Core
         [FormerlySerializedAs("musicMap")] [SerializeField] private StringAudioClipDictionary _musicMap;
         
         [FormerlySerializedAs("audioSource")] [SerializeField] private AudioSource _audioSource;
-        [FormerlySerializedAs("maxVolume")] [SerializeField] [Range	(0f,1f)] private float _maxVolume = 0.1f;
         
         [FormerlySerializedAs("transitionDuration")] [SerializeField] [Range(0f, 5f)]private float _transitionDuration = 3f;
 
@@ -58,17 +57,24 @@ namespace Core
             if (!_musicMap.TryGetValue(sceneName, out var value)) 
                 return;
             
-            if(!value || !_audioSource)
+            if(!value.Clip || !_audioSource)
                 return;
             
-            _audioSource.clip = value;
+            _audioSource.clip = value.Clip;
             _audioSource.Play();
-            _audioSource.DOFade(_maxVolume, _transitionDuration);
+            _audioSource.DOFade(value.MaxVolume, _transitionDuration);
         }
     }
     
     [Serializable]
-    public class StringAudioClipDictionary : SerializableDictionary<string, AudioClip> 
+    public class StringAudioClipDictionary : SerializableDictionary<string, AmbientClip> 
     {
+    }
+    
+    [Serializable]
+    public class AmbientClip 
+    {
+        public float MaxVolume = 0.1f;
+        public AudioClip Clip;
     }
 }

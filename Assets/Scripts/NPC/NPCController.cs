@@ -27,7 +27,7 @@ namespace NPC
         private const float MoveSpeed = 0.5f;
         private const float ReachThreshold = 0.1f; // how close is "arrived"
 
-        private SpriteRenderer spriteRenderer;
+        public SpriteRenderer SpriteRenderer;
         
         [Header("Character Settings")]
         [FormerlySerializedAs("faction")] [SerializeField] private Faction _faction = Faction.Enemy;
@@ -38,7 +38,7 @@ namespace NPC
         [FormerlySerializedAs("spriteDirection")] [SerializeField] private NPCSpriteDirection _spriteDirection;
 
         private void Awake() => 
-            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         private void Update() => 
             Move();
@@ -93,8 +93,8 @@ namespace NPC
                 target = point1;
             }
 
-            if (!spriteRenderer)
-                spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            if (!SpriteRenderer)
+                SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         }
 
         private void Move()
@@ -111,7 +111,7 @@ namespace NPC
 
             // Flip sprite based on movement direction (x axis)
             var dir = target.position - transform.position;
-            if (spriteRenderer)
+            if (SpriteRenderer)
             {
                 switch (dir.x)
                 {

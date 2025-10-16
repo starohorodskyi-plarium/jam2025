@@ -1,3 +1,5 @@
+using System;
+using Core;
 using UnityEngine;
 using DG.Tweening;
 
@@ -8,7 +10,7 @@ namespace Gun
         [SerializeField] private Light _light;
 
         [Header("Blink Settings")] 
-        [SerializeField] private float _peakIntensity = 5f; 
+        [SerializeField] private IntFloatClipDictionary _peakIntensity; 
         [SerializeField] private float _upDuration = 0.05f; 
         [SerializeField] private float _downDuration = 0.1f; 
         [SerializeField] private Ease _upEase = Ease.OutQuad; 
@@ -41,8 +43,14 @@ namespace Gun
                 _blinkSequence.SetUpdate(true);
 
             _blinkSequence
-                .Append(DOTween.To(() => _light.intensity, v => _light.intensity = v, _peakIntensity, _upDuration).SetEase(_upEase))
+                .Append(DOTween.To(() => _light.intensity, v => _light.intensity = v, _peakIntensity[GameManager.Instance.LoadedLevelId ?? 0], _upDuration).SetEase(_upEase))
                 .Append(DOTween.To(() => _light.intensity, v => _light.intensity = v, 0f, _downDuration).SetEase(_downEase));
+        }
+        
+            
+        [Serializable]
+        public class IntFloatClipDictionary : SerializableDictionary<int, float> 
+        {
         }
     }
 }
