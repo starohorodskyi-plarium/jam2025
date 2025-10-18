@@ -5886,6 +5886,7 @@ MonoBehaviour:
   _thunderSound: {fileID: 1426671381}
   _lightningIntervalRange: {x: 5, y: 15}
   _thunderSoundDelay: 0.9
+  _thunderPitchRange: {x: 0.9, y: 1.1}
   _lightningPeakIntensity: 26
   _lightningFlickerDuration: 0.3
 --- !u!114 &7447415098254767704
