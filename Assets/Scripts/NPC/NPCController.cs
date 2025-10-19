@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Gameplay;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -55,6 +56,7 @@ namespace NPC
                 yield return new WaitForSeconds(impactDelay);
                 PlayDeathEffects();
                 Destroy(gameObject);
+                SpawnManager.OnNpcDestroyed?.Invoke(this);
             }
         }
         
@@ -71,6 +73,7 @@ namespace NPC
                 PlayDeathEffects();
                 onHit?.Invoke();
                 Destroy(gameObject);
+                SpawnManager.OnNpcDestroyed?.Invoke(this);
             }
         }
 

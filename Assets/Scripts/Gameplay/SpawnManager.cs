@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using NPC;
 using UnityEngine;
@@ -21,6 +22,17 @@ namespace Gameplay
         [FormerlySerializedAs("baddiesPerLevel")] public int BaddiesPerLevel = 2;
         
         public List<NPCController> Npcs = new();
+
+        public static Action<NPCController> OnNpcDestroyed;
+
+        private void OnEnable() => 
+            OnNpcDestroyed += NpcDestroyed;
+
+        private void OnDisable()=> 
+            OnNpcDestroyed -= NpcDestroyed;
+
+        private void NpcDestroyed(NPCController npc) => 
+            Npcs.Remove(npc);
 
         public int EnemiesDefeatCount
         {

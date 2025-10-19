@@ -17,6 +17,10 @@ namespace Platform
         [Tooltip("Also allow this to work in editor play mode for debugging.")] 
         [SerializeField] private bool _enableInEditor = true;
         
+        [Header("Keyboard Control (Editor Only)")]
+        [Tooltip("Speed of keyboard arrow key movement (pixels per second)")]
+        [SerializeField] private float _keyboardSpeed = 500f;
+        
         [Header("Gyro")] 
         [SerializeField] private GyroController _gyro;
 
@@ -75,6 +79,10 @@ namespace Platform
 
             ProcessTouchpad();
             
+#if UNITY_EDITOR
+            ProcessKeyboardInput();
+#endif
+            
             var finalTarget = _targetPointer;
             
             if (GyroController.UsingGyroOffset)
@@ -86,6 +94,28 @@ namespace Platform
             if ((GamePointer.Pointer - finalTarget).sqrMagnitude > 0.01f) 
                 GamePointer.Pointer = Vector2.Lerp(GamePointer.Pointer, finalTarget, _smoothTime);
         }
+
+#if UNITY_EDITOR
+        private void ProcessKeyboardInput()
+        {
+            var input = Vector2.zero;
+            
+            if (Input.GetKey(KeyCode.UpArrow))
+                input.y += 1f;
+            if (Input.GetKey(KeyCode.DownArrow))
+                input.y -= 1f;
+            if (Input.GetKey(KeyCode.LeftArrow))
+                input.x -= 1f;
+            if (Input.GetKey(KeyCode.RightArrow))
+                input.x += 1f;
+            
+            if (input.sqrMagnitude > 0f)
+            {
+                var delta = input.normalized * (_keyboardSpeed * Time.deltaTime);
+                ApplyPointerDelta(delta);
+            }
+        }
+#endif
 
         private void ProcessTouchpad()
         {
@@ -156,7 +186,7 @@ namespace Platform
         private void ApplyPointerDelta(Vector2 delta)
         {
             _targetPointer += delta;
-            ClampToScreen(_targetPointer);
+            _targetPointer = ClampToScreen(_targetPointer);
         }
 
         private bool IsInsideArea(Vector2 screenPos) =>
