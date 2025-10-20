@@ -12,8 +12,6 @@ namespace Platform
         [SerializeField] private float _sensitivity = 1.2f;
         [Tooltip("Smoothing time for SmoothDamp (ignored if DOTween is used).")] 
         [SerializeField] private float _smoothTime = 0.05f;
-        [Tooltip("Clamp pointer to screen bounds.")] 
-        [SerializeField] private bool _clampToScreen = true;
         [Tooltip("Also allow this to work in editor play mode for debugging.")] 
         [SerializeField] private bool _enableInEditor = true;
         
@@ -83,13 +81,10 @@ namespace Platform
             ProcessKeyboardInput();
 #endif
             
-            var finalTarget = _targetPointer;
-            
             if (GyroController.UsingGyroOffset)
-                finalTarget += GyroController.GyroInputOffset;
+                _targetPointer = ClampToScreen(_targetPointer, GyroController.GyroInputOffset);
             
-            if (_clampToScreen)
-                finalTarget = ClampToScreen(finalTarget);
+            var finalTarget = _targetPointer + GyroController.GyroInputOffset;
             
             if ((GamePointer.Pointer - finalTarget).sqrMagnitude > 0.01f) 
                 GamePointer.Pointer = Vector2.Lerp(GamePointer.Pointer, finalTarget, _smoothTime);
@@ -183,20 +178,17 @@ namespace Platform
 #endif
         }
 
-        private void ApplyPointerDelta(Vector2 delta)
-        {
+        private void ApplyPointerDelta(Vector2 delta) => 
             _targetPointer += delta;
-            _targetPointer = ClampToScreen(_targetPointer);
-        }
 
         private bool IsInsideArea(Vector2 screenPos) =>
             _pointerMoveControlArea != null 
             && RectTransformUtility.RectangleContainsScreenPoint(_pointerMoveControlArea, screenPos, null);
 
-        private static Vector2 ClampToScreen(Vector2 p)
+        private static Vector2 ClampToScreen(Vector2 p, Vector2 offset)
         {
-            var x = Mathf.Clamp(p.x, 0f, Screen.width);
-            var y = Mathf.Clamp(p.y, 0f, Screen.height);
+            var x = Mathf.Clamp(p.x, -offset.x, Screen.width - offset.x);
+            var y = Mathf.Clamp(p.y, -offset.y, Screen.height - offset.y);
             return new Vector2(x, y);
         }
 
