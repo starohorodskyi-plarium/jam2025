@@ -186,4 +186,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af65737974a204ab9bae27b14af68b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goalMessageText: {fileID: 2140506301859175858}
+  _goalMessageText: {fileID: 2140506301859175858}
+  _letterInterval: 0.03
