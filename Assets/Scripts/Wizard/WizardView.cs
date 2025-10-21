@@ -59,7 +59,10 @@ namespace Wizard
                 yield return new WaitForSeconds(slide.Delay);
 
             _voice.Stop();
-            _characterAnimator.SetBool(IsTalking, false);
+            
+            if(_characterAnimator.gameObject.activeInHierarchy)
+                _characterAnimator.SetBool(IsTalking, false);
+            
             CancelVoiceDelay();
 
             _newspapperContainer.SetActive(slide.WizardId == WizardId.Introduction);
@@ -92,7 +95,9 @@ namespace Wizard
             _deadInspector.gameObject.SetActive(slide.ActorId == WizardActorId.Dead_Inspector);
 
             yield return null;
-            _characterAnimator.SetBool(IsTalking, true);
+            
+            if(_characterAnimator.gameObject.activeInHierarchy)
+                _characterAnimator.SetBool(IsTalking, true);
         }
 
         private void CancelVoiceDelay()
@@ -108,13 +113,18 @@ namespace Wizard
         {
             if (seconds <= 0f)
             {
-                _characterAnimator.SetBool(IsTalking, false);
+                if(_characterAnimator.gameObject.activeInHierarchy)
+                    _characterAnimator.SetBool(IsTalking, false);
+                
                 _voiceDelayRoutine = null;
                 yield break;
             }
 
             yield return new WaitForSecondsRealtime(seconds);
-            _characterAnimator.SetBool(IsTalking, false);
+            
+            if(_characterAnimator.gameObject.activeInHierarchy)
+                _characterAnimator.SetBool(IsTalking, false);
+            
             _voiceDelayRoutine = null;
         }
 
@@ -257,7 +267,9 @@ namespace Wizard
             
             _voice.Stop();
             CancelVoiceDelay();
-            _characterAnimator.SetBool(IsTalking, false);
+            
+            if(_characterAnimator.gameObject.activeInHierarchy)
+                _characterAnimator.SetBool(IsTalking, false);
         }
     }
 }

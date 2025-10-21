@@ -529,6 +529,26 @@ PrefabInstance:
       propertyPath: _cameraController
       value: 
       objectReference: {fileID: 1360423022}
+    - target: {fileID: 5191129500076388384, guid: d45b6ef230b40424b9672b64effd8389, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5842298704068117153, guid: d45b6ef230b40424b9672b64effd8389, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 6022436708125540084, guid: d45b6ef230b40424b9672b64effd8389, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226410832231861438, guid: d45b6ef230b40424b9672b64effd8389, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8688683592901836607, guid: d45b6ef230b40424b9672b64effd8389, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -565,7 +585,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1105607633830492915, guid: 0f6a5be008df74b78a6d7d06b9a14625, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
-      value: 1
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1106262523882129431, guid: 0f6a5be008df74b78a6d7d06b9a14625, type: 3}
       propertyPath: clickSequence.m_PersistentCalls.m_Calls.Array.size
@@ -3081,8 +3101,8 @@ Camera:
   m_GameObject: {fileID: 1360423017}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

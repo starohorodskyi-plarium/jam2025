@@ -49,9 +49,9 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5375960223339095658}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 3
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 0
+  m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 0
@@ -187,9 +187,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8cc92b213ab444697b9e221dc47b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 1305611561577918467}
-  direction: 1
-  shadow: {fileID: 8588599205872296511}
+  _spriteRenderer: {fileID: 1305611561577918467}
+  _direction: 1
+  _shadow: {fileID: 8588599205872296511}
 --- !u!1 &7891725689576905076
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,12 +239,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1f2ca847bba5147a4f6e8754be3a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faction: 0
-  gender: 0
-  allyHitEffect: {fileID: 141433446842962269, guid: b489eab5a6a474277bc7bb66882a1593, type: 3}
-  enemyHitEffect: {fileID: 8194992990867289339, guid: 36e0b4c0ed76749e6b73389e973e67f6, type: 3}
-  soundPlayerPrefab: {fileID: 4319109307433908072, guid: 916c3f99ee74f44a0905b22ffdef4c97, type: 3}
-  spriteDirection: {fileID: 3308442391713139342}
+  SpriteRenderer: {fileID: 0}
+  _faction: 0
+  _gender: 0
+  _allyHitEffect: {fileID: 141433446842962269, guid: b489eab5a6a474277bc7bb66882a1593, type: 3}
+  _enemyHitEffect: {fileID: 8194992990867289339, guid: 36e0b4c0ed76749e6b73389e973e67f6, type: 3}
+  _soundPlayerPrefab: {fileID: 4319109307433908072, guid: 916c3f99ee74f44a0905b22ffdef4c97, type: 3}
+  _spriteDirection: {fileID: 3308442391713139342}
 --- !u!95 &7294437732942236134
 Animator:
   serializedVersion: 7
@@ -279,9 +280,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bcbdea6f21ab4730820d065480e189a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 7294437732942236134}
-  minDelay: 0.1
-  maxDelay: 2
+  _animator: {fileID: 7294437732942236134}
+  _minDelay: 0.1
+  _maxDelay: 2
 --- !u!65 &4757606690051468617
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -315,15 +316,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 285f52e27d9fe414badc356ec97ac5e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialDelayMin: 0
-  initialDelayMax: 3
-  betweenShotsDelayMin: 3
-  betweenShotsDelayMax: 6
-  damageMin: 1
-  damageMax: 4
-  projectilePrefab: {fileID: 4950735183611511844, guid: 10e9adcb39bf54233b6fe6c1a4caf113, type: 3}
-  projectileSpawnPoint: {fileID: 4601779410030506297}
-  projectileSpeed: 10
-  projectileEase: 11
-  shotVfxPrefab: {fileID: 2834654951425760423, guid: 076eca545319746a1a9d51e13dbb2992, type: 3}
-  shotVfxLifetime: 2
+  _initialDelayMin: 0
+  _initialDelayMax: 3
+  _betweenShotsDelayMin: 3
+  _betweenShotsDelayMax: 6
+  _damageMin: 1
+  _damageMax: 4
+  _projectilePrefab: {fileID: 4950735183611511844, guid: 10e9adcb39bf54233b6fe6c1a4caf113, type: 3}
+  _projectileSpawnPoint: {fileID: 4601779410030506297}
+  _projectileSpeed: 10
+  _projectileEase: 11
+  _shotVfxPrefab: {fileID: 2834654951425760423, guid: 076eca545319746a1a9d51e13dbb2992, type: 3}
+  _shotVfxLifetime: 2
