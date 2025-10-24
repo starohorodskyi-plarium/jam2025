@@ -21,7 +21,7 @@ namespace Gun
         public class SpriteSwap
         {
             public AngleWeapon Angle;
-            public GameObject WeaponImage;
+            public SpriteRenderer Gun;
             public GameObject Muzzle;
             public Vector2Int ActiveAnglesRange;
             public Vector2Int ActiveAnglesZoomRange;
@@ -40,7 +40,7 @@ namespace Gun
         public SpriteRenderer ActiveSprite;
         
         public List<SpriteRenderer> AllSprites => 
-            _spriteSwaps.Select(x => x.WeaponImage.GetComponent<SpriteRenderer>()).ToList();
+            _spriteSwaps.Select(x => x.Gun).ToList();
 
         public static event Action SpriteChanged;
 
@@ -97,17 +97,44 @@ namespace Gun
         
         private void SetSprite(AngleWeapon angleWeapon)
         {
+            Transform activeMuzzle = null;
+            List<Transform> muzzleChildren = new();
+            
             foreach (var spriteSwap in _spriteSwaps)
             {
                 var isActive = spriteSwap.Angle == angleWeapon;
-                spriteSwap.WeaponImage.SetActive(isActive);
-                spriteSwap.Muzzle.SetActive(isActive);
+                spriteSwap.Gun.enabled = isActive;
 
                 if (isActive)
-                    ActiveSprite = spriteSwap.WeaponImage.GetComponent<SpriteRenderer>();
+                {
+                    ActiveSprite = spriteSwap.Gun;
+                    activeMuzzle = spriteSwap.Muzzle.transform;
+                }
+                else
+                {
+                    muzzleChildren.AddRange(StoreMuzzleChildren(spriteSwap.Muzzle));
+                }
             }
             
+            if(activeMuzzle != null)
+                muzzleChildren.ForEach(child => ResetMuzzleChildren(child, activeMuzzle));
+            
             SpriteChanged?.Invoke();
+        }
+
+        private static IEnumerable<Transform> StoreMuzzleChildren(GameObject muzzle)
+        {
+            if (muzzle.transform.childCount <= 0) 
+                yield break;
+                    
+            for (var i = 0; i < muzzle.transform.childCount; i++) 
+                yield return muzzle.transform.GetChild(i);
+        }
+
+        private static void ResetMuzzleChildren(Transform child , Transform activeMuzzle)
+        {
+            child.SetParent(activeMuzzle);
+            child.localPosition = Vector3.zero;
         }
     }
 }

@@ -5,7 +5,7 @@ namespace Wizard
 {
     public class ActorAppearTween : MonoBehaviour
     {
-        [SerializeField] private Transform _target;
+        [SerializeField] private RectTransform _target;
         [SerializeField] private float _endPositionX;
         [SerializeField] private float _duration;
 
@@ -15,9 +15,9 @@ namespace Wizard
             _startPosition = _target.position.x;
 
         public void Show() => 
-            _target.DOMoveX(_endPositionX, _duration);
+            _target.DOAnchorPosX(_endPositionX, _duration);
 
         public void Hide() => 
-            _target.DOMoveX(_startPosition, _duration);
+            _target.DOAnchorPosX(_startPosition, _duration);
     }
 }

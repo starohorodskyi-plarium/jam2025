@@ -14,6 +14,11 @@ namespace MonoControllers.Camera
         [FormerlySerializedAs("zoomFOV")] public float ZoomFOV = 40f;
         [FormerlySerializedAs("normalFOV")] public float NormalFOV = 60f;
         [FormerlySerializedAs("duration")] public float Duration = 0.5f;
+        [Header("Audio")]
+        [SerializeField] private AudioSource _zoomAudio;
+        [SerializeField] private AudioClip _zoomAudioClip;
+        [SerializeField] private float _zoomInPitch;
+        [SerializeField] private float _zoomOutPitch;
 
         public event Action<bool?> OnZoomChanged; 
         
@@ -47,13 +52,28 @@ namespace MonoControllers.Camera
                 return;
             
             if (IsZoomed)
+            {
                 _camera.DOFieldOfView(NormalFOV, Duration).SetEase(Ease.OutQuad);
+                PlayZoomSound(false);
+            }
             else
+            {
                 _camera.DOFieldOfView(ZoomFOV, Duration).SetEase(Ease.OutQuad);
+                PlayZoomSound(true);
+            }
 
             IsZoomed = !IsZoomed;
             
             OnZoomChanged?.Invoke(IsZoomed);
+        }
+
+        private void PlayZoomSound(bool isZoomingIn)
+        {
+            if (!_zoomAudio || !_zoomAudioClip)
+                return;
+
+            _zoomAudio.pitch = isZoomingIn ? _zoomInPitch : _zoomOutPitch;
+            _zoomAudio.PlayOneShot(_zoomAudioClip);
         }
 
         private void OnEnable() => 

@@ -3,6 +3,7 @@ using Lighting;
 using UnityEngine;
 using DG.Tweening;
 using System.Collections;
+using UnityEngine.Events;
 
 namespace Gameplay
 {
@@ -19,6 +20,8 @@ namespace Gameplay
         [SerializeField] private Vector2 _thunderPitchRange = new Vector2(0.9f, 1.1f);
         [SerializeField] private float _lightningPeakIntensity = 8f;
         [SerializeField] private float _lightningFlickerDuration = 0.3f;
+        
+        public UnityEvent OnThunder;
 
         private Coroutine _thunderstormCoroutine;
 
@@ -160,6 +163,8 @@ namespace Gameplay
                 _thunderSound.pitch = Random.Range(_thunderPitchRange.x, _thunderPitchRange.y);
                 _thunderSound.Play();
             }
+
+            OnThunder?.Invoke();
         }
     }
 }

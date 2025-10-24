@@ -76,7 +76,7 @@ MonoBehaviour:
     - line: '|   m_SpriteBatchMaxVertexCount: 65535'
     - line: '|   m_SpriteBatchVertexThreshold: 300'
     - line: '|   m_MTRendering: 1'
-    - line: '|   mipStripping: 0'
+    - line: '|   mipStripping: 1'
     - line: '|   numberOfMipsStripped: 0'
     - line: '|   numberOfMipsStrippedPerMipmapLimitGroup: {}'
     - line: '|   m_StackTraceTypes: 010000000100000001000000010000000100000001000000'
@@ -116,7 +116,7 @@ MonoBehaviour:
     - line: '|   submitAnalytics: 1'
     - line: '|   usePlayerLog: 1'
     - line: '|   dedicatedServerOptimizations: 1'
-    - line: '|   bakeCollisionMeshes: 0'
+    - line: '|   bakeCollisionMeshes: 1'
     - line: '|   forceSingleInstance: 0'
     - line: '|   useFlipModelSwapchain: 1'
     - line: '|   resizableWindow: 0'
@@ -212,7 +212,7 @@ MonoBehaviour:
     - line: '|   CreateWallpaper: 0'
     - line: '|   androidSplitApplicationBinary: 0'
     - line: '|   keepLoadedShadersAlive: 0'
-    - line: '|   StripUnusedMeshComponents: 0'
+    - line: '|   StripUnusedMeshComponents: 1'
     - line: '|   strictShaderVariantMatching: 0'
     - line: '|   VertexChannelCompressionMask: 4054'
     - line: '|   iPhoneSdkVersion: 988'
@@ -229,7 +229,7 @@ MonoBehaviour:
     - line: '|   uIRequiresFullScreen: 1'
     - line: '|   uIStatusBarHidden: 1'
     - line: '|   uIExitOnSuspend: 0'
-    - line: '|   uIStatusBarStyle: 0'
+    - line: '|   uIStatusBarStyle: 2'
     - line: '|   appleTVSplashScreen: {instanceID: 0}'
     - line: '|   appleTVSplashScreen2x: {instanceID: 0}'
     - line: '|   tvOSSmallIconLayers: []'
@@ -277,7 +277,7 @@ MonoBehaviour:
     - line: '|   appleEnableAutomaticSigning: 0'
     - line: '|   iOSRequireARKit: 0'
     - line: '|   iOSAutomaticallyDetectAndAddCapabilities: 1'
-    - line: '|   appleEnableProMotion: 0'
+    - line: '|   appleEnableProMotion: 1'
     - line: '|   shaderPrecisionModel: 0'
     - line: '|   clonedFromGUID: 3c72c65a16f0acb438eed22b8b16c24a'
     - line: '|   templatePackageId: com.unity.template.urp-blank@17.0.11'
@@ -640,10 +640,10 @@ MonoBehaviour:
     - line: '|     m_Formats: 03000000'
     - line: '|   playModeTestRunnerEnabled: 0'
     - line: '|   runPlayModeTestAsEditModeTest: 0'
-    - line: '|   actionOnDotNetUnhandledException: 1'
+    - line: '|   actionOnDotNetUnhandledException: 0'
     - line: '|   editorGfxJobOverride: 1'
     - line: '|   enableInternalProfiler: 0'
-    - line: '|   logObjCUncaughtExceptions: 1'
+    - line: '|   logObjCUncaughtExceptions: 0'
     - line: '|   enableCrashReportAPI: 0'
     - line: '|   cameraUsageDescription: '
     - line: '|   locationUsageDescription: '
@@ -1051,7 +1051,7 @@ MonoBehaviour:
         m_ExplicitNullChecks: 0
         m_ExplicitDivideByZeroChecks: 0
         m_ExplicitArrayBoundsChecks: 0
-        m_CompressionType: 0
+        m_CompressionType: 3
         m_InstallInBuildFolder: 0
         m_iOSXcodeBuildConfig: 1
         m_SymlinkSources: 0
