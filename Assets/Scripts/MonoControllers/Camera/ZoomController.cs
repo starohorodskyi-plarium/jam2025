@@ -2,6 +2,7 @@ using System;
 using Core;
 using DG.Tweening;
 using GameCursor;
+using Platform;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -40,6 +41,12 @@ namespace MonoControllers.Camera
 
         private void Update()
         {
+            // На сенсоре прицел включает только своя экранная зона (MobileControls/Zoom),
+            // которая дёргает ToggleFOV через кнопку. Кнопки мыши здесь не читаем:
+            // в мобильном браузере второй палец приходит как Mouse1 и включал прицел сам.
+            if (WGPlatform.IsMobile)
+                return;
+
 #if UNITY_STANDALONE || UNITY_WEBGL || UNITY_EDITOR
             if (Input.GetKeyDown(KeyCode.Mouse1))
                 ToggleFOV();
