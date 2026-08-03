@@ -4,7 +4,6 @@ using Gameplay.Obstacle;
 using Gun;
 using NPC;
 using Platform;
-using Solo.MOST_IN_ONE;
 using UI.DevilificationProgress;
 using UnityEngine;
 using UnityEngine.Events;
@@ -66,7 +65,7 @@ namespace MonoControllers
             }
             else
             {
-                Most_HapticFeedback.Generate(Most_HapticFeedback.HapticTypes.Selection);
+                WGVibration.Vibrate(20);
             }
 
             DispatchAmmoChanged();
@@ -82,30 +81,30 @@ namespace MonoControllers
                 GameManager.Instance.SubtractTime();
                 
                 hitObject.GetComponent<NPCController>()?.Hit(impactDelay);
-                Most_HapticFeedback.Generate(Most_HapticFeedback.HapticTypes.SoftImpact);
+                WGVibration.Vibrate(60);
             }
             else if (hitObject.CompareTag("Enemy"))
             {
                 GameManager.Instance.AddTime(5);
                 
                 hitObject.GetComponent<NPCController>()?.Hit(impactDelay, UpdateProgress);
-                
-                Most_HapticFeedback.Generate(Most_HapticFeedback.HapticTypes.SelectionPlus);
+
+                WGVibration.Vibrate(40);
             }
             else if (hitObject.CompareTag("Obstacle"))
             {
                 hitObject.GetComponent<ObstacleReaction>()?.Hit(impactDelay, collisionPoint);
-                Most_HapticFeedback.Generate(Most_HapticFeedback.HapticTypes.Selection);
+                WGVibration.Vibrate(25);
             }
             else if (hitObject.CompareTag("Snail"))
             {
                 GameManager.Instance.AddTime(10);
                 hitObject.GetComponent<SnailController>()?.Hit(impactDelay, collisionPoint);
-                Most_HapticFeedback.Generate(Most_HapticFeedback.HapticTypes.SelectionPlus);
+                WGVibration.Vibrate(40);
             }
             else
             {
-                Most_HapticFeedback.Generate(Most_HapticFeedback.HapticTypes.Selection);
+                WGVibration.Vibrate(20);
             }
         }
 

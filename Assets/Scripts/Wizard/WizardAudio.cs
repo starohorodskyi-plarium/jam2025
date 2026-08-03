@@ -1,6 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
-using Solo.MOST_IN_ONE;
+using Platform;
 
 namespace Wizard
 {
@@ -35,8 +35,7 @@ namespace Wizard
             _audioSource.volume = _initialVolume;
             _audioSource.PlayOneShot(slide.AudioClip);
             
-            if (slide.HapticType != Most_HapticFeedback.HapticTypes.None)
-                Most_HapticFeedback.Generate(slide.HapticType);
+            WGVibration.Generate(slide.HapticType);
         }
         
         public void Stop()

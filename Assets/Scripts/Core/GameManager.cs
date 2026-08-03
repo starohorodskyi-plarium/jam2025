@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Gameplay.DevilMode;
 using Music;
-using Solo.MOST_IN_ONE;
+using Platform;
 using TMPro;
 using UI.DevilificationProgress;
 using UnityEngine;
@@ -243,7 +243,7 @@ namespace Core
                 MusicManager.SceneLoaded?.Invoke(MusicManager.MenuBetweenLevelsSceneName);
             });
             
-            Most_HapticFeedback.Generate(Most_HapticFeedback.HapticTypes.Failure);
+            WGVibration.VibratePattern(0, 80, 60, 120);
             
             DevilificationProgress.ResetProgress();
 
