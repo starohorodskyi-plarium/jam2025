@@ -19,8 +19,7 @@ namespace Gameplay
         [SerializeField] private float _thunderSoundDelay = 1f;
         [SerializeField] private Vector2 _thunderPitchRange = new Vector2(0.9f, 1.1f);
         [SerializeField] private float _lightningPeakIntensity = 8f;
-        [SerializeField] private float _lightningFlickerDuration = 0.3f;
-        
+
         public UnityEvent OnThunder;
 
         private Coroutine _thunderstormCoroutine;

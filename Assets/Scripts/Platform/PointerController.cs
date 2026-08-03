@@ -12,9 +12,11 @@ namespace Platform
         [SerializeField] private float _sensitivity = 1.2f;
         [Tooltip("Smoothing time for SmoothDamp (ignored if DOTween is used).")] 
         [SerializeField] private float _smoothTime = 0.05f;
-        [Tooltip("Also allow this to work in editor play mode for debugging.")] 
+#if UNITY_EDITOR
+        [Tooltip("Also allow this to work in editor play mode for debugging.")]
         [SerializeField] private bool _enableInEditor = true;
-        
+#endif
+
         [Header("Keyboard Control (Editor Only)")]
         [Tooltip("Speed of keyboard arrow key movement (pixels per second)")]
         [SerializeField] private float _keyboardSpeed = 500f;

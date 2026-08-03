@@ -1,65 +1,43 @@
-﻿#region
+#region
 
 using UnityEditor;
 using UnityEditor.SceneManagement;
+using UnityEditor.Toolbars;
 using UnityEngine;
 
 #endregion
 
 namespace Editor
 {
-    [InitializeOnLoad]
-    public class SceneSwitchLeftButton
+    public static class SceneSwitcher
     {
-        static SceneSwitchLeftButton()
+        private const string InitialScene = "Assets/Scenes/Initial.unity";
+        private const string SplashScene = "Assets/Scenes/SplashScreen.unity";
+        private const string GameScene = "Assets/Scenes/Game.unity";
+
+        [MainToolbarElement("SceneSwitcher/Initial", defaultDockPosition = MainToolbarDockPosition.Right, defaultDockIndex = 0)]
+        private static MainToolbarElement CreateInitialButton() =>
+            CreateSceneButton("Initial", "Load Initial Scene", InitialScene);
+
+        [MainToolbarElement("SceneSwitcher/Splash", defaultDockPosition = MainToolbarDockPosition.Right, defaultDockIndex = 1)]
+        private static MainToolbarElement CreateSplashButton() =>
+            CreateSceneButton("Splash", "Load Splash Screen Scene", SplashScene);
+
+        [MainToolbarElement("SceneSwitcher/Game", defaultDockPosition = MainToolbarDockPosition.Right, defaultDockIndex = 2)]
+        private static MainToolbarElement CreateGameButton() =>
+            CreateSceneButton("GameScene", "Load Game Scene", GameScene);
+
+        private static MainToolbarElement CreateSceneButton(string label, string tooltip, string scenePath) =>
+            new MainToolbarButton(new MainToolbarContent(label, tooltip), () => OpenScene(scenePath));
+
+        private static void OpenScene(string scenePath)
         {
-            ToolbarExtender.RightToolbarGUI.Add(OnToolbarGUI);
-        }
+            if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
+                return;
 
-
-        static void OnToolbarGUI()
-        {
-            GUILayout.FlexibleSpace();
-
-            GUILayout.BeginVertical();
-            GUILayout.FlexibleSpace();
-            if (GUILayout.Button(new GUIContent(" Initial ", "Load Initial Scene"), EditorStyles.miniButtonLeft))
-            {
-                EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
-                EditorSceneManager.OpenScene(
-                    "Assets/Scenes/Initial.unity",
-                    (Event.current.modifiers & EventModifiers.Shift) != 0 ? OpenSceneMode.Additive : OpenSceneMode.Single);
-            }
-            GUILayout.FlexibleSpace();
-            GUILayout.EndVertical();
-
-            GUILayout.Space(4);
-
-            GUILayout.BeginVertical();
-            GUILayout.FlexibleSpace();
-            if (GUILayout.Button(new GUIContent(" Splash ", "Load Splash Screen Scene"), EditorStyles.miniButtonMid))
-            {
-                EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
-                EditorSceneManager.OpenScene(
-                    "Assets/Scenes/SplashScreen.unity",
-                    (Event.current.modifiers & EventModifiers.Shift) != 0 ? OpenSceneMode.Additive : OpenSceneMode.Single);
-            }
-            GUILayout.FlexibleSpace();
-            GUILayout.EndVertical();
-
-            GUILayout.Space(4);
-
-            GUILayout.BeginVertical();
-            GUILayout.FlexibleSpace();
-            if (GUILayout.Button(new GUIContent(" GameScene ", "Load Game Scene"), EditorStyles.miniButtonRight))
-            {
-                EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
-                EditorSceneManager.OpenScene(
-                    "Assets/Scenes/Game.unity",
-                    (Event.current.modifiers & EventModifiers.Shift) != 0 ? OpenSceneMode.Additive : OpenSceneMode.Single);
-            }
-            GUILayout.FlexibleSpace();
-            GUILayout.EndVertical();
+            // Hold Shift while clicking to load the scene additively.
+            var additive = (Event.current?.modifiers & EventModifiers.Shift) != 0;
+            EditorSceneManager.OpenScene(scenePath, additive ? OpenSceneMode.Additive : OpenSceneMode.Single);
         }
     }
 }
