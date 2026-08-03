@@ -30,19 +30,32 @@ namespace Platform
             get
             {
 #if UNITY_WEBGL && !UNITY_EDITOR
-                return WGCanVibrate() == 1;
+                // canVibrate из данных страницы; WGCanVibrate — резерв, если window.WGPlatform не объявлен.
+                return WGPlatform.Info.canVibrate || WGCanVibrate() == 1;
 #elif UNITY_ANDROID || UNITY_IOS
-                return Most_HapticFeedback.IsSupported();
+                // Most_HapticFeedback.IsSupported() опрашивает вибромотор, но инициализируется
+                // только AfterSceneLoad — в Awake он ещё вернёт false, поэтому доверяем платформе.
+                return Application.isMobilePlatform;
 #else
                 return false;
 #endif
             }
         }
 
+        /// <summary>
+        /// Включена ли вибрация в настройках игры. Хранится в PlayerPrefs самим Most_HapticFeedback,
+        /// поэтому настройка одна и та же для вебa и нативных сборок.
+        /// </summary>
+        public static bool Enabled
+        {
+            get => Most_HapticFeedback.HapticsEnabled;
+            set => Most_HapticFeedback.HapticsEnabled = value;
+        }
+
         /// <summary>Короткий импульс, миллисекунды.</summary>
         public static void Vibrate(int milliseconds = 30)
         {
-            if (milliseconds <= 0 || !PassCooldown())
+            if (milliseconds <= 0 || !Enabled || !PassCooldown())
                 return;
 
 #if UNITY_WEBGL && !UNITY_EDITOR
@@ -60,7 +73,7 @@ namespace Platform
         /// </summary>
         public static void VibratePattern(params int[] pattern)
         {
-            if (pattern == null || pattern.Length == 0)
+            if (pattern == null || pattern.Length == 0 || !Enabled)
                 return;
 
             _lastVibrationTime = Time.unscaledTime;

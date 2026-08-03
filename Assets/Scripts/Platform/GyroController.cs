@@ -16,14 +16,9 @@ namespace Platform
         private void Awake() =>
             ResetGyro();
 
-        private void Start()
-        {
-#if UNITY_IOS || UNITY_ANDROID
-        UsingGyroOffset = _gyroscopeSystem.IsGyroEnabled;
-#else
-        UsingGyroOffset = false;
-#endif
-        }
+        private void Start() =>
+            // в браузере гироскоп доступен не всегда — IsGyroEnabled это учитывает
+            UsingGyroOffset = WGPlatform.IsMobile && _gyroscopeSystem && _gyroscopeSystem.IsGyroEnabled;
 
         private void OnEnable() => 
             GyroscopeSystem.GyroInput += GyroInput;

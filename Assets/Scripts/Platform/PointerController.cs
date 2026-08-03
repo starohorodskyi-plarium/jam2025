@@ -34,9 +34,10 @@ namespace Platform
         {
             get
             {
-#if UNITY_IOS || UNITY_ANDROID
-                return true;
-#elif UNITY_EDITOR
+                // Нативная мобилка и мобильный браузер — один и тот же тач-ввод
+                if (WGPlatform.IsMobile)
+                    return true;
+#if UNITY_EDITOR
                 return _enableInEditor; // Simulate on editor if desired
 #else
                 return false;
@@ -116,7 +117,7 @@ namespace Platform
 
         private void ProcessTouchpad()
         {
-#if UNITY_IOS || UNITY_ANDROID || UNITY_EDITOR
+            // Input.touchCount работает и в вебе; на платформах без тача он просто равен нулю
             // Acquire or update active touch
             if (_activeTouchId == -1)
             {
@@ -177,7 +178,6 @@ namespace Platform
                         break;
                 }
             }
-#endif
         }
 
         private void ApplyPointerDelta(Vector2 delta) => 
@@ -199,10 +199,9 @@ namespace Platform
             _activeTouchId = -1;
             _targetPointer = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
             GyroController.ResetGyro();
-            
-#if UNITY_IOS || UNITY_ANDROID
-            GamePointer.ResetPointer();  
-#endif
+
+            if (WGPlatform.IsMobile)
+                GamePointer.ResetPointer();
         }
     }
 }

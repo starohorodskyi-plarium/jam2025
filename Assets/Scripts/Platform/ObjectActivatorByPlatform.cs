@@ -16,10 +16,10 @@ namespace Platform
         [Tooltip("If checked, this GameObject will be enabled on Mobile (iOS/Android).")]
         public bool EnableOnMobile;
 
-        [FormerlySerializedAs("enableOnWeb")] 
-        [Tooltip("If checked, this GameObject will be enabled on Web (WebGL).")]
+        [FormerlySerializedAs("enableOnWeb")]
+        [Tooltip("If checked, this GameObject will be enabled on Web (WebGL). Mobile browsers count as Mobile, not Web.")]
         public bool EnableOnWeb;
-        
+
         [Header("Disable on platforms")]
         [FormerlySerializedAs("disableOnPC")]
         [Tooltip("If checked, this GameObject will be disabled on PC (Standalone + Editor). Overrides enable.")]
@@ -29,15 +29,31 @@ namespace Platform
         [Tooltip("If checked, this GameObject will be disabled on Mobile (iOS/Android). Overrides enable.")]
         public bool DisableOnMobile;
 
-        [FormerlySerializedAs("disableOnWeb")] 
+        [FormerlySerializedAs("disableOnWeb")]
         [Tooltip("If checked, this GameObject will be disabled on Web (WebGL). Overrides enable.")]
         public bool DisableOnWeb;
 
-        private void Awake() => 
+        [Header("Extra conditions")]
+        [Tooltip("If checked, this GameObject is also disabled when vibration is unavailable (iOS browser, desktop).")]
+        public bool RequireVibrationSupport;
+
+        private void Awake() =>
             ApplyActivationForCurrentPlatform();
 
         private void ApplyActivationForCurrentPlatform()
         {
+            if (!Target)
+            {
+                Debug.LogWarning($"[{nameof(ObjectActivatorByPlatform)}] {name}: {nameof(Target)} is not assigned", this);
+                return;
+            }
+
+            if (RequireVibrationSupport && !WGVibration.IsSupported)
+            {
+                Target.SetActive(false);
+                return;
+            }
+
             var isPC = IsPCPlatform();
             var isMobile = IsMobilePlatform();
             var isWeb = IsWebPlatform();
@@ -70,10 +86,13 @@ namespace Platform
             };
         }
 
-        private static bool IsMobilePlatform() => 
-            Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer;
+        // Мобильный браузер считается Mobile, а не Web: там нужны те же тач-контролы, что в нативной сборке.
+        private static bool IsMobilePlatform() =>
+            Application.platform == RuntimePlatform.Android
+            || Application.platform == RuntimePlatform.IPhonePlayer
+            || WGPlatform.IsMobileBrowser;
 
-        private static bool IsWebPlatform() => 
-            Application.platform == RuntimePlatform.WebGLPlayer;
+        private static bool IsWebPlatform() =>
+            Application.platform == RuntimePlatform.WebGLPlayer && !WGPlatform.IsMobileBrowser;
     }
 }

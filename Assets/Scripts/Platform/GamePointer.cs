@@ -15,12 +15,8 @@ namespace Platform
         private void Awake()
         {
             _center = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
-            // On mobile, initialize pointer at screen center at start
-#if UNITY_IOS || UNITY_ANDROID
-        Pointer = _center;
-#else
-            Pointer = MousePosition();
-#endif
+            // On mobile (native build or mobile browser), initialize pointer at screen center at start
+            Pointer = WGPlatform.IsMobile ? _center : MousePosition();
         }
 
         private Vector2 MousePosition()
@@ -35,13 +31,13 @@ namespace Platform
         private void Update()
         {
             _pointerTransform.position = Pointer;
-#if UNITY_IOS || UNITY_ANDROID
-             
-#else
+
+            if (WGPlatform.IsMobile)
+                return;
+
             // Only pull from mouse if nothing else is actively overriding the pointer
             if (!ExternalOverrideActive && !GyroController.UsingGyroOffset)
                 Pointer = MousePosition();
-#endif
         }
         
         public static void ResetPointer() => 

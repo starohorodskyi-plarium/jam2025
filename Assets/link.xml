@@ -1,0 +1,11 @@
+<linker>
+  <!--
+    Managed Stripping Level для веба поднят до High. Кнопки и UnityEvent'ы в сценах
+    вызывают методы по имени (m_MethodName), линкер таких ссылок не видит и вырезал бы
+    их вместе с типами. Поэтому пользовательский код и плагины из Assets/Plugins
+    исключены из стриппинга целиком — они весят немного, а основной выигрыш High
+    даёт на сборках движка, URP и пакетов.
+  -->
+  <assembly fullname="Assembly-CSharp" preserve="all"/>
+  <assembly fullname="Assembly-CSharp-firstpass" preserve="all"/>
+</linker>

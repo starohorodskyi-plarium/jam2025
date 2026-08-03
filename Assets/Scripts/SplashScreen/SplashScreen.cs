@@ -1,3 +1,4 @@
+using Platform;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
@@ -22,14 +23,8 @@ namespace SplashScreen
         [FormerlySerializedAs("startMenuSceneName")] [SerializeField] private string _startMenuSceneName;
         [FormerlySerializedAs("sceneLoader")] [SerializeField] private UnityEvent<string> _sceneLoader;
 
-        private void Awake()
-        {
-	#if UNITY_IOS || UNITY_ANDROID
-	        _parentPlatformScaler.localScale = _mobileScale;
-	#else
-			_parentPlatformScaler.localScale = _desktopScale;
-	#endif
-        }
+        private void Awake() =>
+	        _parentPlatformScaler.localScale = WGPlatform.IsMobile ? _mobileScale : _desktopScale;
 
 		public void LoadGameScene() =>
 			_sceneLoader?.Invoke(_startMenuSceneName);
